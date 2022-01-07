@@ -1,0 +1,240 @@
+/******************************************************************
+
+* Main Stylesheet
+
+*******************************************************************/
+
+// Bootstrap
+@import './node_modules/bootstrap/scss/functions';
+@import './node_modules/bootstrap/scss/variables';
+@import './node_modules/bootstrap/scss/mixins';
+
+/*************************************************************
+*						App Variables
+**************************************************************/
+$font-size: 14PX;
+$font-size-small: 11PX;
+
+/*************************************************************
+*					  Colors Definitions
+**************************************************************/
+
+$color-primary: #124596 !default;
+$color-primary--light: scale-color($color-primary, $lightness: +30%);
+$color-primary--lighter: scale-color($color-primary, $lightness: +60%);
+$color-primary--lightest: scale-color($color-primary, $lightness: +90%);
+$color-primary--lightest-x2: scale-color($color-primary, $lightness: +96%);
+$color-primary--dark: scale-color($color-primary, $lightness: -30%);
+$color-primary--darker: scale-color($color-primary, $lightness: -60%);
+$color-primary--darkest: scale-color($color-primary, $lightness: -90%);
+
+$color-secondary: #0063A4 !default;
+$color-secondary--light: scale-color($color-secondary, $lightness: +30%);
+$color-secondary--lighter: scale-color($color-secondary, $lightness: +60%);
+$color-secondary--lightest: scale-color($color-secondary, $lightness: +90%);
+$color-secondary--lightest-x2: scale-color($color-secondary, $lightness: +96%);
+$color-secondary--dark: scale-color($color-secondary, $lightness: -30%);
+$color-secondary--darker: scale-color($color-secondary, $lightness: -60%);
+$color-secondary--darkest: scale-color($color-secondary, $lightness: -90%);
+
+$color-accent: #FABB1B; // Original 40% más claro.
+$color-accent--light: scale-color($color-primary, $lightness: +30%);
+$color-accent--lighter: scale-color($color-primary, $lightness: +60%);
+$color-accent--lightest: scale-color($color-primary, $lightness: +90%);
+$color-accent--lightest-x2: scale-color($color-primary, $lightness: +96%);
+$color-accent--dark: scale-color($color-primary, $lightness: -30%);
+$color-accent--darker: scale-color($color-primary, $lightness: -60%);
+$color-accent--darkest: scale-color($color-primary, $lightness: -90%);
+
+$black-rich: black;
+$black: mix(black, $color-primary, 90%);
+
+$white: mix(white, $color-primary, 98%);
+$white-rich: white;
+
+/* Main Colors */
+$red: #ef2e35;
+$orange: #FA8072;
+$yellow: #FCBD65;
+$yellow-fluor: #FFFF13;
+$olive: #b5cc18;
+$lime: #a2dd2c;
+$green: #43c02a;
+$mint: #1daf66;
+$teal: #1AAFAE;
+$light-blue: #36BFF9;
+$blue: #0080ff;
+$violet: #867BAF;
+$purple: #5E38BA;
+$pink: #e83098;
+$brown: #a5673f;
+// $gray: mix($color-primary, #EBEEF2, 20%);
+$gray: #EBEEF2;
+
+
+/*************************************************************
+					Paletas de Colores
+**************************************************************/
+// Green
+$green-400: scale-color($green, $lightness: -30%) !default;
+$green-200: scale-color($green, $lightness: +30%) !default;
+$green-100: scale-color($green, $lightness: +60%) !default;
+$green-50: scale-color($green, $lightness: +90%) !default;
+
+
+// Lime-green
+$lime-400: scale-color($lime, $lightness: -30%) !default;
+$lime-200: scale-color($lime, $lightness: +30%) !default;
+$lime-100: scale-color($lime, $lightness: +60%) !default;
+$lime-50: scale-color($lime, $lightness: +90%) !default;
+
+
+// Yellow
+$yellow-400: scale-color($yellow, $lightness: -30%) !default;
+$yellow-200: scale-color($yellow, $lightness: +30%) !default;
+$yellow-100: scale-color($yellow, $lightness: +60%) !default;
+$yellow-50: scale-color($yellow, $lightness: +90%) !default;
+
+
+// Orange
+$orange-400: scale-color($orange, $lightness: -30%) !default;
+$orange-200: scale-color($orange, $lightness: +30%) !default;
+$orange-100: scale-color($orange, $lightness: +60%) !default;
+$orange-50: scale-color($orange, $lightness: +90%) !default;
+
+
+// Red
+$red-400: scale-color($red, $lightness: -30%) !default;
+$red-200: scale-color($red, $lightness: +30%) !default;
+$red-100: scale-color($red, $lightness: +60%) !default;
+$red-50: scale-color($red, $lightness: +90%) !default;
+
+
+// Violet
+$violet-400: scale-color($violet, $lightness: -30%) !default;
+$violet-200: scale-color($violet, $lightness: +30%) !default;
+$violet-100: scale-color($violet, $lightness: +60%) !default;
+$violet-50: scale-color($violet, $lightness: +90%) !default;
+
+
+// Teal
+$teal-400: scale-color($teal, $lightness: -30%) !default;
+$teal-200: scale-color($teal, $lightness: +30%) !default;
+$teal-100: scale-color($teal, $lightness: +60%) !default;
+$teal-50: scale-color($teal, $lightness: +90%) !default;
+
+
+// Blue
+$blue-400: scale-color($blue, $lightness: -30%) !default;
+$blue-200: scale-color($blue, $lightness: +30%) !default;
+$blue-100: scale-color($blue, $lightness: +60%) !default;
+$blue-50: scale-color($blue, $lightness: +90%) !default;
+
+
+// Light-blue
+$light-blue-400: scale-color($light-blue, $lightness: -30%) !default;
+$light-blue-200: scale-color($light-blue, $lightness: +30%) !default;
+$light-blue-100: scale-color($light-blue, $lightness: +60%) !default;
+$light-blue-50: scale-color($light-blue, $lightness: +90%) !default;
+
+
+// Grey
+$gray-900: scale-color($gray, $lightness: -00%);
+$gray-800: scale-color($gray, $lightness: -96%);
+$gray-700: scale-color($gray, $lightness: -93%);
+$gray-600: scale-color($gray, $lightness: -90%);
+$gray-500: scale-color($gray, $lightness: -60%);
+$gray-400: scale-color($gray, $lightness: -30%);
+$gray-200: scale-color($gray, $lightness: +30%);
+$gray-150: scale-color($gray, $lightness: +45%);
+$gray-100: scale-color($gray, $lightness: +60%);
+$gray-75: scale-color($gray, $lightness: +75%);
+$gray-50: scale-color($gray, $lightness: +90%);
+$gray-25: scale-color($gray, $lightness: +95%);
+
+/* Text */
+$text-color: #09101D;
+$text-color-gray-light: $gray-400;
+$text-color-gray: $gray-500;
+$text-color-gray-dark: $gray-600;
+
+$color-success: $green;
+$color-info: $blue-200;
+$color-warning: $orange;
+$color-danger: $red;
+$color-inverse: #343a40;
+$color-loader: $color-primary;
+
+
+ 
+/*************************************************************
+*					Common Element Variables
+**************************************************************/
+
+// Sidebar
+
+$sidebar-width: 250PX;
+$sidebar-width--colapsado: 90PX;
+@mixin transition {
+        -webkit-transition: all 300ms ease-in-out;
+        -moz-transition: all 300ms ease-in-out;
+        -o-transition: all 300ms ease-in-out;
+        transition: all 300ms ease-in-out;
+}
+
+// Contenido
+
+$min-height-content: calc(100vh - 338PX);
+
+// Header
+$header-logo-width: 175PX;
+
+// Banner Primary
+$bannerPrimary-blendColor: $color-accent;
+$bannerPrimary-borderColor: $color-accent--dark;
+
+
+/* ***************************************************
+*			Page Specific Element Variables
+****************************************************** */
+
+
+
+/***************************/
+        /*loading*/
+/*****************************/
+
+$base-line-height: 1.5rem;
+$off-color: rgba($color-primary, 0.2);
+$spin-duration: 1s;
+$pulse-duration: 7500ms;
+$spin-duration-loader:0.5s;
+
+/************************/
+       /*Border*/
+/***********************/
+
+$framework-border: 1PX solid rgba(0, 0, 0, 0.1);
+$framework-referencias-border-left: 5PX solid transparent;
+$framework-component-border-left: 4px solid transparent;
+
+$framework-border-radius-1: 0.25rem;
+$framework-border-radius-2: 0.5rem;
+$framework-border-radius-3: 1rem;
+$framework-border-radius-circle: 100PX;
+
+@mixin framework-subtitle {
+        font-size: 12px;
+        color: $gray-400;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+}
+
+/************************/
+/*Shadow*/
+/***********************/
+
+$framework-box-shadow: 0.0625rem 0.0625rem 0.3125rem $gray-100;
+$framework-box-shadow-hover: 0 5PX 10PX rgba($gray-400, 0.1);
+$framework-box-shadow-modal: 0 0 20PX rgba($black, 0.5);
+$framework-transition: all 300ms ease-in-out;

@@ -11,6 +11,11 @@ import { Dashboard } from 'components';
 import { Provider, connect } from "react-redux";
 import store from "./store";
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
+import './assets/styles/app.scss';
+import './assets/styles/footer.scss'
+import './assets/styles/header.scss'
+import './assets/styles/sidebar.scss'
 
 
 

@@ -1,0 +1,117 @@
+@import "./variables/overrides";
+@import "./variables/variables";
+
+.footerNav {
+   padding: 3rem 0;
+   border-top: 4px solid $gray-200;
+
+   &Row {
+      &__item {
+         .footerNavItem {
+            &__title {
+               font-size: 20px;
+               color: $text-color-gray;
+            }
+
+            &__list {
+               margin: 0;
+               padding: 0;
+               list-style: none;
+
+               li {
+                  padding: 0.5rem 0;
+
+                  &:not(.footerNavItem__moreInfo) {
+                     a {
+                        color: $text-color-gray;
+
+                        &:hover {
+                           color: $text-color-gray-dark;
+                        }
+
+                        .fa {
+                           font-size: 18px;
+                           margin-right: 0.25rem;
+                        }
+                     }
+                  }
+
+                  &.footerNavItem__moreInfo {
+                     color: $color-primary;
+                     text-decoration: underline;
+
+                     &:hover {
+                        color: $color-primary--dark;
+                     }
+                  }
+               }
+            }
+
+            &__phone {
+               font-size: 20px;
+               font-weight: 600;
+               color: $text-color-gray;
+               margin: 0.5rem 0;
+            }
+         }
+      }
+   }
+}
+
+footer {
+   padding: 2rem 0;
+   background-color: $color-primary--lightest-x2;
+
+   .footerContent {
+      align-items: center;
+
+      &__logoRentas {
+         img {
+            max-width: 200PX;
+         }
+      }
+
+      &__logoProvincia {
+         margin: 0 auto 0 2rem;
+
+         img {
+            max-width: 150PX;
+         }
+      }
+   }
+
+   .footerAccess {
+      padding-top: 0.5rem;
+
+      ul {
+         display: flex;
+         align-items: center;
+         margin: 0;
+         padding: 0;
+         list-style: none;
+
+         li {
+            color: $text-color-gray-light;
+            font-size: 12px;
+            padding: 0 0.5rem;
+
+            &:first-child {
+               padding-left: 0;
+            }
+
+            &:not(:last-child) {
+               border-right: 1PX solid $gray;
+            }
+
+            a {
+               color: $text-color-gray-light;
+               font-size: 12px;
+
+               &:hover {
+                  color: $text-color-gray-dark;
+               }
+            }
+         }
+      }
+   }
+}

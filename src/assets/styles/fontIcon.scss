@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'fonticon';
+  src: url('./../fonts/fonticon.eot'); /* IE9 Compat Modes */
+  src: /*url('./../fonts/fonticon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./../fonts/fonticon.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./../fonts/fonticon.otf')  format('opentype'),
+       url('./../fonts/fonticon.ttf')  format('truetype'); /* Safari, Android, iOS */
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+
+  &.fa-svg {
+    font-family: 'fonticon' !important;
+    vertical-align: 0%;
+    font-size: 100%;
+    line-height: 110%;
+    vertical-align: middle;
+
+    &.fa-chupete:before {
+      content: "\d000";
+    }
+
+    &.fa-user-o:before {
+      content: "\d001";
+    }
+
+    &.fa-users:before {
+      content: "\d002";
+    }
+
+    &.fa-search:before {
+      content: "\d003";
+    }
+
+    &.fa-file:before {
+      content: "\d004";
+    }
+
+    &.fa-clock:before {
+      content: "\d005";
+    }
+
+    &.fa-credit:before {
+      content: "\d006";
+    }
+
+    &.fa-lock:before {
+      content: "\d007";
+    }
+
+    &.fa-calendar:before {
+      content: "\d008";
+    }
+
+    &.fa-comment:before {
+      content: "\d009";
+    }
+
+    &.fa-calendar-o:before {
+      content: "\d010";
+    }
+
+    &.fa-chat:before {
+      content: "\d011";
+    }
+
+    &.fa-facebook:before {
+      content: "\d012";
+    }
+    
+    &.fa-letter:before {
+      content: "\d013";
+    }
+
+    &.fa-warning:before {
+      content: "\d014";
+    }
+
+    &.fa-arrow-left:before {
+      content: "\d015";
+    }
+
+    &.fa-elipsis-v:before {
+      content: "\d016";
+    }
+
+    &.fa-refresh:before {
+      content: "\d017";
+    }
+
+    &.fa-print:before {
+      content: "\d018";
+    }
+
+    &.fa-excel:before {
+      content: "\d019";
+    }
+    
+    &.fa-import:before {
+      content: "\d020";
+    }
+
+    &.fa-times:before {
+      content: "\d021";
+    }
+
+    &.fa-pesos:before {
+      content: "\d022";
+    }
+  }
+}

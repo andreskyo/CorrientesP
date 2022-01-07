@@ -1,0 +1,72 @@
+@import "./variables/overrides";
+@import "./variables/variables";
+
+
+header{
+   position: sticky;
+   top: 0;
+   padding: 1rem 0;
+   background-color: white;
+   box-shadow: 0 3PX 10PX rgba(150, 150, 150, 0.1);
+   z-index: 5;
+   p,ul,li{
+      margin: 0;
+      padding: 0;
+   }
+   .header{
+      &Container{
+         &__row{
+         }
+      }
+      &Row{
+         align-items: center;
+         flex-wrap: nowrap;
+         &__logo{
+            margin-right: auto;
+            a{
+               display: flex;
+               img{
+                  max-width: 250PX;
+               }
+            }
+         }
+         &__search{
+            .input-group{
+               &-preprend{}
+               &-text{}
+               .form-control{}
+            }
+         }
+         &__nav{
+            nav{
+               ul{
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  list-style: none;
+                  li{
+                     &:not(:first-child){
+                        margin-left: 1.5rem;
+                     }
+                     a{
+                        font-weight: 600;
+                        color: $text-color !important;
+                     }
+                  }
+               }
+            }
+         }
+         &__userMenu{
+            a{
+               display: flex;
+               align-items: center;
+               font-weight: 600;
+               color: $text-color !important;
+               i{
+                  margin-right: 0.25rem;
+               }
+            }
+         }
+      }
+   }
+}

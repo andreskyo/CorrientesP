@@ -1,0 +1,29 @@
+.btn{
+   border-radius: 0;
+   &.btn-lg{
+      padding: 0.25rem 1rem;
+   }
+}
+
+label{
+   margin-bottom: 0.25rem;
+}
+
+a{
+   &:hover{
+      text-decoration: none;
+   }
+}
+
+.modal{
+   &-content{
+      border-radius: 0;
+   }
+   &-footer{
+      .col-auto{
+         &:last-child{
+            padding-left: 0;
+         }
+      }
+   }
+}

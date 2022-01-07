@@ -1,0 +1,22 @@
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// En este archivo tiene como funcion contener los fixes necesarios para una mejor reproducción del framework en IE 10/11 y Edge                                  //
+//                                                                                                                                                                 //
+// Para versiones menores, es necesario agregar un comentario condicional "<!--[if lte IE 9]> Internet Explorer 9 or less <![endif]-->"                            //
+// en el main_layout del framework lo cual no se justifica ya que, segun el w3Counter, solo el 1,8% de los usuarios globales usan estas versiones.                 //
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------  IE 10/11  ---------------------------------------------------------------------------//
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+
+}
+
+
+
+
+//---------------------------------------------------------------------------  EDGE  ------------------------------------------------------------------------------//
+
+@supports (-ms-ime-align:auto) {
+
+}

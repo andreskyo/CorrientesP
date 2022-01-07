@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API_BASE_URL from "../api/api";
+import {OAUTH} from "../api/api";
 
 const usePost = () => {
   const [postData, updateData] = useState({
@@ -16,7 +16,7 @@ const usePost = () => {
       isSuccessfull: false,
     });
     console.log(datajson);
-    await API_BASE_URL.post(`${url}`, datajson)
+    await OAUTH.post(`${url}`, datajson)
       .then((res) => {
         console.log("post: " + res.status);
         updateData({
