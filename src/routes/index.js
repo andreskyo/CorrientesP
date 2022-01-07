@@ -1,23 +1,23 @@
 import React, { memo } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Route, Routes, BrowserRouter} from 'react-router-dom';
 import history from 'utils/history';
-import PrivateRoutes from './PrivateRoutes';
-import Auth from './Auth';
+import { Login } from 'components';
+import { LandingPage } from 'components';
+import { Dashboard } from 'components';
 
-function Routes() {
+function Rutas() {
 	return (
-		<Router history={history}>
-			<Switch>
-				<Route path="/app">
-					<PrivateRoutes />
-				</Route>
-				<Route path="">
-					<Auth />
-				</Route>
-			</Switch>
-		</Router>
+		<BrowserRouter history={history}>
+		
+			<Routes>
+				<Route exact path="/" element={<LandingPage/>} />
+				<Route exact path="/login" element={<Login/>} />
+				<Route exact path="/app" element={<Dashboard/>} />
+			</Routes>
+			
+		</BrowserRouter>
 	)
 }
 
-export default memo(Routes);
+export default memo(Rutas);
 

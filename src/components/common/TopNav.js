@@ -1,13 +1,12 @@
 import React, { memo } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { isLoggedIn } from 'utils';
-import { getAllowedRoutes } from '../../utils';
+import history from 'utils/history';
 
 function TopNav(props) {
-	let history = useHistory();
-
+	
 	function handleLogout() {
 		localStorage.removeItem('roles');
 		history.push('/');
@@ -16,26 +15,10 @@ function TopNav(props) {
 	const renderMenu = (ruta, title, children) =>{
 		//console.log("children: " +JSON.stringify(children));
 		let resultado;
-		if(children && children.length>=1){
-			const allowedRoutes = getAllowedRoutes(children);
-			resultado = <div className="w3-dropdown-hover w3-mobile">
-			<button className="w3-button">{title} <i className="fa fa-caret-down"> </i> </button>
-				<div className="w3-dropdown-content w3-bar-block w3-card-4">
-					<Link key={ruta} className="w3-bar-item" to={`${props.prefix}${ruta}`}>
-						{title}
-					</Link>
-					{allowedRoutes.map(({ path, title,  }) => (
-						<Link key={path} className="w3-bar-item" to={`${props.prefix}${ruta+path}`}>
-							{title}
-						</Link>
-					))}
-
-				</div>
-			</div>;
-		}else{
+	
 		 resultado = <Link key={ruta} className="w3-bar-item w3-mobile" to={`${props.prefix}${ruta}`}>
 			{title}
-		</Link>}
+		</Link>
 
 		return resultado;
 	};
@@ -53,16 +36,9 @@ function TopNav(props) {
 			<div className="w3-display-topleft w3-padding-large w3-xlarge w3-mobile">
 				TDR - Interno
 			</div>
-			{isLoggedIn() &&<div className="w3-right justify-content-center">
-				<input type="text" className="w3-bar-item w3-input w3-mobile" placeholder="Ingrese CUIT"/>
-			</div> }
-
+			
 			<div className="w3-right">
-				{props.routes.map(({ path, title, children }) => (
-				renderMenu(path, title, children)
-
-				))}
-				{isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }
+			
 			</div>
 		</div>
 	);

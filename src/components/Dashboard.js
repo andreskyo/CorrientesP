@@ -6,18 +6,7 @@ function Dashboard() {
 
 	const [open , setOpen] = useState(false);
 
-	const renderOpciones = (dato) =>{
-
-		return 	dato.map((opcion)=>{
-			let size = Math.round(12/ dato.length) ;
-			console.log("size: "+ Math.round(12/ dato.length));
-			return <div className={`col-lg-${size<4?3:size} col-sm-6 col-xs-12 mt-3`}>
-
-			</div>
-
-		})
-
-		};
+	
 
 
 	const renderListaOpciones = () =>{

@@ -3,7 +3,7 @@
 */
 
 body {
-    font-family: "Raleway", sans-serif;
+    font-family: "Nunito", sans-serif;
     background: #D3D3D3;
     min-height: 100vh;
 }
@@ -12,7 +12,6 @@ body {
 }
 /* LandingPage Component styles */
 .bgimg {
-    background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
     min-height: 100vh;
     background-position: center;
     background-size: cover;

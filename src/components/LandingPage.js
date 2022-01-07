@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { TopNav } from './common';
-import { Button as Button2 , NavBar , InputText, FooterMobile, FooterDesktop, TopHeader , CardVencimientos,CardStats  } from 'tdr-fe-library';
+
+import { Button as Button2 , NavBar , InputText, FooterMobile, FooterDesktop,  CardVencimientos,CardStats  } from 'tdr-fe-library';
 
 const navOptions = [
 	{title: 'Login', path: '/login'},
@@ -12,7 +12,6 @@ function LandingPage() {
 		<div className="bgimg w3-display-container w3-animate-opacity w3-text-white">
 
 			<NavBar/>
-			<TopHeader/>
 			<div className="w3-display-middle">
 				<Button2
 					id="ingresar"
@@ -35,4 +34,4 @@ function LandingPage() {
 	)
 }
 
-export default memo(LandingPage);
+export default LandingPage;

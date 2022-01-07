@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
-import { Redirect } from 'react-router-dom';
-import { isLoggedIn } from 'utils';
-import PublicRoutes from './PublicRoutes';
+import { Navigate  } from 'react-router-dom';
+
 
 /*
 * TODO: when user loggedIn he/she unable to goto public routes
@@ -9,11 +8,8 @@ import PublicRoutes from './PublicRoutes';
 */
 function Auth() {
 	// TODO: temp logged-in check, update as per your app logic
-	return isLoggedIn() ? (
-			<Redirect to="/app" />
-		) : (
-			<PublicRoutes />
-		)
+	return <Navigate  to="/app" />
+	
 }
 
 export default memo(Auth);

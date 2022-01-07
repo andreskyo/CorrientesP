@@ -1,13 +1,14 @@
 import React, { memo, useState , useEffect} from 'react';
 import { Alert, Form, Button } from 'react-bootstrap';
 import { FormGroup, Container, Col} from 'reactstrap';
-import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { JumbotronWrapper } from './common';
 import usePost from '../utils/usePost';
 import store from '../store';
 import { Provider, connect, useSelector  } from "react-redux";
 import { Button as Button2 ,  InputText } from 'tdr-fe-library';
+import history from 'utils/history';
+import { useNavigate } from "react-router-dom";
 
 function Login({user}) {
 	const {
@@ -18,6 +19,8 @@ function Login({user}) {
 		status:status,
 		post: postLogin,
 	} = usePost();
+
+	let navigate = useNavigate();
 
 	useEffect(() => {
 		if(login){
@@ -40,8 +43,6 @@ function Login({user}) {
 
 	}, [username, password, selected]);
 
-
-	let history = useHistory();
 
 	function handleChange(e) {
 		const { options } = e.target;
@@ -93,7 +94,8 @@ function Login({user}) {
 
 		dispatch.user.LoginSuccessAsync(datos);
 
-		history.push('/app');
+		//history.push('/app');
+		navigate('/app');
 
 	};
 

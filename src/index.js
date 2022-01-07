@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'App';
 import * as serviceWorker from './serviceWorker';
+import { Route, Routes, BrowserRouter} from 'react-router-dom';
 import './index.css';
+import history from 'utils/history';
+import { Login } from 'components';
+import { LandingPage } from 'components';
+import { Dashboard } from 'components';
 import { Provider, connect } from "react-redux";
 import store from "./store";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,9 +15,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 ReactDOM.render(
-	<Provider store={store}>
-	<App />
-</Provider>, document.getElementById('root'));
+	<Provider store={store}>		
+			<App/>
+	</Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

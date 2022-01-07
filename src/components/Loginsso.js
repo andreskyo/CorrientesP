@@ -1,12 +1,13 @@
 import React, { memo, useState , useEffect} from 'react';
 import { Alert, Form, Button } from 'react-bootstrap';
 import { FormGroup, Container, Col} from 'reactstrap';
-import { useHistory , useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { JumbotronWrapper } from './common';
 import usePost from '../utils/usePost';
 import store from '../store';
 import { Provider, connect, useSelector  } from "react-redux";
+import history from 'utils/history';
 
 function LoginSso({user}) {
 	const { tokenParam } = useParams();
@@ -52,7 +53,7 @@ function LoginSso({user}) {
 	},[tokenParam]);
 
 
-	let history = useHistory();
+	
 
 	function handleChange(e) {
 		const { options } = e.target;
