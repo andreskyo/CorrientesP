@@ -26,7 +26,7 @@ function LandingPage() {
 	const [resp , setResp ] = useState([]);
 	const [data, setData] = useGet({url:"/api/tipos-accesos"});
 	const [data2, setData2] = useGet({url:"/api/novedades"});
-	const [dataCarousel, setCarousel] = useGet({url:"/carousels"});
+	
 	const [dataVencimientos , setVencimientos] = useGet({url:`https://api.test.dgrcorrientes.gov.ar/public-be/vencimientos/getUltimosVencimientos?cantidad=${cantVencimientos}`})
 
 	//estados de accesos 
@@ -114,13 +114,15 @@ function LandingPage() {
 		console.log("NOV " , data2);
 		let resultados = data2
 		let result=[]; 
-		if(resultados.length > 0){
+		if(resultados.data ){
 			
 			result = data2.data.map((res,i)=>{
+				if (i < 3){
+
 				
 				if (!isMobile && window.innerWidth > 992){
 					let fecha = moment(res.attributes.fecha).format("ll")
-						result.push(
+						return(
 							<CardImage
 								Titulo={res.attributes.titulo}
 								Descripcion={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.attributes.descripcion.substring(0,150) + "..."} />}
@@ -132,7 +134,7 @@ function LandingPage() {
 							
 								/>
 						)}else{
-							result.push(
+							return(
 								<SwiperSlide>
 									<CardImage 
 											Titulo={res.attributes.titulo}
@@ -146,8 +148,10 @@ function LandingPage() {
 									</SwiperSlide>
 							)
 						}
+				}
 					
 				}) 
+			
 		}
 	 
 			

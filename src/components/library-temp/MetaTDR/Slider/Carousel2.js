@@ -10,7 +10,7 @@ import {
   
 function Carousel2() {
   const [dataCarousel, setCarousel] = useGet({url:"/carousels"})
- 
+   const [data] = useGet({url:"/api/carousels"})
  
 
  
@@ -56,7 +56,7 @@ function Carousel2() {
             </CarouselItem>
         );
     });
-  
+    console.log("data carousel " , data.data);
     return (
         <div >
            
