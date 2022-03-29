@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components'
-
+import {
+    Link,
+  } from "react-router-dom";
 
 const Cardacceso = (props) => {
     
     return (
             <div className="col-12 col-lg easyAccessRow__card splide__slide">
+                
                 <div className="row easyAccessCard">
                     <div className="col-auto easyAccessCard__icon">
                         <span>
@@ -15,7 +18,7 @@ const Cardacceso = (props) => {
                     <div className="col easyAccessCard__text">
                         <p className="easyAccessCardText__title"><strong>{props.title}</strong></p>
                         <p className="easyAccessCardText__description"> {props.subtitle} </p>
-                        <button className="btn btn-primary easyAccessCardText__btn"> {props.boton}  </button>
+                        <Link to={`/login`}><button className="btn btn-primary easyAccessCardText__btn"> {props.boton}  </button></Link>
                     </div>
                 </div>
             </div>

@@ -1,91 +1,82 @@
-import React, { memo, useState , useEffect} from 'react';
+import React, { memo, useState,useEffect } from 'react';
+import axios from 'axios';
 import FooterDesktop from "./FooterDesktop"
-import { Button as Button2   , Vencimientos  } from 'tdr-fe-library';
-import styled from 'styled-components'
 import CardStatsIcon from './library-temp/CardStatsIcon';
 import CardImage from './library-temp/MetaTDR/Cards/CardImage';
 import latestNewsImg1 from "../assets/img/latestNewsImg1.webp"
-import latestNewsImg2 from "../assets/img/latestNewsImg2.webp"
 import latestNewsImg3 from "../assets/img/latestNewsImg3.webp"
 import Carousel2 from "./library-temp/MetaTDR/Slider/Carousel2"
-import Navigation from "../components/NavBar/Navigation";
-import Title from "./library-temp/Title";
 import CardAcceso from "./library-temp/MetaTDR/Cards/CardAcceso";
-import TitleFullWidth from "./library-temp/MetaTDR/TitulosHome/TitleFullWidth"
 import Swiper2 from "./library-temp/Swiper";
-import TopHeader from './library-temp/MetaTDR/Headers/TopHeader'
-import FooterMobile from "./library-temp/MetaTDR/Footers/FooterMobile"
-import { SwiperSlide,Swiper } from "swiper/react/swiper-react";
+import 'moment/locale/es';
+import { SwiperSlide } from "swiper/react/swiper-react";
 import {isMobile} from 'react-device-detect';
 import useGet from "../utils/useGet"
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import Swiperarrow from './library-temp/SwiperArrow';
-
+import moment from 'moment';
+import { useNavigate } from "react-router-dom";
 
 
 function LandingPage() {
-	
+	let navigate = useNavigate();
 	const [datosAccesoRapido, setdatosAccesoRapido] = useState([]);
-	
-	const [data, setData] = useGet({url:"/tipos-accesos"});
-	const [data2, setData2] = useGet({url:"/novedades"});
-	const [dataCarousel, setCarousel] = useGet({url:"/carousels"})
+	const [cantVencimientos, setCantVencimientos] = useState(3);
+	const [resp , setResp ] = useState([]);
+	const [data, setData] = useGet({url:"/api/tipos-accesos"});
+	const [data2, setData2] = useGet({url:"/api/novedades"});
+	const [dataCarousel, setCarousel] = useGet({url:"/carousels"});
+	const [dataVencimientos , setVencimientos] = useGet({url:`https://api.test.dgrcorrientes.gov.ar/public-be/vencimientos/getUltimosVencimientos?cantidad=${cantVencimientos}`})
 
-	
+	//estados de accesos 
+	const [acceso, setAcceso] = useState()
+	const [datosNovedades, setDatosNovedades] = useState()
+	const [datosAyuda, setDatosAyuda] = useState()
+
+
 	useEffect(() => {
-		//getDataAccesosRapidos(data);	
-		//getAyuda(data)
-		//getVencimientos(data)
-	},[data])
-
-	useEffect(() => {
-		
-	},[data2])
-
-	
-
-
-	
-
-	
-	
-
-	
-
-	
+		axios({
+			method: 'get',
+			url: 'https://api.test.dgrcorrientes.gov.ar/strapibe/api/tipos-acceso?populate=*',
+			responseType: 'stream'
+			})
+			.then(function (response) {
+				console.log ("res",response.data)
+				setResp(response.data.data)
+				setAcceso(response.data.data[0].attributes)
+				setDatosAyuda(response.data.data[1].attributes)
+				setDatosNovedades(response.data.data[2].attributes)
+				
+				
+			});
+	},[])
 
 
 
 
-	
-
-
-
-	 	
-
-
-	const accesos = (data) =>{
-		let resultados = data[0]
-		
-		
-		let result = resultados? resultados.accesos.map((res) =>
+	const accesos = () =>{
+		let resultados = acceso
+		let result = resultados? acceso.accesos.data.map((res) =>
 				{
 					if (!isMobile && window.innerWidth > 992){
+						
 						return <CardAcceso
-						title={res.titulo}
-						icon={<svg dangerouslySetInnerHTML={{ __html: res.icono }} />}
-						subtitle={res.descripcion}
-						boton={res.textoEnlace}
-						/>
+						title={res.attributes.titulo}
+						icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
+						subtitle={res.attributes.descripcion}
+						boton={"Ingresar"}
+						
+						></CardAcceso>
+						
+						
 					}else{
 						return <SwiperSlide>
 						<CardAcceso
-							title={res.titulo}
-							subtitle={res.descripcion}
-							icon={<svg dangerouslySetInnerHTML={{ __html: res.icono }} />}
-							boton={res.textoEnlace}/>
+							title={res.attributes.titulo}
+							subtitle={res.attributes.descripcion}
+							icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
+							boton={"Ingresar"}/>
 					
 						</SwiperSlide>
 					}
@@ -113,39 +104,53 @@ function LandingPage() {
             </div>
         </section>
 		)
-	} 
+	}
+	
+
 
 
 	
-	const novedades = (data) => {
-		let resultados = data
+	const novedades = () => {
+		console.log("NOV " , data2);
+		let resultados = data2
 		let result=[]; 
-		resultados.forEach((res,i) =>{	
-			if(i<3){
-			if (!isMobile && window.innerWidth > 992){
-					result.push(
-						<CardImage
-							Titulo={res.titulo}
-							Descripcion={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.descripcion.substring(0,150) + "..."} />}
-							Fecha={res.fecha} 
-							TextoBoton="Leer Más"
-							image={res.imagen? res.imagen.url:latestNewsImg3}   />
-					)}else{
+		if(resultados.length > 0){
+			
+			result = data2.data.map((res,i)=>{
+				
+				if (!isMobile && window.innerWidth > 992){
+					let fecha = moment(res.attributes.fecha).format("ll")
 						result.push(
-							<SwiperSlide>
-					
+							<CardImage
+								Titulo={res.attributes.titulo}
+								Descripcion={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.attributes.descripcion.substring(0,150) + "..."} />}
+								Fecha={fecha} 
+								TextoBoton="Leer Más"
+								image={res.attributes.imagen? res.attributes.imagen.url:latestNewsImg3} 
+								id={res.id} 
+								onClick={()=>handleClick(res)}
+							
+								/>
+						)}else{
+							result.push(
+								<SwiperSlide>
 									<CardImage 
-										Titulo={res.titulo}
-										Descripcion= { <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.descripcion.substring(0,150) + "..."} />}
-										Fecha={res.fecha}
-										TextoBoton={"Leer Más"}
-										image={res.imagen? res.imagen.url:latestNewsImg1} />		  
-									
-								</SwiperSlide>
-						)
-					}
-				}
-			})
+											Titulo={res.attributes.titulo}
+											Descripcion= { <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.attributes.descripcion.substring(0,150) + "..."} />}
+											Fecha={res.fecha}
+											TextoBoton={"Leer Más"}
+											id={res.id}
+											image={res.attributes.imagen? res.attributes.imagen.url:latestNewsImg1}
+											/>		  
+											
+									</SwiperSlide>
+							)
+						}
+					
+				}) 
+		}
+	 
+			
 			
 			return(
 				<section className="latestNews"  >
@@ -157,7 +162,8 @@ function LandingPage() {
 							<h2 className="latestNewsItem__title">Novedades</h2>
 							<p className="latestNewsItem__description">Enterate de las últimas noticias de Rentas Corrientes y accedé a
 								toda la información.</p>
-							<button className="btn btn-primary latestNewsItem__btn">Ver todo</button>
+							
+							<button onClick={()=>handleClick(0)} className="btn btn-primary latestNewsItem__btn">Ver todo</button>
 						</div>
 			
 						<div className="col-12 col-lg latestNewsRow__wrapper splide__track">
@@ -172,44 +178,40 @@ function LandingPage() {
 			)
 	}
 
-	/*let getNovedades =(datos)=>{
-		console.log("DATA NOVEDADES: " ,datos);
-		let resultado ;
+	const handleClick = (dato) => {
 		
-			resultado = datos? datos.map((res)=>{
-			let descripcion = res.descripcion.substring(0, 150) + "..."
-				return <SwiperSlide>
-					
-					<CardImage 
-						Titulo={res.titulo}
-						Descripcion= { <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={descripcion} />}
-						Fecha={res.fecha}
-						TextoBoton={"Leer Más"}
-						image={res.imagen? res.imagen.url:latestNewsImg1}/>		  
-					
-				</SwiperSlide>
-				}):null;
-				setNovedades(resultado)
-	}*/
-	
+		let res = {
+			id:dato
+		}
+		if(res.id === 0){
+			return (
+				navigate(`/novedades/${res.id}`)
+			)
+		}else{
+			return (
+			navigate(`/novedades/${dato.id}`)
+		)
+		}
 
-	const ayuda = (data) => {
-		let resultados = data[1]
-		let result = resultados? resultados.accesos.map((res)=>
+	}
+	const ayuda = () => {
+		console.log("Ayuda datos " , datosAyuda)
+		let resultados = datosAyuda
+		let result = resultados? datosAyuda.accesos.data.map((res)=>
 			{
 				if(!isMobile && window.innerWidth > 992){
-					return  <CardStatsIcon title={res.titulo}
-					subtitle={res.descripcion}
-					textLink={res.textoEnlace}
-					icon={<svg dangerouslySetInnerHTML={{ __html: res.icono }} />}/>
+					return  <CardStatsIcon title={res.attributes.titulo}
+					subtitle={res.attributes.descripcion}
+					textLink={res.attributes.textoEnlace}
+					icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}/>
 			}else{
 				return <SwiperSlide>
 					<div className="col-12 px-2 d-flex ">
 						<CardStatsIcon
-						title={res.titulo}
-						subtitle={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.descripcion.substring(0,150) + "..."}/>}
-						textLink={res.textoEnlace}
-						icon={<svg width="100%" height="100%" dangerouslySetInnerHTML={{ __html: res.icono }} />}
+						title={res.attributes.titulo}
+						subtitle={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.attributes.descripcion.substring(0,150) + "..."}/>}
+						textLink={res.attributes.textoEnlace}
+						icon={<svg width="100%" height="100%" dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
 						/>
 					</div>	
 				</SwiperSlide>
@@ -219,6 +221,7 @@ function LandingPage() {
 		
 		return <section className="needHelp" >
 		<div className="container">
+		
 			<div className="row needHelpRow  splideNeedHelp">
 				<div className="col-12 needHelpRow__head">
 					<p className="needHelpHead__subtitle">Atención al ciudadano</p>
@@ -238,48 +241,44 @@ function LandingPage() {
 	</section>
 	}
 
-	/*let getAyuda =(data)=>{
-		console.log("DATOS AYUDA " , data);
-		let resultado;
-		const datos = data[1]
-		
-			resultado = datos?datos.accesos.map((res)=>{
-			let descripcion = res.descripcion.substring(0, 150) + "..."
-				return <SwiperSlide>
-				<div className="col-12 px-2 d-flex ">
-					<CardStatsIcon
-					 title={res.titulo}
-					subtitle={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={descripcion} />}
-					textLink={res.textoEnlace}
-					icon={<svg width="100%" height="100%" dangerouslySetInnerHTML={{ __html: res.icono }} />}
-					clases={" col-12"}
-				/>
-				</div>	
-				</SwiperSlide>
-				}):null
-		
-		setAyuda(resultado)
-	}
-	*/
 	
 	const vencimientos=(data) =>{
 		
-		let resultados = data[1]
-		let result = resultados? resultados.accesos.map((res)=>
+		let resultados = dataVencimientos
+		let result = resultados? resultados.map((res)=>
+		
 			{
+				
 				if(!isMobile && window.innerWidth > 992 ){
 					return (
 						<div className="col-12 col-lg nextExpirationWrapper__item splide__slide">
+						
 							<div className="nextExpirationItem">
 								<div className="col-auto nextExpirationItem__icon">
-									<span>
-										<i className="fa fa-svg fa-calendar-o fa-fw"></i>
-									</span>
+									
+								
+								<span><i className="fa fa-svg fa-calendar-o fa-fw"></i></span>
 								</div>
-								<h2 className="nextExpirationItem__date">13 de Octubre</h2>
-								<p className="nextExpirationItem__description">Inmobiliario Urbano Edif: Cuota 5</p>
+								<h2 className="nextExpirationItem__date">{res.fechaVencimiento}</h2>
+								{res.detalle.map(result =>{
+									return (
+									<div className="nextExpirationItem__description col">
+									<div>{result.tipoObligacion}</div>
+									<div>{result.impuesteDesc} </div>
+									<div>{result.conceptoDesc}</div>  
+									<div> Cuota: {result.cuota}</div>
+									
+									{result.terminacion==null?null:<div> Terminacion {result.terminacion}</div>}
+									
+									</div>
+									)
+									
+						
+									
+								})}
 							</div>
 						</div>
+						
 					)
 			}else{
 				return <SwiperSlide>
@@ -287,11 +286,27 @@ function LandingPage() {
 							<div className="nextExpirationItem">
 								<div className="col-auto nextExpirationItem__icon">
 									<span>
-										<i className="fa fa-svg fa-calendar-o fa-fw"></i>
+									
+									<i className="fa fa-svg fa-calendar-o fa-fw"></i>
 									</span>
 								</div>
-								<h2 className="nextExpirationItem__date">13 de Octubre</h2>
-								<p className="nextExpirationItem__description">Inmobiliario Urbano Edif: Cuota 5</p>
+								
+								<h2 className="nextExpirationItem__date">{res.fechaVencimiento}</h2>
+								{res.detalle.map(result =>{
+									return (
+									<div className="nextExpirationItem__description col">
+									<div>{result.tipoObligacion}</div>
+									<div>{result.impuesteDesc} </div>
+									<div>{result.conceptoDesc}</div>  
+									<div> Cuota: {result.cuota}</div>
+									
+									{result.terminacion==null?null:<div> Terminacion {result.terminacion}</div>}
+									</div>
+									)
+									
+						
+									
+								})}
 							</div>
 						</div>
 				</SwiperSlide>
@@ -324,36 +339,15 @@ function LandingPage() {
 
 
 	} 
-	
-/*	let getVencimientos =(data)=>{
-		let resultado;
-		const datos = data[1]
-		
-	
-			resultado = datos?datos.accesos.map((res)=>{
-				return <SwiperSlide>
-					<div className="col-12 px-2 d-flex">
-					<div className="box-vencimientos">
-						
-							<Vencimientos  dateText="17 de octubre" info="Inmobiliario Urbano Edificado: Cuota 5" icon={IconCalendar} />
-						
-					</div>
-					</div>
-				</SwiperSlide>
-				}):null
-		setVencimientos(resultado)
-	}*/
-
-
 
 
 
 
 	return (
 		<body className="body_home">
-			<TopHeader/>
-			<Navigation />
-			<Carousel2/>
+			
+			
+			<Carousel2 />
 			<Group/>
 			{accesos(data)}
 			

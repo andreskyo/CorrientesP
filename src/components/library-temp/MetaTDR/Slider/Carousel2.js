@@ -1,7 +1,7 @@
 
 import React, {useEffect} from 'react'
 import useGet from "../../../../utils/useGet"
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
     Carousel,
     CarouselItem,
@@ -48,7 +48,7 @@ function Carousel2() {
     const carouselItemData = dataCarousel.map((item) => {
         return (
             <CarouselItem
-                key={item.src}
+            
                 onExited={() => setAnimating(false)}
                 onExiting={() => setAnimating(true)}
             >
@@ -60,15 +60,20 @@ function Carousel2() {
     return (
         <div >
            
-            <Carousel previous={previousButton} next={nextButton} 
-                activeIndex={activeIndex}>
-                <CarouselIndicators items={dataCarousel}
+            <Carousel previous={previousButton} next={nextButton}  
+                activeIndex={activeIndex}> 
+                <CarouselIndicators    
+                    items={dataCarousel}
                     activeIndex={activeIndex}
                     onClickHandler={(newIndex) => {
-                        if (animating) return;
+                    if (animating) return;
                         setActiveIndex(newIndex);
+                    
                     }} />
+               
                 {carouselItemData}
+            
+            
             </Carousel>
         </div >
     );

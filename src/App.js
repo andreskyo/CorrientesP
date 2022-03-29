@@ -13,7 +13,9 @@ class App extends Component {
 		return (
 			<Container fluid>
 				<Row>
+
 					<Col className="p-0">
+					
 						<Routes />
 					</Col>
 				</Row>

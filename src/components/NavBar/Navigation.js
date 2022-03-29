@@ -13,6 +13,7 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
   
+  
 
 import { NavLink as RRNavLink } from 'react-router-dom';
 import InputSearch from "../library-temp/InputSearch"
@@ -48,7 +49,7 @@ export default class Example extends React.Component {
             <Nav className=" navsItems" navbar  >
            
               <NavItem>
-                <NavLink className="item"  tag={RRNavLink}  to="/login2" activeClassName="active" >Estado de cuenta</NavLink>
+                <NavLink className="item"  tag={RRNavLink}  to="/login" activeClassName="active" >Estado de cuenta</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink}  to="/register" activeClassName="active"  >Servicios</NavLink>
@@ -57,7 +58,7 @@ export default class Example extends React.Component {
                 <NavLink tag={RRNavLink} to="/forgot-password" activeClassName="active" >Pagos</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink  tag={RRNavLink} className="nav-link" to="/login1" activeClassName="active" >Ayuda</NavLink>
+                <NavLink  tag={RRNavLink} className="nav-link" to="/login" activeClassName="active" >Ayuda</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink  tag={RRNavLink} className="nav-sesion" to="/iniciar-sesion" >Iniciar sesión</NavLink>

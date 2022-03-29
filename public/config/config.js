@@ -10,14 +10,14 @@ const GTM = {
     gaId: 'UA-22534903-2'
 };
 const apiBase = {
-	authBe: 'https://api.test.dgrcorrientes.gov.ar/auth',
-    sujetosBe: 'https://api.test.dgrcorrientes.gov.ar/be',
-    planesPagosBe: 'https://api.test.dgrcorrientes.gov.ar/pp',
-    pagosBE:'https://api.test.dgrcorrientes.gov.ar/',
-    sellosBE:'https://api.test.dgrcorrientes.gov.ar/sebe/',
-    geoBE:'https://api.test.dgrcorrientes.gov.ar/geobe/',
-    tramitesBE:'https://api.test.dgrcorrientes.gov.ar/tramitesbe/',
-    commonBE:'https://api.test.dgrcorrientes.gov.ar/commonbe/',
+	authBe: 'https://api.desa.dgrcorrientes.gov.ar/auth',
+    sujetosBe: 'https://api.desa.dgrcorrientes.gov.ar/be',
+    planesPagosBe: 'https://api.desa.dgrcorrientes.gov.ar/pp',
+    pagosBE:'https://api.desa.dgrcorrientes.gov.ar/',
+    sellosBE:'https://api.desa.dgrcorrientes.gov.ar/sebe/',
+    geoBE:'https://api.desa.dgrcorrientes.gov.ar/geobe/',
+    tramitesBE:'https://api.desa.dgrcorrientes.gov.ar/tramitesbe/',
+    commonBE:'https://api.desa.dgrcorrientes.gov.ar/commonbe/',
     csmBE:'https://api.csm.desa.dgrcorrientes.gov.ar/'
     //notificadorBE:'https://api.desa.dgrcorrientes.gov.ar/notificador/',
 };

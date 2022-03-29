@@ -1,9 +1,4 @@
 import React,{Fragment,useEffect,useState} from 'react';
-import styled from 'styled-components'
-
-import SearchIcon from "@material-ui/icons/Search";
-import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
 import logoGobiernoCorrientes from "../assets/img/logoGobiernoCorrientes.webp"
 
 const Footerdesktop = () => {
@@ -25,11 +20,11 @@ const Footerdesktop = () => {
 
         let datos = list
         
-        let resultado = datos? datos.map((res)=><div className="col-12 col-lg-3 footerNavRow__item">
+        let resultado = datos? datos.map((res)=><div  key={Math.random()} className="col-12 col-lg-3 footerNavRow__item">
                         <h4 className="footerNavItem__title">{res.titulo}</h4>
-                        <ul className="footerNavItem__list">
-                            {res.menuItem.map(item=> <li><a href="#">{item.titulo}</a></li>)}
-                            <li className="footerNavItem__moreInfo"><a href="#">{res.linkFooter.map(t=>t.texto)}</a></li>
+                        <ul  key={Math.random()} className="footerNavItem__list">
+                            {res.menuItem.map(item=> <li  key={Math.random()} ><a href="#">{item.titulo}</a></li>)}
+                            <li  key={Math.random()} className="footerNavItem__moreInfo"><a  href="#">{res.linkFooter.map(t=>t.texto)}</a></li>
                         </ul>
                     </div>):null
 
@@ -44,9 +39,9 @@ const Footerdesktop = () => {
                         </div>
                         </section>
                         <footer>
-      <div class="container">
-         <div class="row footerContent">
-            <div class="col-12 col-lg-auto footerContent__logoRentas">
+      <div className="container">
+         <div className="row footerContent">
+            <div className="col-12 col-lg-auto footerContent__logoRentas">
                <a href="index.html">
                   <picture>
                     
@@ -54,7 +49,7 @@ const Footerdesktop = () => {
                   </picture>
                </a>
             </div>
-            <div class="col-12 col-lg-auto footerContent__logoProvincia">
+            <div className="col-12 col-lg-auto footerContent__logoProvincia">
                <a href="index.html">
                   <picture>
                      
@@ -62,20 +57,20 @@ const Footerdesktop = () => {
                   </picture>
                </a>
             </div>
-            <div class="col-12 col-lg-4">
-               <div class="input-group input-group-search input-group-search--invert">
-                  <div class="input-group-prepend">
-                     <span class="input-group-text">
-                        <i class="fa fa-svg fa-search fa-fw"></i>
+            <div className="col-12 col-lg-4">
+               <div className="input-group input-group-search input-group-search--invert">
+                  <div className="input-group-prepend">
+                     <span className="input-group-text">
+                        <i className="fa fa-svg fa-search fa-fw"></i>
                      </span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Buscar en rentas" aria-label="Buscar en rentas"
+                  <input type="text" className="form-control" placeholder="Buscar en rentas" aria-label="Buscar en rentas"
                      aria-describedby="basic-addon1"/>
                </div>
             </div>
          </div>
-         <div class="row footerAccess">
-            <div class="col-12 col-lg-auto">
+         <div className="row footerAccess">
+            <div className="col-12 col-lg-auto">
                <ul>
                   <li>
                      Copyright © 2021 - Rentas Corrientes

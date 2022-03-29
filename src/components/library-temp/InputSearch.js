@@ -6,7 +6,7 @@ const Inputsearch = () => {
     return (
         <Styled>
             <div className="content-search" > 
-            <i className="fas fa-search"></i>
+            <i className="fa fa-svg fa-search fa-fw"></i>
               <StyledSearch className="input-field" placeholder="Buscar en rentas" value={input} onChange={(e)=>setInput(e.target.value)} onBlur={() =>setInput("")} />
             </div> 
         </Styled>
