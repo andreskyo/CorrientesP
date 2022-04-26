@@ -2,6 +2,10 @@ FROM node:8.12.0-alpine
 
 ADD package.json .
 
+RUN apk add --no-cache git
+
+RUN git --version
+
 RUN npm install --loglevel verbose
 
 COPY . .
