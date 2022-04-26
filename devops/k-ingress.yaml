@@ -1,0 +1,12 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: tdr-public-fe
+route:
+  strip_path: false
+  methods:
+  - POST
+  - GET
+  - OPTIONS  
+  protocols:
+  - https

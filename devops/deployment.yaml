@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdr-public-fe
+  labels:
+    app: tdr-public-fe
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tdr-public-fe
+  template:
+    metadata:
+      labels:
+        app: tdr-public-fe
+    spec:
+      containers:
+        - name: tdr-public-fe
+          image: registry.gitlab.com/dgrcorrientes/tdr-public-fe:2.2.1-10
+          ports:
+            - containerPort: 80
+          env:
+            - name: TZ
+              value: "America/Argentina/Buenos_Aires"
+          volumeMounts:
+          - name: tdr-public-fe-config
+            readOnly: true
+            mountPath: /usr/share/tdr-public-fe/publico/config
+      volumes:
+      - name: tdr-public-fe-config
+        configMap:
+          name: tdr-public-fe-config
+
+      imagePullSecrets:
+        - name: gitlabregistry-tdr-public-fe

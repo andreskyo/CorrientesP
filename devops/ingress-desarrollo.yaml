@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tdr-public-fe
+  namespace: desarrollo
+  annotations:
+    kubernetes.io/ingress.class: kong
+spec:
+  tls:
+  - hosts:
+    - miportal.desa.dgrcorrientes.gov.ar
+    secretName: portaldesa
+  rules:
+  - host: miportal.desa.dgrcorrientes.gov.ar
+    http:
+      paths:
+      - path: /publico
+        backend:
+          serviceName: tdr-public-fe
+          servicePort: 80
