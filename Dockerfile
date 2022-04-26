@@ -4,10 +4,6 @@ ADD package.json .
 
 RUN apk add --no-cache git
 
-RUN git --version
-
-RUN npm install https://gitlab+deploy-token-680000:EMrr_SwdYN7YsddUpk9H@gitlab.com/dgrcorrientes/tdr-fe-library.git --save-dev
-
 RUN npm install --loglevel verbose
 
 COPY . .
