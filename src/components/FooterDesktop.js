@@ -7,7 +7,7 @@ const Footerdesktop = () => {
     const [list, setList] = useState([]);
     
     useEffect(() => {
-        axios.get('https://api.test.dgrcorrientes.gov.ar/strapibe/menu-footers').then((response) => {
+        axios.get('https://api.test.dgrcorrientes.gov.ar/strapibe/api/menu-footers').then((response) => {
             setList(response.data);
         })
 
@@ -16,15 +16,15 @@ const Footerdesktop = () => {
     
 
     
-
+      console.log("list",list)
 
         let datos = list
         
-        let resultado = datos? datos.map((res)=><div  key={Math.random()} className="col-12 col-lg-3 footerNavRow__item">
-                        <h4 className="footerNavItem__title">{res.titulo}</h4>
+        let resultado = list.data? datos.data.map((res)=><div  key={Math.random()} className="col-12 col-lg-3 footerNavRow__item">
+                        <h4 className="footerNavItem__title">{res.attributes.titulo}</h4>
                         <ul  key={Math.random()} className="footerNavItem__list">
-                            {res.menuItem.map(item=> <li  key={Math.random()} ><a href="#">{item.titulo}</a></li>)}
-                            <li  key={Math.random()} className="footerNavItem__moreInfo"><a  href="#">{res.linkFooter.map(t=>t.texto)}</a></li>
+                          
+                            <li  key={Math.random()} className="footerNavItem__moreInfo"><a  href="#">{res.attributes.titulo}</a></li>
                         </ul>
                     </div>):null
 
@@ -33,8 +33,8 @@ const Footerdesktop = () => {
             <section className="footerNav">
                         <div className="container">
                             <div className="row footerNavRow">
-                                
                                 {resultado}
+                                
                             </div>
                         </div>
                         </section>

@@ -9,8 +9,8 @@ import {
 } from 'reactstrap';
   
 function Carousel2() {
-  const [dataCarousel, setCarousel] = useGet({url:"/carousels"})
-   const [data] = useGet({url:"/api/carousels"})
+  const [dataCarousel, setCarousel] = useGet({url:"/api/carousels"})
+   
  
 
  
@@ -45,7 +45,7 @@ function Carousel2() {
     }
   
     // Carousel Item Data
-    const carouselItemData = dataCarousel.map((item) => {
+    const carouselItemData = dataCarousel.data.map((item) => {
         return (
             <CarouselItem
             
@@ -56,7 +56,7 @@ function Carousel2() {
             </CarouselItem>
         );
     });
-    console.log("data carousel " , data.data);
+    
     return (
         <div >
            
@@ -75,7 +75,7 @@ function Carousel2() {
             
             
             </Carousel>
-        </div >
+        </div>
     );
 }
   

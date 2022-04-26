@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 
 
-const Cardvencimientos = () => {
+const Cardvencimientos = (props) => {
     return (
         <CardVencimientos>
             <Content>
@@ -13,7 +13,7 @@ const Cardvencimientos = () => {
                         
                             <TextDate>
                                 
-                                Octubre 2020
+                               {props.title}
                             </TextDate>
                             <i className="fas fa-angle-down"></i>
                         </Date>

@@ -92,8 +92,8 @@ const Ellipse427 = styled.div`
     `
 
 const Line = styled.div`
-border: 1px solid #EBEEF2;
-margin: 5px 0px;
-height: 0px;
-width: 100%;
+    border: 1px solid #EBEEF2;
+    margin: 5px 0px;
+    height: 0px;
+    width: 100%;
 `

@@ -24,37 +24,6 @@ const Cardacceso = (props) => {
             </div>
             
          
-
-
-       /* <Container className="col-12">
-                
-                <div className="col-md-4 col-sm-4 icon">
-                
-                    <StyleElipse>
-                        <div className="icon">
-                      {props.icon}
-                        
-                        </div>
-                    </StyleElipse>
-                </div>
-
-                <div className="col-md-8 col-sm-8 text">
-                    <div className="title">
-                    {props.title}
-                    </div>
-                    <div className="subtitle">
-                    {props.subtitle}
-                    </div>
-                    {props.buttonText?<div className=" button">
-                    <ButtonToggle type="button" color="primary" className="btn btn-primary">{props.buttonText}</ButtonToggle>
-                    </div>:null}
-                    {props.boton?props.boton:null}
-                    
-                </div>
-                
-                
-            
-        </Container>*/
     );
 }
 

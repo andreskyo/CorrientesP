@@ -7,6 +7,9 @@ import { Dashboard } from 'components';
 import Novedades from "../components/Novedades"
 import Navigation from '../components/NavBar/Navigation'
 import Topheader from 'components/library-temp/MetaTDR/Headers/TopHeader';
+import Vencimientos from "../components/Vencimientos"
+
+
 function Rutas() {
 	return (
 		<BrowserRouter history={history}>
@@ -18,6 +21,7 @@ function Rutas() {
 				<Route exact path="/app" element={<Dashboard/>} />
 				<Route exact path="/novedades/:id" element={<Novedades/>}/>
 				<Route exact path="/novedades" element={<Novedades/>}/>
+				<Route exact path="/vencimientos" element={<Vencimientos/>} />
 				
 			</Routes>
 			

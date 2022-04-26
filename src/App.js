@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Provider, connect } from "react-redux";
-import store from "./store";
+
 
 import Routes from 'routes';
 
-const { dispatch } = store;
+
 
 
 class App extends Component {

@@ -19,12 +19,13 @@ import moment from 'moment';
 import { useNavigate } from "react-router-dom";
 
 
+
 function LandingPage() {
 	let navigate = useNavigate();
 	const [datosAccesoRapido, setdatosAccesoRapido] = useState([]);
 	const [cantVencimientos, setCantVencimientos] = useState(3);
 	const [resp , setResp ] = useState([]);
-	const [data, setData] = useGet({url:"/api/tipos-accesos"});
+	
 	const [data2, setData2] = useGet({url:"/api/novedades"});
 	
 	const [dataVencimientos , setVencimientos] = useGet({url:`https://api.test.dgrcorrientes.gov.ar/public-be/vencimientos/getUltimosVencimientos?cantidad=${cantVencimientos}`})
@@ -42,7 +43,7 @@ function LandingPage() {
 			responseType: 'stream'
 			})
 			.then(function (response) {
-				console.log ("res",response.data)
+				
 				setResp(response.data.data)
 				setAcceso(response.data.data[0].attributes)
 				setDatosAyuda(response.data.data[1].attributes)
@@ -56,29 +57,28 @@ function LandingPage() {
 
 
 	const accesos = () =>{
+		
 		let resultados = acceso
 		let result = resultados? acceso.accesos.data.map((res) =>
 				{
 					if (!isMobile && window.innerWidth > 992){
 						
 						return <CardAcceso
-						title={res.attributes.titulo}
-						icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
-						subtitle={res.attributes.descripcion}
-						boton={"Ingresar"}
-						
-						></CardAcceso>
+									title={res.attributes.titulo}
+									icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
+									subtitle={res.attributes.descripcion}
+									boton={"Ingresar"}>
+								</CardAcceso>
 						
 						
 					}else{
 						return <SwiperSlide>
-						<CardAcceso
-							title={res.attributes.titulo}
-							subtitle={res.attributes.descripcion}
-							icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
-							boton={"Ingresar"}/>
-					
-						</SwiperSlide>
+									<CardAcceso
+										title={res.attributes.titulo}
+										subtitle={res.attributes.descripcion}
+										icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
+										boton={"Ingresar"}/>
+								</SwiperSlide>
 					}
 				}):null
 			
@@ -111,10 +111,11 @@ function LandingPage() {
 
 	
 	const novedades = () => {
-		console.log("NOV " , data2);
+	
 		let resultados = data2
 		let result=[]; 
-		if(resultados.data ){
+			
+			if(resultados.data ){
 			
 			result = data2.data.map((res,i)=>{
 				if (i < 3){
@@ -124,12 +125,12 @@ function LandingPage() {
 					let fecha = moment(res.attributes.fecha).format("ll")
 						return(
 							<CardImage
-								Titulo={res.attributes.titulo}
+								Titulo={res.attributes.titulo }
 								Descripcion={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.attributes.descripcion.substring(0,150) + "..."} />}
 								Fecha={fecha} 
 								TextoBoton="Leer Más"
 								image={res.attributes.imagen? res.attributes.imagen.url:latestNewsImg3} 
-								id={res.id} 
+								id={res.attributes.id} 
 								onClick={()=>handleClick(res)}
 							
 								/>
@@ -143,6 +144,7 @@ function LandingPage() {
 											TextoBoton={"Leer Más"}
 											id={res.id}
 											image={res.attributes.imagen? res.attributes.imagen.url:latestNewsImg1}
+											onClick={()=>handleClick(res)}
 											/>		  
 											
 									</SwiperSlide>
@@ -162,7 +164,7 @@ function LandingPage() {
 					<div className="row latestNewsRow  splideLatestNews">
 						
 						<div className="col-12 col-lg-3 latestNewsRow__item--title">
-							<p className="latestNewsItem__subtitle">Últimas noticias</p>
+							<p className="latestNewsItem__subtitle ">Últimas noticias</p>
 							<h2 className="latestNewsItem__title">Novedades</h2>
 							<p className="latestNewsItem__description">Enterate de las últimas noticias de Rentas Corrientes y accedé a
 								toda la información.</p>
@@ -189,9 +191,10 @@ function LandingPage() {
 		}
 		if(res.id === 0){
 			return (
-				navigate(`/novedades/${res.id}`)
+				navigate(`/novedades/${0}`,{stateRes:res})
 			)
 		}else{
+
 			return (
 			navigate(`/novedades/${dato.id}`)
 		)
@@ -199,7 +202,7 @@ function LandingPage() {
 
 	}
 	const ayuda = () => {
-		console.log("Ayuda datos " , datosAyuda)
+	
 		let resultados = datosAyuda
 		let result = resultados? datosAyuda.accesos.data.map((res)=>
 			{
@@ -215,7 +218,10 @@ function LandingPage() {
 						title={res.attributes.titulo}
 						subtitle={<ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} children={res.attributes.descripcion.substring(0,150) + "..."}/>}
 						textLink={res.attributes.textoEnlace}
-						icon={<svg width="100%" height="100%" dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
+						icon={<svg width="100%" height="100%" dangerouslySetInnerHTML={{ __html: res.attributes.icono }} 
+						
+						/>}
+
 						/>
 					</div>	
 				</SwiperSlide>
@@ -325,13 +331,14 @@ function LandingPage() {
 					<p className="nextExpirationHead__subtitle">Vencimientos</p>
 					<h2 className="nextExpirationHead__title">Próximos vencimientos</h2>
 					<p className="nextExpirationHead__description">Enterate de los últimos vencimientos del mes en curso.</p>
-					<button className="btn btn-primary nextExpirationHead__btn">Ver todo</button>
+					
+					<button className="btn btn-primary nextExpirationHead__btn" onClick={()=>handleVencimientos()}>Ver todo</button>
 				</div>
 
 				<div className="col-12 col-lg nextExpirationRow__wrapper splide__track">
 					
 					<div className="row nextExpirationWrapper splide__list">
-						{isMobile || window.innerWidth < 992 ?<Swiper2 listado={result}  /> :result}
+						{isMobile || window.innerWidth < 992 ?<Swiper2 listado={result}  /> : result}
 
 					</div>
 				</div>
@@ -344,6 +351,11 @@ function LandingPage() {
 
 	} 
 
+	const handleVencimientos=()=>{
+		
+		navigate("/vencimientos",{state:{dataVencimientos}})
+	}
+
 
 
 
@@ -351,15 +363,15 @@ function LandingPage() {
 		<body className="body_home">
 			
 			
-			<Carousel2 />
+			
 			<Group/>
-			{accesos(data)}
+			{accesos()}
 			
 			{novedades(data2)}
 				
-			{ayuda(data)}
+			{ayuda()}
 			
-			{vencimientos(data)}
+			{vencimientos()}
 			
 			<FooterDesktop/>
 		</body>)

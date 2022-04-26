@@ -27,7 +27,9 @@
     "react-bootstrap": "^1.0.0-beta.10",
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.2",
+    "react-id-swiper": "^4.0.0",
     "react-markdown": "^7.1.1",
+    "react-multi-carousel": "^2.8.0",
     "react-redux": "^7.2.4",
     "react-router": "latest",
     "react-router-dom": "^6.1.1",
@@ -36,7 +38,7 @@
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1",
     "sass": "^1.46.0",
-    "swiper": "^7.3.3",
+    "swiper": "^8.1.1",
     "tdr-fe-library": "https://gitlab+deploy-token-680000:EMrr_SwdYN7YsddUpk9H@gitlab.com/dgrcorrientes/tdr-fe-library.git",
     "web-vitals": "^1.1.2"
   },
