@@ -39,7 +39,7 @@
     "remark-math": "^5.1.1",
     "sass": "^1.46.0",
     "swiper": "^8.1.1",
-    "tdr-fe-library": "git+https://gitlab+deploy-token-986012:UqjZxtsvhxP7sAS-3E3h@gitlab.com/dgrcorrientes/tdr-fe-library.git#{master}",
+    "tdr-fe-library": "git+https://gitlab+deploy-token-986012:UqjZxtsvhxP7sAS-3E3h@gitlab.com/dgrcorrientes/tdr-fe-library#{master}",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
