@@ -1,5 +1,4 @@
 import React, { Fragment, memo, useState } from 'react';
-import { ButtonLink as Buttonlink2 , InputText } from 'tdr-fe-library';
 import Opciones from '../config/Opciones';
 
 function Dashboard() {

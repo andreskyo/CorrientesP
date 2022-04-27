@@ -6,7 +6,6 @@ import { JumbotronWrapper } from './common';
 import usePost from '../utils/usePost';
 import store from '../store';
 import { Provider, connect, useSelector  } from "react-redux";
-import { Button as Button2 ,  InputText } from 'tdr-fe-library';
 import history from 'utils/history';
 import { useNavigate } from "react-router-dom";
 
@@ -158,38 +157,12 @@ function Login({user}) {
 		<JumbotronWrapper title="TDR-FE-INT" description="Ingrese Usuario y password.">
 			<Col className="inputContainer my-4">
 				<FormGroup className="inputForm">
-						<InputText
-							autoFocus
-							withInfo
-							id="username"
-							name="username"
-							type="text"
-							label="CUIT o Usuario"
-							errorMessage="El CUIT o Usuario no tiene el formato correcto."
-							value={username}
-							valid={validate.userState === 'has-success'}
-							invalid={validate.userState === 'has-danger'}
-							onChange={(e) => {
-								validateUser(e);
-							}}
-						/>
+
 				</FormGroup>
 			</Col>
 			<Col className="inputContainer my-4">
 				<FormGroup className="inputForm">
-					<InputText
-						id="loginPassword"
-						name="password"
-						type="password"
-						label="Clave virtual"
-						value={password}
-						errorMessage="Recuerde que su clave tiene al menos 8 caracteres!"
-						valid={validate.passwordState === 'has-success'}
-						invalid={validate.passwordState === 'has-danger'}
-						onChange={(e) => {
-							validatePass(e);
-						}
-						}/>
+
 				</FormGroup>
 			</Col>
 
@@ -215,11 +188,7 @@ function Login({user}) {
 
 
 			<div className="text-center mt-4">
-				<Button2
-					id="ingresar"
-					value="Ingresar"
-					onClick={handleClick}
-					disabled={isEnabled}>Ingresar</Button2>
+
 			</div>
 		</JumbotronWrapper>
 	);
