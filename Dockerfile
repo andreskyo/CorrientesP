@@ -10,8 +10,6 @@ COPY . .
 
 EXPOSE 3000
 
-RUN node -v
-
 RUN npm run build
 
 FROM nginx:1.14-alpine
