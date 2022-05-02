@@ -1,4 +1,4 @@
-FROM node:8.12.0-alpine
+FROM node:14.16.0-alpine
 
 ADD package.json .
 
