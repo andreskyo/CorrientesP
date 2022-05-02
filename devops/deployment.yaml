@@ -2,38 +2,42 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tdr-public-cms
-  labels:
-    app: tdr-public-cms
+  namespace: testing
 spec:
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 1
   replicas: 1
   selector:
     matchLabels:
       app: tdr-public-cms
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: tdr-public-cms
     spec:
       containers:
         - name: tdr-public-cms
-          image: registry.gitlab.com/dgrcorrientes/tdr-public-cms:2.2.1-10
+          image: registry.gitlab.com/dgrcorrientes/tdr-public-cms:3.24
           ports:
             - containerPort: 80
+              protocol: TCP
           env:
             - name: TZ
-              value: "America/Argentina/Buenos_Aires"
-          volumeMounts:
-          - name: tdr-public-cms-config
-            readOnly: true
-            mountPath: /usr/share/tdr-public-cms/publico/config
-      volumes:
-      - name: tdr-public-cms-config
-        configMap:
-          name: tdr-public-cms-config
+              value: America/Argentina/Buenos_Aires
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
       imagePullSecrets:
         - name: gitlabregistry-tdr-public-cms
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
