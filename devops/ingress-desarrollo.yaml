@@ -1,20 +1,21 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tdr-public-cms
   namespace: desarrollo
-  annotations:
-    kubernetes.io/ingress.class: kong
 spec:
   tls:
-  - hosts:
-    - miportal.desa.dgrcorrientes.gov.ar
-    secretName: portaldesa
+    - hosts:
+        - miportal.desa.dgrcorrientes.gov.ar
+      secretName: portaldesa
   rules:
-  - host: miportal.desa.dgrcorrientes.gov.ar
-    http:
-      paths:
-      - path: /publiccms
-        backend:
-          serviceName: tdr-public-cms
-          servicePort: 80
+    - host: miportal.desa.dgrcorrientes.gov.ar
+      http:
+        paths:
+          - path: /publiccms
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tdr-public-cms
+                port:
+                  number: 80
