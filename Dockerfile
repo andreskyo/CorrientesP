@@ -12,7 +12,7 @@ EXPOSE 3000
 
 RUN npm run build
 
-FROM nginx:1.14-alpine
+FROM nginx:1.21.6-alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
