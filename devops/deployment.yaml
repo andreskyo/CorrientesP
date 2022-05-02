@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tdr-public-fe
+  name: tdr-public-cms
   labels:
-    app: tdr-public-fe
+    app: tdr-public-cms
 spec:
   strategy:
     type: RollingUpdate
@@ -13,28 +13,27 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tdr-public-fe
+      app: tdr-public-cms
   template:
     metadata:
       labels:
-        app: tdr-public-fe
+        app: tdr-public-cms
     spec:
       containers:
-        - name: tdr-public-fe
-          image: registry.gitlab.com/dgrcorrientes/tdr-public-fe:2.2.1-10
+        - name: tdr-public-cms
+          image: registry.gitlab.com/dgrcorrientes/tdr-public-cms:2.2.1-10
           ports:
             - containerPort: 80
           env:
             - name: TZ
               value: "America/Argentina/Buenos_Aires"
           volumeMounts:
-          - name: tdr-public-fe-config
+          - name: tdr-public-cms-config
             readOnly: true
-            mountPath: /usr/share/tdr-public-fe/publico/config
+            mountPath: /usr/share/tdr-public-cms/publico/config
       volumes:
-      - name: tdr-public-fe-config
+      - name: tdr-public-cms-config
         configMap:
-          name: tdr-public-fe-config
-
+          name: tdr-public-cms-config
       imagePullSecrets:
-        - name: gitlabregistry-tdr-public-fe
+        - name: gitlabregistry-tdr-public-cms

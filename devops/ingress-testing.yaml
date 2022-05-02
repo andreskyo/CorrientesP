@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: tdr-public-fe
+  name: tdr-public-cms
   namespace: testing
   annotations:
     kubernetes.io/ingress.class: kong
@@ -14,7 +14,7 @@ spec:
   - host: miportal.test.dgrcorrientes.gov.ar
     http:
       paths:
-      - path: /publico
+      - path: /publiccms
         backend:
-          serviceName: tdr-public-fe
+          serviceName: tdr-public-cms
           servicePort: 80

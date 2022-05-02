@@ -1,7 +1,7 @@
 apiVersion: configuration.konghq.com/v1
 kind: KongIngress
 metadata:
-  name: tdr-public-fe
+  name: tdr-public-cms
 route:
   strip_path: false
   methods:
