@@ -1,40 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tdr-public-fe
-  labels:
-    app: tdr-public-fe
+  name: tdr-public-cms
+  namespace: testing
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tdr-public-cms
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: tdr-public-cms
+    spec:
+      containers:
+        - name: tdr-public-cms
+          image: registry.gitlab.com/dgrcorrientes/tdr-public-cms:3.24
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: TZ
+              value: America/Argentina/Buenos_Aires
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      imagePullSecrets:
+        - name: gitlabregistry-tdr-public-cms
+      schedulerName: default-scheduler
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 0
       maxSurge: 1
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tdr-public-fe
-  template:
-    metadata:
-      labels:
-        app: tdr-public-fe
-    spec:
-      containers:
-        - name: tdr-public-fe
-          image: registry.gitlab.com/dgrcorrientes/tdr-public-fe:2.2.1-10
-          ports:
-            - containerPort: 80
-          env:
-            - name: TZ
-              value: "America/Argentina/Buenos_Aires"
-          volumeMounts:
-          - name: tdr-public-fe-config
-            readOnly: true
-            mountPath: /usr/share/tdr-public-fe/publico/config
-      volumes:
-      - name: tdr-public-fe-config
-        configMap:
-          name: tdr-public-fe-config
-
-      imagePullSecrets:
-        - name: gitlabregistry-tdr-public-fe
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
