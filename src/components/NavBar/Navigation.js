@@ -49,19 +49,19 @@ export default class Example extends React.Component {
             <Nav className=" navsItems" navbar  >
            
               <NavItem>
-                <NavLink className="item"  tag={RRNavLink}  to="/login" activeClassName="active" >Estado de cuenta</NavLink>
+                <NavLink className="item"  tag={RRNavLink}  to="/" activeClassName="active" >Estado de cuenta</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRNavLink}  to="/register" activeClassName="active"  >Servicios</NavLink>
+                <NavLink tag={RRNavLink}  to="/" activeClassName="active"  >Servicios</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/forgot-password" activeClassName="active" >Pagos</NavLink>
+                <NavLink tag={RRNavLink} to="/" activeClassName="active" >Pagos</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink  tag={RRNavLink} className="nav-link" to="/login" activeClassName="active" >Ayuda</NavLink>
+                <NavLink  tag={RRNavLink} className="nav-link" to="/" activeClassName="active" >Ayuda</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink  tag={RRNavLink} className="nav-sesion" to="/iniciar-sesion" >Iniciar sesión</NavLink>
+                <NavLink  tag={RRNavLink} className="nav-sesion" to="/" >Iniciar sesión</NavLink>
               </NavItem>
             </Nav>
             

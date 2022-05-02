@@ -18,7 +18,7 @@ const Cardacceso = (props) => {
                     <div className="col easyAccessCard__text">
                         <p className="easyAccessCardText__title"><strong>{props.title}</strong></p>
                         <p className="easyAccessCardText__description"> {props.subtitle} </p>
-                        <Link to={`/login`}><button className="btn btn-primary easyAccessCardText__btn"> {props.boton}  </button></Link>
+                        <Link to={`/gestiones`}><button className="btn btn-primary easyAccessCardText__btn"> {props.boton}  </button></Link>
                     </div>
                 </div>
             </div>

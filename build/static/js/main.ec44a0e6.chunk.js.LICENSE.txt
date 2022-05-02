@@ -1,1 +1,0 @@
-//!selected.length && validate.userState !== 'has-success' && validate.passwordState !== 'has-success'

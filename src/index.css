@@ -1,10 +1,12 @@
 /*
     Note: This app is not heavily dependent to the css that's only maintain a single css file.
 */
-
+*{
+    background: ##FFFFFF;
+}
 body {
     font-family: "Nunito", sans-serif;
-    background: #D3D3D3;
+    background: ##FFFFFF;
     min-height: 100vh;
 }
 .w3-bar {
@@ -15,6 +17,7 @@ body {
     min-height: 100vh;
     background-position: center;
     background-size: cover;
+     background-color: ##FFFFFF;
 }
 
 /* CenterToScreen Component styles */
@@ -22,5 +25,6 @@ body {
     min-height: 50vh;
     display: flex;
     justify-content: center;
+     background-color: ##FFFFFF;
     align-items: center;
 }
