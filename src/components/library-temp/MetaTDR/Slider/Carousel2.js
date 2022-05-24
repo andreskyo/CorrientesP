@@ -1,82 +1,42 @@
+import React, { useEffect, useState } from 'react';
+import useGet from '../../../../utils/useGet';
+import axios from 'axios';
+import {Carousel,CarouselItem} from 'react-bootstrap'
 
-import React, {useEffect} from 'react'
-import useGet from "../../../../utils/useGet"
+const Carousel2 = () => {
+	// const [dataCarousel, setCarousel] = useGet({url:"https://api.test.dgrcorrientes.gov.ar/strapibe/api/carousels?populate=%2A"})
 
-import {
-    Carousel,
-    CarouselItem,
-    CarouselIndicators,
-} from 'reactstrap';
-  
-function Carousel2() {
-  const [dataCarousel, setCarousel] = useGet({url:"/api/carousels"})
-   
- 
+	const [dataCarousel, setCarousel] = useState([]);
+	useEffect(() => {
+		axios
+			.get(
+				'https://api.test.dgrcorrientes.gov.ar/strapibe/api/carousels?populate=%2A'
+			)
+			.then((response) => {
+				setCarousel(response.data);
+			});
+	}, []);
+	const items = dataCarousel.data
+		? dataCarousel.data.map((e) => e.attributes.imagen.data.attributes.url)
+		: '';
+	
 
- 
-
-    // State for Active index
-    const [activeIndex, setActiveIndex] = React.useState(0);
-  
-    // State for Animation
-    const [animating, setAnimating] = React.useState(false);
-  
-    // Sample items for Carousel
-   
-    
-  
-    // Items array length
-    const itemLength = dataCarousel.length - 1
-  
-    // Previous button for Carousel
-    const previousButton = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === 0 ?
-            itemLength : activeIndex - 1;
-        setActiveIndex(nextIndex);
-    }
-  
-    // Next button for Carousel
-    const nextButton = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === itemLength ?
-            0 : activeIndex + 1;
-        setActiveIndex(nextIndex);
-    }
-  
-    // Carousel Item Data
-    const carouselItemData = dataCarousel.data.map((item) => {
-        return (
-            <CarouselItem
-            
-                onExited={() => setAnimating(false)}
-                onExiting={() => setAnimating(true)}
-            >
-                <img width="100%" height="100%"src={item.imagen.url} alt={item.texto} />
-            </CarouselItem>
-        );
-    });
-    
-    return (
-        <div >
-           
-            <Carousel previous={previousButton} next={nextButton}  
-                activeIndex={activeIndex}> 
-                <CarouselIndicators    
-                    items={dataCarousel}
-                    activeIndex={activeIndex}
-                    onClickHandler={(newIndex) => {
-                    if (animating) return;
-                        setActiveIndex(newIndex);
-                    
-                    }} />
-               
-                {carouselItemData}
-            
-            
-            </Carousel>
+	return (
+        <div className="w-100 container-carousel d-flex">
+        <Carousel >
+        {
+            items.length > 0 ? items.map(item=>{
+                return(
+                    <CarouselItem key={Math.random()}>
+                        <img src={item} alt="First slide" width="100%" />
+                    </CarouselItem>
+                )
+            }) : null
+        }
+		</Carousel>
         </div>
-    );
-}
-  
+		
+	);
+};
+
 export default Carousel2;
