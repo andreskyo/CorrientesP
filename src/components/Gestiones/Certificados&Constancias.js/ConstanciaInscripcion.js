@@ -5,6 +5,10 @@ import BusquedaGenerica from 'components/library-temp/BusquedaGenerica/BusquedaG
 import TitleFullWidth from 'components/library-temp/MetaTDR/TitulosHome/TitleFullWidth'
 import "react-datepicker/dist/react-datepicker.css";
 import {useNavigate} from 'react-router-dom';
+import ApiServicios from '../../../api/ApiServicios'
+
+
+
 export default function ConstanciaInscripcion() {
  
   const navigate = useNavigate();
@@ -14,7 +18,7 @@ export default function ConstanciaInscripcion() {
   const [FormValido,setFormValido] = useState(false);
   
     
-
+  //constInscripciones
 
      useEffect(() => {
        
@@ -82,7 +86,15 @@ export default function ConstanciaInscripcion() {
 
 
     const handleClick = () => {
-      alert("datos" + JSON.stringify(Datos) + "Valido: " + FormValido);
+        ApiServicios.service.constanciaInscripcion(Cuit).then(res => {
+        
+        if(res.status === 200){
+          alert("exito " + JSON.stringify(res.data));
+        }else{
+          alert("error: " + JSON.stringify(res.status));
+        }
+      });
+     
     }
 
     const isDisabled = () => {

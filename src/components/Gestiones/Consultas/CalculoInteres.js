@@ -5,7 +5,6 @@ import BusquedaGenerica from 'components/library-temp/BusquedaGenerica/BusquedaG
 import TitleFullWidth from 'components/library-temp/MetaTDR/TitulosHome/TitleFullWidth'
 import "react-datepicker/dist/react-datepicker.css";
 import {useNavigate} from 'react-router-dom';
-import axios from 'axios'
 import ApiServicios from '../../../api/ApiServicios';
 import moment  from 'moment';
 
@@ -14,6 +13,7 @@ export default function CalculoInteres() {
   const navigate = useNavigate();
   const [TipoInteres, setTipoInteres ] = useState('')
   const [ImporteDeuda,setImporteDeuda] = useState('')
+  const [Result,setResult] = useState('')
   const [Datos,setDatos] = useState({});
    const [Validar,setValidar] = useState({});
   const [FormValido,setFormValido] = useState(false);
@@ -27,7 +27,7 @@ export default function CalculoInteres() {
         
 
        const {validar} = Datos
-        console.log(" TipoInteres" + JSON.stringify(TipoInteres) );     
+      
        if(validar){
         if(
             TipoInteres !== "" 
@@ -48,27 +48,21 @@ export default function CalculoInteres() {
                        setFormValido(false);
                     }
 
-
       }
-       
-       
-       
-
-
     }, [Datos])
    
   
   const getInteres = (monto,fechaVencimientoOriginal,fechaPago ,tipoInteres) => {
-    alert("aca voy a calcular el interes: " + JSON.stringify(monto,fechaVencimientoOriginal,fechaPago ,tipoInteres));
+    
     ApiServicios.service.calculoInteres(monto,fechaVencimientoOriginal,fechaPago ,tipoInteres)
         .then((res) => {
           if(res.status !== 200){
             alert("Error al calcular el interes" + res.status);
           }else{
             console.log("res: " + JSON.stringify(res.data));
-            alert("Interes calculado: " + res.data.interes);
+           
+            setResult(res.data);
           }
-
       })
   }
   
@@ -111,21 +105,24 @@ export default function CalculoInteres() {
 
         let configStartDate = {
             startDate:new Date(),
-            endDate:new Date("2023-02-01"),
+            endDate:new Date(),
+            dateFormat:"dd/MM/yyyy",
+            showMonthYearPicker:false
         };
 
         let configEndDate = {
             startDate:new Date(),
-            endDate:new Date("2027-02-01"),
-            dateFormat:"dd/MM/yyyy"
-        };
+            endDate:new Date(),
+            dateFormat:"dd/MM/yyyy",
+            showMonthYearPicker:false
+            }
 
 
         let campos = [
               {tipo:"comboNew",label:"TipoInteres",regex:"", size:3   , opciones:combo,requerido:"S",ejecutar:true },
               {tipo:"textNew",label:"ImporteDeuda", size:3,regex:/^(?=.*[a-zA-Z0-9]{1,})(?=.*[d]{0,})[a-zA-Z0-9]{1,15}$/, requerido:"S",ejecutar:true},
               {tipo:"dateNew",label:"FechaVencimientoOriginal",regex:"", endDate:"2023-02-02", requerido:"N",configDates:configStartDate,size:3},
-              {tipo:"dateNew",label:"FechaPago",regex:"", endDate:"2023-02-02", requerido:"N",configDates:configStartDate,size:3},
+              {tipo:"dateNew",label:"FechaPago",regex:"", endDate:"2023-02-02", requerido:"N",configDates:configEndDate,size:3},
               /*  {tipo:"cuit",label:"Cuit",regex:/^(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]$/, opciones:this.state.comboTramites2?this.state.comboTramites2:comboEstado,requerido:"N",ejecutar:false },*/
             ];
 
@@ -166,6 +163,15 @@ export default function CalculoInteres() {
         
       <Buttons text="Buscar" disabled={isDisabled()} primary 
         onClick={()=>handleClick()}></Buttons>
+
+        <div className=" my-4">
+        {Result 
+        ?<div>
+          <h5>Interes: ${Result.INTERES}</h5>
+          <h5>Monto actualizado: ${Result.MONTO_ACTUALIZADO}</h5>
+        </div>
+        :""}
+        </div>
       </div>
 
      

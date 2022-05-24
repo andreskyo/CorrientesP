@@ -424,9 +424,10 @@ this.cargarData();
 
         }else if(tipo ==="dateNew"){
             // {campo.endDate}
+            
             let fecha =  campo.configDates?campo.configDates.startDate:campo.endDate;
             let configDate = campo.configDates?campo.configDates:"";
-
+            
             if(label.indexOf("Hasta")>=1){
                 fecha = new Date();
             }
@@ -438,7 +439,7 @@ this.cargarData();
             input =   <div className="col-lg-5 col-sm-12 col-md-6 d-flex pl-0 pr-0 ">
                 <div className="col-12 col-lg-auto">
                     <div className='form-group'>
-                        <label className='control-label'>Fecha<span className="required">*</span></label>
+                        <label className='control-label'>{campo.label}<span className="required">*</span></label>
                         <div className="form-control-icon"><i className="fa fa-svg fa-calendar-o fa-fw"></i></div>
                         <div className="form-control-delete"><a href="#"><i
                             className="fa fa-svg fa-times fa-fw"></i></a></div>
@@ -450,7 +451,7 @@ this.cargarData();
                                 startDate={configDate.startDate}
                                 selected={this.state[label]?this.state[label]:configDate.startDate}
                                 dateFormat={configDate.dateFormat?configDate.dateFormat:"MM/yyyy"}
-                                showMonthYearPicker
+                                showMonthYearPicker={configDate.showMonthYearPicker?configDate.showMonthYearPicker:false}
                                 onChange={(e)=>this.handleInputsCalendar(e,label)}
                                 maxDate={configDate.endDate}//aca formatear enddate
 

@@ -5,6 +5,11 @@ import BusquedaGenerica from 'components/library-temp/BusquedaGenerica/BusquedaG
 import TitleFullWidth from 'components/library-temp/MetaTDR/TitulosHome/TitleFullWidth'
 import "react-datepicker/dist/react-datepicker.css";
 import {useNavigate} from 'react-router-dom';
+import ApiServicios from '../../../api/ApiServicios';
+
+
+
+
 export default function LibreDeuda() {
  
   const navigate = useNavigate();
@@ -83,6 +88,15 @@ export default function LibreDeuda() {
 
     const handleClick = () => {
       alert("datos" + JSON.stringify(Datos) + "Valido: " + FormValido);
+     
+      ApiServicios.service.consultaLibreDeuda(Datos.Adrema).then(res => {
+        console.log("res: " + JSON.stringify(res));
+        if(res.status === 200){
+          alert("exito " + JSON.stringify(res.data));
+        }else{
+          alert("error: " + JSON.stringify(res.status));
+        }
+      });
     }
 
     const isDisabled = () => {
@@ -108,7 +122,7 @@ export default function LibreDeuda() {
       <TitleFullWidth title="Contancia Libre deuda"
        subtitle="Para mayor información contactarse con la mesa de ayuda enviando un mail a la casilla de correo mesadeayuda@dgrcorrientes.gov.ar ó bien llamando al 0800-555-7376 (provincia de Corrientes) / 0810-555-7376 (resto del país)"/>
       <div className="d-flex flex-column justify-content-center my-4">
-        <div>
+        <div className="container">
         <BusquedaGenerica   estilo="metatdr" campos={campos} onSearch={handleSearch} onSearch2={handleSearch2}/>
         </div>
         <div>

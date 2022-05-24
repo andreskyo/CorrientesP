@@ -5,7 +5,7 @@ import BusquedaGenerica from 'components/library-temp/BusquedaGenerica/BusquedaG
 import TitleFullWidth from 'components/library-temp/MetaTDR/TitulosHome/TitleFullWidth'
 import "react-datepicker/dist/react-datepicker.css";
 import {useNavigate} from 'react-router-dom';
-
+import ApiServicios from '../../api/ApiServicios';
 
 
 
@@ -100,8 +100,26 @@ export default function CertificadosEmitidos() {
 
 
     const handleClick = () => {
+      
+      let tipoConsulta = Datos.Nomenclador.split("-")[0];
+      
       alert("datos" + JSON.stringify(Datos) + "Valido: " + FormValido);
-    }
+      
+      ApiServicios.service.consultaActividad(Actividad,tipoConsulta)
+      .then(res => {
+        console.log("res: " + JSON.stringify(res));
+        if(res.status === 200){
+          alert("res: " + JSON.stringify(res.data))
+        }
+      })
+      .catch(err => {
+        console.log("err: " + JSON.stringify(err));
+        alert("err: " + JSON.stringify(err))
+      }
+      );
+    };
+
+    
 
     const isDisabled = () => {
       if(FormValido){

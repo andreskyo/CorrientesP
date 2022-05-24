@@ -1,10 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import TituloConNotificacion from 'components/library-temp/MetaTDR/TitulosHome/TituloConNotificacion'
 import {Buttons} from 'components/library-temp/Button/Buttons'
-
+import ApiServicios from '../../../api/ApiServicios';
 import BusquedaGenerica from 'components/library-temp/BusquedaGenerica/BusquedaGenerica'
 import TitleFullWidth from 'components/library-temp/MetaTDR/TitulosHome/TitleFullWidth'
 import {useNavigate} from 'react-router-dom';
+import moment from 'moment';
+
+
+
 
 export default function ConsultaExpedientes() {
 
@@ -14,6 +18,7 @@ export default function ConsultaExpedientes() {
   const [Datos,setDatos] = useState({});
   const [Validar,setValidar] = useState({});
   const [FormValido,setFormValido] = useState(false);
+  const [Result,setResult] = useState('');
   
     
 
@@ -77,15 +82,15 @@ export default function ConsultaExpedientes() {
 
         let configStartDate = {
             startDate:new Date(),
-            endDate:new Date("2023-02-01"),
-            dateFormat:"dd/MM/yyyy"
+            endDate:new Date(),
+            dateFormat:"dd/MM/yyyy",
+            showMonthYearPicker:false
         };
 
-        let configEndDate = {
-            startDate:new Date(),
-            endDate:new Date("2027-02-01"),
-            dateFormat:"dd/MM/yyyy"
-        };
+      
+
+
+     
 
 
         let campos = [
@@ -98,6 +103,15 @@ export default function ConsultaExpedientes() {
 
     const handleClick = () => {
       alert("datos" + JSON.stringify(Datos) + "Valido: " + FormValido);
+      let anio = moment(Fecha).format('YYYY');
+      ApiServicios.service.consultaExpedientes(NroExpediente,anio).then(res => {
+        if (res.status !== 200) {
+         alert("err " + JSON.stringify(res.status)) 
+        }else {
+          alert("exito" + JSON.stringify(res.data)) 
+        }
+
+      });
     }
 
     const isDisabled = () => {
@@ -112,7 +126,7 @@ export default function ConsultaExpedientes() {
     navigate('/gestiones');
   }
   
-    
+    console.log("result expedientes " + JSON.stringify(Result));
 
 
   return (
@@ -128,6 +142,14 @@ export default function ConsultaExpedientes() {
         </div>
         <div>
            <Buttons text="Buscar" disabled={isDisabled()} primary onClick={()=>handleClick()}></Buttons>
+        </div>
+         <div className=" my-4">
+            { Result !=="" ?
+            <div>
+              <h5>Expediente: {Result}</h5>
+            </div>
+            :""}
+        
         </div>
      
       </div>

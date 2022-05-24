@@ -20,7 +20,42 @@ export default {
                     fechaPago,
                     tipoInteres
             } 
-        },
-            )
-    }
-}}
+        })},
+        cotizacionDolar(mes,anio) {
+            return apiClient.get('/CotizacionDolar' ,{
+                params: {
+                    mes,
+                    anio
+            } 
+        })},
+        consultaActividad(actividad,nomenclador) {
+            return apiClient.get('/ConsultaActividad' ,{
+                params: {
+                    codigoActividad : actividad,
+                    tipoConsulta: nomenclador
+                    
+            } 
+        })},
+        consultaExpedientes(numero,anio) {
+            return apiClient.get('/ConsultaDeExpedientes' ,{
+                params: {
+                   numero,
+                   anio
+                    
+            } 
+        })},
+        consultaLibreDeuda(adrema) {
+            return apiClient.get(`/ConsultaDeLibreDeuda/${adrema}` ,{
+                params: {
+                    numeroAdrema :adrema
+                    
+            } 
+        })},
+    },
+    constanciaInscripcion(cuit){
+        return apiClient.get(`/constInscripciones` ,{
+            params: {
+                cuit
+                }
+            })}
+}

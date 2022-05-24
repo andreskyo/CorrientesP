@@ -137,11 +137,7 @@ const Styles  = styled.div`
 }
 
 .card-servicios{
-    background: #FFFFFF;
-    padding: 15px;
-    flex-direction:row;
-    box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
-    border-radius: 16px;
+    
     margin:8px;
 
     

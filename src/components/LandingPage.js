@@ -17,7 +17,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import moment from 'moment';
 import { useNavigate } from "react-router-dom";
-
+import OtherCards from "./andres/MetaTDR/Cards/OtherCards"
 
 
 function LandingPage() {
@@ -58,17 +58,36 @@ function LandingPage() {
 
 	const accesos = () =>{
 		
+		
 		let resultados = acceso
 		let result = resultados? acceso.accesos.data.map((res) =>
 				{
 					if (!isMobile && window.innerWidth > 992){
 						
-						return <CardAcceso
+						let datosAcceso = {
+							//avatar:<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />,
+							name:res.attributes.titulo,
+							job:res.attributes.descripcion,
+							button:"Ingresar",
+							outlined:false,
+							onClick:()=>navigate("/gestiones"),
+						}
+						
+						
+						return <div className="col-4">
+						 <OtherCards  cardAcceso datosAcceso={datosAcceso} />
+						</div>
+						
+						
+						 /*<CardAcceso
 									title={res.attributes.titulo}
 									icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
 									subtitle={res.attributes.descripcion}
 									boton={"Ingresar"}>
-								</CardAcceso>
+								</CardAcceso>*/
+
+
+								
 						
 						
 					}else{
