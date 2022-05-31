@@ -6,7 +6,6 @@ import CardCalendar from './jsOtherCards/CardCalendar'
 import CardPerfiles from './jsOtherCards/CardPerfiles'
 import CardAcceso from './jsOtherCards/CardAcceso'
 import CardDailyStacks from './jsOtherCards/CardDailyStacks'
-import { defaults } from 'chart.js';
 
 
 
@@ -36,7 +35,7 @@ export const OtherCards = ({ ...props }) => {
 
         </>
     )
-
-
+    
 };
-export default OtherCards;
+
+export default OtherCards

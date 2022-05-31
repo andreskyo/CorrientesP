@@ -3,98 +3,88 @@ import styled from "styled-components";
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import { Buttons } from '../../Buttons/Butttons/Buttons'
-
-
 const CardComponentAcceso = styled(Card)`
-   
-    
      &&{
        background: #FFFFFF;
        box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
        border-radius: 16px;
        display:flex;
-  } 
-  .kCWNvr.kCWNvr{
-       margin-left:5px;
-       width: 88px;
-       height: 37px;
+       height: 100%;
   }
 
+  &&:hover{
+      box-shadow: 0px 1px 4px rgba(14, 31, 53, 0.12), 0px 4px 8px rgba(14, 31, 53, 0.1), 0px 6px 12px rgba(14, 31, 53, 0.08);
+  }
   .avatar{
-       margin-top:-10px;
-       background:white;
-       color:#78716C;
-       border: 1.14341px solid #78716C;
-  } 
-  .name{
-     
-       font-style: normal;
-       font-weight: 600;
-       color: #272727;
-       margin-top: 20px;
+      width:82px;
+      height:82px;
+      border: 1.14341px solid #78716C;
+      border-radius: 60px;
+      background:transparent;
+      padding: 18%;
   }
-  .job{
-     
-       font-style: normal;
-       font-weight: 400;
-       color: #272727;
-  }
+  .icon{
+      width:30px;
+      height:30px;
+      color:#78716C;
+    }
   .cardContent{
-      margin-left:-30px;
-      color:red;
+    width:100%;
+}
+ .titulo{
+    font-family: 'SF UI Text';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    color: #27272A;
   }
-  &.MuiPaper-root:hover{
-    box-shadow: 0px 1px 4px rgba(14, 31, 53, 0.12), 0px 4px 8px rgba(14, 31, 53, 0.1), 0px 6px 12px rgba(14, 31, 53, 0.08);
-
+  .descripcion{
+    font-family: 'SF UI Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #78716C;
   }
- 
 `
-
 const CardAcceso = (props) => {
     return (
         <CardComponentAcceso>
-            <CardHeader
-
-                avatar={
-                    <Avatar
-                        className="avatar"
-                        alt="Remy Sharp"
-                        sx={{ width: 80, height: 80 }}
-                    
-                    >{props.datosAcceso.avatar}</Avatar>
-                }
-            />
-            <CardContent className="row p-2 cardContent">
-                <Typography
-                    className="name"
-                >
-                    {props.datosAcceso.name}
-                </Typography>
-
-                <Typography
-                    className="job"
-                >
-                    {props.datosAcceso.job}
-                </Typography>
-
-                <CardActions>
-                    <Buttons
-                        contained
-                        primary
-                        outlined={props.datosAcceso.outlined}    
-                        onClick={props.datosAcceso.onClick}                        
-                        text={props.datosAcceso.button} />
-                </CardActions>
-
-            </CardContent>
+            {props.datosAcceso.icon ?
+                <CardHeader className="cardHeader"
+                    avatar={
+                        <Avatar
+                            className="avatar">
+                            {props.datosAcceso.icon ? props.datosAcceso.icon : null}
+                        </Avatar>
+                    }
+                />
+                : null}
+            {props.datosAcceso.titulo || props.datosAcceso.descripcion || props.datosAcceso.button ?
+                <CardContent className="row p-2 cardContent">
+                    {props.datosAcceso.titulo ?
+                        <Typography
+                            className="titulo">
+                            {props.datosAcceso.titulo ? props.datosAcceso.titulo : null}
+                        </Typography>
+                        : null}
+                    {props.datosAcceso.descripcion ?
+                        <Typography
+                            className="descripcion">
+                            {props.datosAcceso.descripcion ? props.datosAcceso.descripcion : null}
+                        </Typography>
+                        : null}
+                    {props.datosAcceso.button ?
+                            <div className="container-button pt-2">
+                                {props.datosAcceso.button ? props.datosAcceso.button : null}
+                            </div>
+                        : null}
+                </CardContent>
+                : null}
         </CardComponentAcceso>
     )
 }
-
 export default CardAcceso

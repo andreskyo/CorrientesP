@@ -5,118 +5,147 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Buttons } from '../../Buttons/Butttons/Buttons';
+import Chip from '@mui/material/Chip';
+
 
 
 
 const CardComponentInfo = styled(Card)`
+&&{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
+    border-radius: 16px;
+}
 
-.css-1l0ckzb-MuiChip-root{
+
+.tag{
     background: #DC2626;
     border-radius: 4px;
+    font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 500;
-    width: 70px;
-    height: 22px;
-    font-size:12px;
+    line-height: 150%;
     color: #F3F4F6;
+    margin-left:5px;
+    
 }
+
 .css-1qvr50w-MuiTypography-root{
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 16px;
     color: #94A3B8;
+    margin-bottom:0px;
+    margin-top:-15px;
+    height:0px;
+    
 }
-    background: #FFFFFF;
-    box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
-    border-radius: 16px;
+    
 `
 
 
 const CardContentInfo = styled(CardContent)`
-@font-face {
-    font-family:FontsFree-Net-sf-ui-text-regular-58646b56a688c ;
-    src: url('../../../../.storybook/Fonts/FontsFree-Net-sf-ui-text-regular-58646b56a688c');
+&&{
+    margin-top:-20px;
 }
 
-
-
-.monto{
-    margin-top: -20px;
-    font-size: 20px;
+.sub{
+    font-family: 'SF UI Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
     line-height: 150%;
-    font-family: 'FontsFree-Net-SF-UI-Text-Semibold';
-    font-weight: bold;
     color: #27272A;
+    
+    
 }
-.incumplidas{
+
+.descripcion{
    font-family: 'Nunito';
    font-style: normal;
-   font-weight: 400;
-   line-height: 23px;
-   color: #78716C;
-   font-family: 'Nunito';
+   font-weight: 500;
    font-size: 14px;
-
+   line-height: 23px;
+   font-feature-settings: 'salt' on;
+   color: #78716C;
 }
-.fCCzJv.fCCzJv{
-    margin-left: -7px;
+
+.boton{
+    margin-left:-7px;
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 600;
+    font-size: 14px;
     line-height: 16px;
-    font-weight: 600;
-    font-size: 12px;
     color: #0077E6;
+    &&:hover{
+       text-decoration:underline; 
+    }
 }
 `
 
 const CardInfoFull = (props) => {
 
     return (
-        <CardComponentInfo className="container-fluid m-0">
+        <CardComponentInfo>
             <CardHeader className="cardHeader"
 
                 action={
-
-                    <IconButton
-                        disableRipple
-                        aria-label="settings"
+                    props.datosCardInfoFull ?
+                        <IconButton
+                            disableRipple
+                            aria-label="settings"
                         >
-                        <MoreVertIcon
-                            style={{ marginTop: "2px" }}
-                            onClick={props.datosCardInfoFull.handleClickSetting}
-                            disableRipple/>
-                    </IconButton>
+
+                            {props.datosCardInfoFull.iconSetting}
+
+                        </IconButton>
+                        : null
                 }
-                title={<>{props.datosCardInfoFull.descripcion} {props.datosCardInfoFull.tagsMora}</>}
+                title={
+
+                    <>
+                        {props.datosCardInfoFull.titulo ? props.datosCardInfoFull.titulo : null}
+
+                        {props.datosCardInfoFull.tag ?
+                            <Chip
+                                className="tag"
+                                label={props.datosCardInfoFull.tag}
+                                color="error" />
+                            : null}
+                    </>
+
+                }
 
 
 
             />
             <CardContentInfo>
 
+                {props.datosCardInfoFull.sub ?
+                    <Typography
+                        className="sub"
+                        variant="h5"
+                        component="div">
+                        {props.datosCardInfoFull.sub}
+                    </Typography>
+                    :
+                    null}
 
-                <Typography
-                    className="monto"
-                    variant="h5"
-                    component="div">
-                    {props.datosCardInfoFull.monto}
-                </Typography>
+                {props.datosCardInfoFull.sub ?
+                    <Typography
+                        className="descripcion"
+                        color="text.secondary">
+                        {props.datosCardInfoFull.descripcion}
+                    </Typography>
+                    :
+                    null}
 
-                <Typography
-                    className="incumplidas"
-                    color="text.secondary">
-                    {props.datosCardInfoFull.incumplidas}
-                </Typography>
-
-                <Buttons
-                    text={props.datosCardInfoFull.buttonDetalle}
-                    onClick={props.datosCardInfoFull.handleClickDetalle}
-                    line />
+                <div className="container-button">
+                    {props.datosCardInfoFull.button ? props.datosCardInfoFull.button:null}
+                </div>
             </CardContentInfo>
 
         </CardComponentInfo>

@@ -18,7 +18,11 @@ import rehypeKatex from 'rehype-katex';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import OtherCards from './andres/MetaTDR/Cards/OtherCards';
-
+import Buttons from './andres/MetaTDR/Buttons/Butttons/Buttons';
+import CardImg from './andres/MetaTDR/Cards/jsPrimary/CardImg';
+import CardStats from './andres/MetaTDR/Cards/jsPrimary/CardStats';
+import Carousel from 'react-bootstrap/Carousel';
+import styled from 'styled-components';
 function LandingPage() {
 	let navigate = useNavigate();
 	const [datosAccesoRapido, setdatosAccesoRapido] = useGet({
@@ -52,41 +56,30 @@ function LandingPage() {
 		let resultados = acceso;
 		let result = resultados
 			? acceso.accesos.data.map((res) => {
+					let datosAcceso = {
+						icon: (
+							<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />
+						),
+						titulo: res.attributes.titulo,
+						descripcion: res.attributes.descripcion,
+						button: (
+							<Buttons
+								primary
+								text="Ingresar "
+								onClick={() => navigate('/gestiones')}
+							/>
+						)
+					};
 					if (!isMobile && window.innerWidth > 992) {
-						let datosAcceso = {
-							//avatar:<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />,
-							name: res.attributes.titulo,
-							job: res.attributes.descripcion,
-							button: 'Ingresar',
-
-							onClick: () => navigate('/gestiones')
-						};
-
 						return (
 							<div className="col-4">
 								<OtherCards cardAcceso datosAcceso={datosAcceso} />
 							</div>
 						);
-
-						/*<CardAcceso
-									title={res.attributes.titulo}
-									icon={<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />}
-									subtitle={res.attributes.descripcion}
-									boton={"Ingresar"}>
-								</CardAcceso>*/
 					} else {
 						return (
-							<SwiperSlide>
-								<CardAcceso
-									title={res.attributes.titulo}
-									subtitle={res.attributes.descripcion}
-									icon={
-										<svg
-											dangerouslySetInnerHTML={{ __html: res.attributes.icono }}
-										/>
-									}
-									boton={'Ingresar'}
-								/>
+							<SwiperSlide className="p-1">
+								<OtherCards cardAcceso datosAcceso={datosAcceso} />
 							</SwiperSlide>
 						);
 					}
@@ -130,28 +123,39 @@ function LandingPage() {
 				if (i < 3) {
 					if (!isMobile && window.innerWidth > 992) {
 						let fecha = moment(res.attributes.fecha).format('ll');
+
+						let datosCardImg = {
+							img: res.attributes.imagen ? (
+								<img
+									src={res.attributes.imagen}
+									alt="imagen-descripcion"
+									className="img"
+								/>
+							) : (
+								<img
+									src={latestNewsImg3}
+									alt="imagen-descripcion"
+									className="img"
+								/>
+							),
+							titulo: res.attributes.titulo,
+							sub: fecha,
+							descripcion: res.attributes.descripcion.substring(0, 150) + '...',
+							button: (
+								<Buttons
+									medium
+									size="large"
+									primary
+									outlined
+									onClick={() => handleClick(res)}
+									text="Ver mas"
+								/>
+							)
+						};
 						return (
-							<CardImage
-								Titulo={res.attributes.titulo}
-								Descripcion={
-									<ReactMarkdown
-										remarkPlugins={[remarkMath]}
-										rehypePlugins={[rehypeKatex]}
-										children={
-											res.attributes.descripcion.substring(0, 150) + '...'
-										}
-									/>
-								}
-								Fecha={fecha}
-								TextoBoton="Leer Más"
-								image={
-									res.attributes.imagen
-										? res.attributes.imagen.url
-										: latestNewsImg3
-								}
-								id={res.attributes.id}
-								onClick={() => handleClick(res)}
-							/>
+							<div className="col-4">
+								<CardImg datosCardImg={datosCardImg} />
+							</div>
 						);
 					} else {
 						return (
@@ -234,17 +238,33 @@ function LandingPage() {
 		let result = resultados
 			? datosAyuda.accesos.data.map((res) => {
 					if (!isMobile && window.innerWidth > 992) {
+						let datosCardStats = {
+							titulo: res.attributes.titulo,
+							sub: res.attributes.descripcion,
+							icon: (
+								<svg
+									width="100%"
+									height="100%"
+									dangerouslySetInnerHTML={{
+										__html: res.attributes.icono
+									}}
+								/>
+							),
+							button: (
+								<Buttons
+									className="button"
+									text={res.attributes.textoEnlace}
+									onClick={() => alert('Mas info')}
+									primary
+									line
+								/>
+							)
+						};
+
 						return (
-							<CardStatsIcon
-								title={res.attributes.titulo}
-								subtitle={res.attributes.descripcion}
-								textLink={res.attributes.textoEnlace}
-								icon={
-									<svg
-										dangerouslySetInnerHTML={{ __html: res.attributes.icono }}
-									/>
-								}
-							/>
+							<div className="col-4">
+								<CardStats datosCardStats={datosCardStats} />
+							</div>
 						);
 					} else {
 						return (
@@ -280,8 +300,8 @@ function LandingPage() {
 			: null;
 
 		return (
-			<section className="needHelp">
-				<div className="container">
+			<section className="needHelp ">
+				<div className="container ">
 					<div className="row needHelpRow  splideNeedHelp">
 						<div className="col-12 needHelpRow__head">
 							<p className="needHelpHead__subtitle">Atención al ciudadano</p>
@@ -291,8 +311,8 @@ function LandingPage() {
 								diversos canales de comunicación.
 							</p>
 						</div>
-						<div className="col-12 needHelpRow__wrapper splide__track">
-							<div className="row needHelpRowWrapper splide__list">
+						<div className="col-12  needHelpRow__wrapper splide__track">
+							<div className="row  needHelpRowWrapper splide__list">
 								{isMobile || window.innerWidth < 992 ? (
 									<Swiper2 listado={result} />
 								) : (
@@ -312,6 +332,7 @@ function LandingPage() {
 			? resultados.map((res) => {
 					if (!isMobile && window.innerWidth > 992) {
 						return (
+							//Armar card vencimientos con api de detalles
 							<div className="col-12 col-lg nextExpirationWrapper__item splide__slide">
 								<div className="nextExpirationItem">
 									<div className="col-auto nextExpirationItem__icon">
@@ -416,38 +437,84 @@ function LandingPage() {
 	};
 
 	const Group = () => {
-		return (
+		if(!isMobile && window.innerWidth > 992){
+			return (
 			<section className="bannerEasyAccess">
-				<div className="container">
+				<Styled className="container">
 					<div className="row bannerEasyAccessRow">
-						{datosAccesoRapido.data
-							? datosAccesoRapido.data[0].attributes.accesos.data.map(
-									(result) => {
-										return (
-											<div className="col-auto bannerEasyAccessRow__item">
-												<div className="row bannerEasyAccessItem">
-													<div className="col-auto bannerEasyAccessItem__icon fa-bold">
-														<i className="fa fa-svg fa-credit fa-fw "></i>
-													</div>
-													<div className="col-auto bannerEasyAccessItem__text">
-														<p>{result.attributes.titulo}</p>
-														<a href="#">{result.attributes.textoEnlace}</a>
-													</div>
+						
+							{datosAccesoRapido.data
+								? datosAccesoRapido.data[0].attributes.accesos.data.map(
+										(result) => {
+											return (
+												<div className="col-auto bannerEasyAccessRow__item">
+													
+														<div className="row bannerEasyAccessItem">
+															<div className="col-auto bannerEasyAccessItem__icon fa-bold">
+																<i className="fa fa-svg fa-credit fa-fw "></i>
+															</div>
+															<div className="col-auto bannerEasyAccessItem__text">
+															
+																<p>{result.attributes.titulo}</p>
+																<a href="#">{result.attributes.textoEnlace}</a>
+															
+															</div>
+														</div>
+														
+													
 												</div>
-											</div>
-										);
-									}
-							  )
-							: null}
+											);
+										}
+								  )
+								: null}
+						
 					</div>
-				</div>
+				</Styled>
 			</section>
 		);
+		}else{
+			return (
+			
+			<section className="bannerEasyAccess">
+				<Styled className="container">
+					<div className="row bannerEasyAccessRow">
+						<Carousel variant="dark" indicators={false}  prevIcon = {<span aria-hidden="true"  className="carousel-control-prev-icon" />} >
+							{datosAccesoRapido.data
+								? datosAccesoRapido.data[0].attributes.accesos.data.map(
+										(result) => {
+											return (<Carousel.Item>
+												<div className="col-auto bannerEasyAccessRow__item">
+													
+														<div className="row bannerEasyAccessItem">
+															<div className="col-auto bannerEasyAccessItem__icon fa-bold">
+																<i className="fa fa-svg fa-credit fa-fw "></i>
+															</div>
+															<div className="col-auto bannerEasyAccessItem__text">
+															
+																<p>{result.attributes.titulo}</p>
+																<a href="#">{result.attributes.textoEnlace}</a>
+															
+															</div>
+														</div>
+														
+													
+												</div></Carousel.Item>
+											);
+										}
+								  )
+								: null}
+						</Carousel>
+					</div>
+				</Styled>
+			</section>
+		);
+		}
+		
 	};
 
 	return (
 		<body className="body_home">
-			<Carousel2/>
+			<Carousel2 />
 			<Group />
 			{accesos()}
 
@@ -463,3 +530,12 @@ function LandingPage() {
 }
 
 export default memo(LandingPage);
+
+
+const Styled = styled.div`
+	.bannerEasyAccessItem{
+		
+		justify-content:center;
+
+	}
+`

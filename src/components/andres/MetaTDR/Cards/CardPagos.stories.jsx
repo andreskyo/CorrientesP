@@ -15,47 +15,48 @@ export default {
   },
 };
 
-const datosPagosMobile={
-    icon:<img src={MercadoPago}/>,
-    title:"Débito automático con CBU",
-    descripcion:<>
+const datosPagosMobile = {
+  icon: MercadoPago,
+  titulo: "Débito automático con CBU",
+  descripcion: <>
     <p className="descripcio">¡Ahorra $32200 extras!</p>
     <p className="descripcion">Todas las tarjetas y hasta 6 cuotas sin interés con Cordobesa o Visa Bancor</p>
-    </>
+  </>
 }
-const datosPagosGateWay={
-  icon:<ArrowBackIosIcon/>,
-  titulo:"Vas a realizar el pago de",
-  viejoPrecio:"$ 6.200",
-  precio:"$ 6.200",
-  cuota:"1 cuotas a vencer",
-  porcentaje:"Incluye 30% por estar al día",
-  onClick:()=>{alert("arrow")}
+
+const datosPagosGateWay = {
+  icon: <ArrowBackIosIcon />,
+  titulo: "Vas a realizar el pago de",
+  sub: "$ 6.200",
+  subB: "$ 6.200",
+  descripcion: "1 cuotas a vencer",
+  descripcionB: "Incluye 30% por estar al día",
+  onClick: () => { alert("arrow") }
 
 }
 
-const datosPagoDesktop={
-  icon:<CreditCardIcon className="icon"/>,
-  titulo:"Online",
-  precio:"$ 12.44714",
-  descuento:"Incluye 5% de descuento",
-  descuentoA:"Incluye 5% de descuento",
-  iconB:<InfoOutlinedIcon className="iconB"/>
+const datosPagoDesktop = {
+  icon: <CreditCardIcon className="icon" />,
+  titulo: "Online",
+  sub: "$ 12.44714",
+  descripcion: "Incluye 5% de descuento",
+  descripcionB: "Incluye 5% de descuento",
+  iconB: <InfoOutlinedIcon className="iconB" />
 
 }
 
 const Template = (args) => <CardPagos {...args} />;
 export const CardsPago = Template.bind({});
 
-export const CardPagoDos= Template.bind({})
+
 
 
 CardsPago.args = {
-    cardPagosMobile:false,
-    cardPagosGateWayMobile:false,
-    cardPagosDesktop:false,
-    datosPagosMobile:datosPagosMobile,
-    datosPagosGateWay:datosPagosGateWay,
-    datosPagoDesktop:datosPagoDesktop
-  
+  cardPagosMobile: false,
+  cardPagosGateWayMobile: false,
+  cardPagosDesktop: false,
+  datosPagosMobile: datosPagosMobile,
+  datosPagosGateWay: datosPagosGateWay,
+  datosPagoDesktop: datosPagoDesktop
+
 };

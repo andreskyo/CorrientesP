@@ -15,30 +15,35 @@ text-align: center;
 
 .icon{
    margin-top:3px;
+   margin-right:10px ;
    font-size:25px;
    color: #124596;
 }
 .css-1qvr50w-MuiTypography-root{
     font-family: 'SF UI Text';
-    font-style: normal;
-    font-weight: 500;
+    font-style: normal; 
+    font-weight: bold;
+    font-size: 24px;
     color: #27272A;
+    height:20px ;
 }
-.precio{
+.sub{
    font-family: 'SF UI Text';
    font-style: normal;
    font-weight: bold;
    color: #27272A;
-   padding:10px;
+   font-size:24px;
+   padding:5px;
    letter-spacing: 3px;
 }
-.descuento{
+.descripcion{
    font-family: 'SF UI Text';
    font-style: normal;
    font-weight: 400;
+   padding:5px;
    color: #22C55E;
 }
-.descuentoA{
+.descripcionB{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
@@ -53,7 +58,7 @@ text-align: center;
     
 }
 .cardContent{
-    margin-top:-30px;
+    margin-bottom:10px;
 }
 `
 const PagoDesktop = (props) => {
@@ -61,17 +66,17 @@ const PagoDesktop = (props) => {
     <CardComponentPagoDesktop>
          <CardHeader
                className="header"
-               title={<>{props.datosPagoDesktop.icon}{props.datosPagoDesktop.titulo}</>}
+               title={<>{props.datosPagoDesktop.icon ? props.datosPagoDesktop.icon : null }{props.datosPagoDesktop.titulo ? props.datosPagoDesktop.titulo : null}</>}
 
             />
-            
+            {props.datosPagoDesktop.sub || props.datosPagoDesktop.descripcion || props.datosPagoDesktop.descripcionB || props.datosPagoDesktop.iconB ?
             <CardContent className="cardContent">
-                <Typography className="precio">{props.datosPagoDesktop.precio}</Typography>
-                <Typography className="descuento">{props.datosPagoDesktop.descuento}</Typography>
-                <Typography className="descuentoA">{props.datosPagoDesktop.descuentoA}</Typography>
+                <Typography className="sub">{props.datosPagoDesktop.sub}</Typography>
+                <Typography className="descripcion">{props.datosPagoDesktop.descripcion}</Typography>
+                <Typography className="descripcionB">{props.datosPagoDesktop.descripcionB}</Typography>
                 <Typography className="iconB">{props.datosPagoDesktop.iconB}</Typography>
             </CardContent>
-
+        :null}
         </CardComponentPagoDesktop>
   )
 }

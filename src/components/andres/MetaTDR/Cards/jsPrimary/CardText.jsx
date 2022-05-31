@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import Card from '@mui/material/Card';
+import { Typography } from '@mui/material';
 
 
 const CardComponentText = styled(Card)`
@@ -8,8 +9,10 @@ const CardComponentText = styled(Card)`
     background: #FFFFFF;
     box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
     border-radius: 16px;
+    padding:20px;
 }
-.title{
+.titulo{
+    padding:5px;
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
@@ -18,10 +21,11 @@ const CardComponentText = styled(Card)`
     color: #78716C;
 
 }
-.sub{
+.descripcion{
+    padding:5px;
     font-family: 'SF UI Text';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 16px;
     line-height: 150%;
     color: #124596;
@@ -32,24 +36,64 @@ const CardComponentText = styled(Card)`
 
 const CardText = (props) => {
 
-   
+
 
 
     return (
-        <CardComponentText className="container-fluid m-0">
-            
-               
-                {props.datosCardText.agente}
-            
-            
-                
-                {props.datosCardText.cuit}
-           
-            
-              
-                {props.datosCardText.establecimiento}
-            
-           
+        <CardComponentText >
+
+            {props.datosCardText.tituloA ?
+                <Typography className="titulo">
+
+                    {props.datosCardText.tituloA}
+
+                </Typography>
+                : null}
+
+            {props.datosCardText.descripcionA ?
+
+                <Typography className="descripcion">
+
+                    {props.datosCardText.descripcionA}
+
+                </Typography>
+
+                : null}
+
+            {props.datosCardText.tituloB ?
+                <Typography className="titulo">
+
+                    {props.datosCardText.tituloB}
+
+                </Typography>
+
+                : null}
+
+            {props.datosCardText.descripcionB ?
+                <Typography className="descripcion">
+
+                    {props.datosCardText.descripcionB}
+
+                </Typography>
+                : null}
+
+            {props.datosCardText.tituloC ?
+                <Typography className="titulo">
+
+                    {props.datosCardText.tituloC}
+
+                </Typography>
+
+                : null}
+            {props.datosCardText.tituloC ?
+                <Typography className="descripcion">
+
+                    {props.datosCardText.descripcionC}
+
+                </Typography>
+                : null}
+
+
         </CardComponentText>
     )
 }

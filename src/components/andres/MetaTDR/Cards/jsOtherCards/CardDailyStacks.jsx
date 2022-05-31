@@ -19,7 +19,7 @@ const ComponentCardDaily = styled(Card)`
      height: auto;
      text-align:center;
    }
-   .hora{
+   .titulo{
      font-family: 'SF UI Text';
      font-style: normal;
      font-weight: 500;
@@ -47,35 +47,38 @@ const ComponentCardDaily = styled(Card)`
 
 const CardDailyStacks = (props) => {
 
-    const renderCards = () => {
+  const renderCards = () => {
 
-        let resultado = props.datosDailyStack.map((res, i) => {
+    let resultado = props.datosDailyStack.map((res, i) => {
 
-            return <>
-                <CardContent className="d-flex">
+      return <>
+        <CardContent className="d-flex">
+          {res.titulo ?
+            <Typography
+              className="titulo"
+            >
+              {res.titulo}
+            </Typography>
+            : null}
 
-                    <Typography
-                        className="hora"
-                    >
-                        {res.hora}
-                    </Typography>
-
-                    <Chip
-                        className="tag d-block "
-                        color={res.tagColor}
-                        icon={res.iconTags}
-                        label="08:00 - 13:00"
-                    />
-                </CardContent>
-            </>
-        })
-        return resultado
-    }
-    return (
-        <ComponentCardDaily >
-            {renderCards()}
-        </ComponentCardDaily>
-    )
+          {res.icon || res.descripcion ?
+            <Chip
+              className="tag d-block "
+              color={res.tagColor}
+              icon={res.icon ? res.icon : null}
+              label={res.descripcion ? res.descripcion : null}
+            />
+            : null}
+        </CardContent>
+      </>
+    })
+    return resultado
+  }
+  return (
+    <ComponentCardDaily >
+      {renderCards()}
+    </ComponentCardDaily>
+  )
 }
 
 export default CardDailyStacks

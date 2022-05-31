@@ -37,9 +37,11 @@ return alert('hola mundo')
 
 
 Buttonss.args = {
+  className:"button",
   text:"Large Button",
   size:'large',
-  component:'span',
+  startIcon:'',
+  endIcon:'',
   icon:<AccessAlarmIcon/>,
   primary:true,
   disabled:false,

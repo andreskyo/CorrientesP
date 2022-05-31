@@ -13,16 +13,22 @@ const CardComponentInfoBasic = styled(Card)`
    box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
    border-radius: 16px;
 }
-.css-2s90m6-MuiAvatar-root{
-    background:#124596;
+
+.icon{
+    background: #124596;
+    margin-top:-5px;
+    width: 45px;
+    height: 45px;
 }
-.css-et1ao3-MuiTypography-root {
+.css-et1ao3-MuiTypography-root,.css-1qvr50w-MuiTypography-root {
+  font-family: 'SF UI Text';
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 150%;
   color: #27272A;
 }
-.css-83ijpv-MuiTypography-root {
+.css-83ijpv-MuiTypography-root,.css-nrdprl-MuiTypography-root {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -36,25 +42,33 @@ const CardComponentInfoBasic = styled(Card)`
 const CardInfoBasic = (props) => {
   return (
     <CardComponentInfoBasic >
+      
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe">
+          props.datosCardInfoBasic.icon ? 
+          <Avatar
+          className="icon"
+          aria-label="recipe">
             {props.datosCardInfoBasic.icon}
-          </Avatar>
+          </Avatar> : null
         }
+     
         action={
+          props.datosCardInfoBasic.iconSetting ?
           <IconButton
             disableRipple
             aria-label="settings">
-            <MoreVertIcon
-              onClick={props.datosCardInfoBasic.handleClickSetting}
-              disableRipple
-              style={{ marginTop: "-5px" }}
-              />
+           
+            {props.datosCardInfoBasic.iconSetting}
+              
+              
           </IconButton>
+          :null
         }
-        title={props.datosCardInfoBasic.descripcion}
-        subheader={props.datosCardInfoBasic.incumplidas}
+        
+        title={props.datosCardInfoBasic.titulo ? props.datosCardInfoBasic.titulo : null}
+      
+        subheader={props.datosCardInfoBasic.sub ? props.datosCardInfoBasic.sub  : null}
       />
 
 

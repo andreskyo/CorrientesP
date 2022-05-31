@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { CalendarPicker } from '@mui/x-date-pickers';
+import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
 import {es} from 'date-fns/locale';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';

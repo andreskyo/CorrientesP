@@ -8,6 +8,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import IconButton from '@mui/material/IconButton';
 import styled from "styled-components";
 
+
 const MuiAlertComponent=styled(MuiAlert)`
 &&{
   background: #FFFFFF;

@@ -15,34 +15,34 @@ const CardComponentGateWay = styled(Card)`
    
 }
 .css-et1ao3-MuiTypography-root {
-font-family: 'SF UI Text';
-font-style: normal;
-font-weight: 400;
-margin-left:-10px;
-font-size: 24px;
-color: #27272A;
+    font-family: 'SF UI Text';
+    font-style: normal;
+    font-weight: 400;
+    margin-left:-10px;
+    font-size: 24px;
+    color: #27272A;
 }
-.viejoPrecio {
+.sub {
     text-decoration:line-through;
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
     color: #78716C;
 }
-.precio{
+.subB{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
     color: #27272A;
 }
-.cuota{
+.descripcion{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
     color: #78716C;  
 }
-.porcentaje{
+.descripcionB{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
@@ -59,26 +59,30 @@ const PagoGateWay = (props) => {
         <CardComponentGateWay>
             <CardHeader
                 avatar={
-                    <IconButton
-                        onClick={props.datosPagosGateWay.onClick}
-                        className="p-0"
-                        disableRipple>
+                    props.datosPagosGateWay.icon ?
+                        <IconButton
+                            onClick={props.datosPagosGateWay.onClick}
+                            className="p-0"
+                            disableRipple>
 
 
-                        {props.datosPagosGateWay.icon}
-                    </IconButton>
+                            {props.datosPagosGateWay.icon}
+
+                        </IconButton>
+                        : null
                 }
 
                 title={props.datosPagosGateWay.titulo}
 
             />
-            <CardContent>
-                <Typography className="viejoPrecio">{props.datosPagosGateWay.viejoPrecio}</Typography>
-                <Typography className="precio">{props.datosPagosGateWay.precio}</Typography>
-                <Typography className="cuota">{props.datosPagosGateWay.cuota}</Typography>
-                <Typography className="porcentaje">{props.datosPagosGateWay.porcentaje}</Typography>
-            </CardContent>
-
+            {props.datosPagosGateWay.sub || props.datosPagosGateWay.subB || props.datosPagosGateWay.descripcion || props.datosPagosGateWay.descripcionB ?
+                <CardContent>
+                    {props.datosPagosGateWay.sub ? <Typography className="sub">{props.datosPagosGateWay.sub}</Typography> : null}
+                    {props.datosPagosGateWay.subB ? <Typography className="subB">{props.datosPagosGateWay.subB}</Typography> : null}
+                    {props.datosPagosGateWay.subB ? <Typography className="descripcion">{props.datosPagosGateWay.descripcion}</Typography> : null}
+                    {props.datosPagosGateWay.descripcionB ? <Typography className="descripcionB">{props.datosPagosGateWay.descripcionB}</Typography> : null}
+                </CardContent>
+                : null}
         </CardComponentGateWay>
     )
 }

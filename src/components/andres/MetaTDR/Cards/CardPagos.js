@@ -29,3 +29,5 @@ export const CardPagos = ({ ...props }) => {
 
 
 };
+
+export default CardPagos

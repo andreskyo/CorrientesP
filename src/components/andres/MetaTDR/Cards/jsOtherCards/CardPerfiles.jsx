@@ -15,31 +15,37 @@ const CardComponentPerfiles = styled(Card)`
     border-radius: 16px;
     flex-wrap: Wrap;
   } 
-  .avatar{
-    margin-top:-30px;
+  .icon{
+    margin-top:-30
   }
-  .yzFfc.yzFfc {
-    width:150px;
+  .button {
+    width:130px;
     height: 30px;
     color: #06B6D4;
     border: 1px solid #67E8F9;
     border-radius: 8px;
+    :hover{
+      color: #06B6D4;
+      border: 1px solid #67E8F9;
+    }
+    :active{
+      color: #06B6D4;
+      border: 1px solid #67E8F9;
+    }
   }
-  .name{
+  .titulo{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 600;
     color: #272727;
   }
-  .job{
+  .descripcion{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
     color: #272727;
   }
- .row{
-    margin-left:-30px;
- }
+ 
 
 `
 
@@ -52,40 +58,46 @@ const CardPerfiles = (props) => {
 
       return <div className="d-flex  ">
 
+        {res.icon ?
+          <CardHeader
 
-        <CardHeader
+            avatar={
+              
+                <Avatar
+                  className="icon"
+                  alt="Remy Sharp"
+                  src={res.icon }
+                  sx={{ width: 75, height: 75, marginTop: -1.5 }}
 
-          avatar={
-            <Avatar
-              className="avatar"
-              alt="Remy Sharp"
-              src={res.icon}
-              sx={{ width: 75, height: 75, marginTop: -1.5 }}
-            />
-          }
-        />
-
+                />
+                
+            }
+          />
+          : null}
         <CardContent className="row  ">
-          <Typography
-            className="name"
-          >
-            {res.name}
-          </Typography>
+          {res.titulo ?
+            <Typography
+              className="titulo"
+            >
+              {res.titulo}
+            </Typography>
+            : null}
+          {res.descripcion ?
+            <Typography
+              className="descripcion"
+            >
+              {res.descripcion}
+            </Typography>
 
-          <Typography
-            className="job"
-          >
-            {res.job}
-          </Typography>
+            : null}
 
-          <CardActions>
-            <Buttons
-              primary
-              outlined
-              onClick={res.onClick}
-              text={res.button} />
-          </CardActions>
-
+          {res.button ?
+            <CardActions>
+              <div className="container-button">
+              {res.button}
+              </div>
+            </CardActions>
+            : null}
         </CardContent>
 
 

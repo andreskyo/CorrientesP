@@ -18,14 +18,15 @@ const Cardstatsicon = (props) => {
                         <p className="needHelpCardText__description">{props.subtitle}</p>
                         <a  className="needHelpCardText__btn textLink ">{props.textLink}</a>
                     </div>
-                {props.icon?
-                <div className="needHelpCard__icon icon-icon">
+                {props.icon?<>
+               
+                <div className="needHelpCard__icon icon-icon" style={{width:"82px"}}>
                     
                     <span className="icon-icon">{props.icon}</span>
                    
                    
                     
-                </div> :null }
+                </div></> :null }
             </div>
             </Styled>
         </>

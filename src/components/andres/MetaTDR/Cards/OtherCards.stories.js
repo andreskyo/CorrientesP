@@ -24,13 +24,23 @@ export default {
 };
 
 const datosPerfil = {
-  avatar: Usuario,
-  name: "Neel Deshmukh",
-  job: "Fullstack Developer @Sky",
+  icon: Usuario,
+  title: "Neel Deshmukh",
+  descripcion: "Fullstack Developer @Sky",
   labelTags: "PRO",
-  onClickMessage:()=>{alert("message")},
-  onClickConnect:()=>{alert("connect")},
-  icons: [
+  buttonMessage : <Buttons
+  className="buttonMessage"
+  onClick={() => (alert("message"))}
+  primary
+  outlined
+  text="Message" />,
+  buttonConnect:<Buttons
+  className="buttonConnect"
+  onClick={() => (alert("message"))}
+  primary
+  text="Connect" />,
+
+icons: [
     { icon: <GitHubIcon />,
       onClick:()=>{alert("icon")} },
     { icon: <LinkedInIcon />,
@@ -46,47 +56,69 @@ const datosPerfil = {
 }
 
 const datosVencimiento = {
-  fecha: "17 de octubre",
-  job: "Fullstack Developer @Sky",
+  titulo: "17 de octubre",
+  descripcion: "Fullstack Developer @Sky",
   icon: <TodayIcon />
 }
 
 
 const datosPerfiles = [{
   icon: Usuario,
-  name: "Neel Deshmukhaa",
-  job: "Frontend Dev @Stripe",
-  button: "Message",
-  onClick:()=>{alert("Message")}
+  titulo: "Neel Deshmukhaa",
+  descripcion: "Frontend Dev @Stripe",
+  button: <Buttons
+  className="button"
+  primary
+  outlined
+  onClick={() => (alert("message"))}
+  text="Message" />
+  
 },
 {
   icon: Usuario,
-  name: "Neel Deshmukh ",
-  job: "Frontend Dev @Stripe",
-  button: "Message",
-  onClick:()=>{alert("Message")}
+  titulo: "Neel Deshmukh ",
+  descripcion: "Frontend Dev @Stripe",
+  button: <Buttons
+  className="button"
+  primary
+  outlined
+  onClick={() => (alert("message"))}
+  text="Message" />
 },
 {
   icon: Usuario,
-  name: "Neel Deshmukh ",
-  job: "Frontend Dev @Stripe",
-  button: "Message",
-  onClick:()=>{alert("Message")}
+  titulo: "Neel Deshmukh ",
+  descripcion: "Frontend Dev @Stripe",
+  button: <Buttons
+  className="button"
+  primary
+  outlined
+  onClick={() => (alert("message"))}
+  text="Message" />
 },
 {
   icon: Usuario,
-  name: "Neel Deshmukh",
-  job: "Frontend Dev @Stripe",
-  button: "Message",
-  onClick:()=>{alert("Message")}
+  titulo: "Neel Deshmukh",
+  descripcion: "Frontend Dev @Stripe",
+  button: <Buttons
+  className="button"
+  primary
+  outlined
+  onClick={() => (alert("message"))}
+  text="Message" />
 }
 ]
 
 const datosAcceso = {
-  avatar: <NotificationsNoneIcon fontSize="large" />,
-  name: "Drishti Ratan",
-  job: "Fashion Designer @Clover ",
-  button: "PRIMARY",
+  icon: <NotificationsNoneIcon/>, 
+  titulo: "Drishti Ratan",
+  descripcion: "Fashion Designer @Clover ",
+  button: <Buttons
+  className="button"
+  primary
+  outlined
+  onClick={() => (alert("Primary"))}
+  text="Primary" />
 
 }
 
@@ -97,26 +129,26 @@ const datosCalendar = {
 
 const datosDailyStack = [
   {
-    iconTags:<p><LayersIcon className="icon"/>Design Team Standup</p>,
-    horaTags:"08:00 - 11:00",
+    icon:<p><LayersIcon className="icon"/>Design Team Standup</p>,
+    descripcion:"08:00 - 11:00",
     tagColor:"primary",
-    hora: "9:00",
+    titulo: "9:00",
 
 
   },
   {
-    iconTags:<p><CodeIcon className="icon"/>Design Team Standup</p>,
-    horaTags:"08:00 - 11:00",
+    icon:<p><CodeIcon className="icon"/>Design Team Standup</p>,
+    descripcion:"08:00 - 11:00",
     tagColor:"warning",
-    hora: "9:00",
+    titulo: "9:00",
 
 
   },
   {
-    iconTags:<p><LightIcon className="icon"/>Design Team Standup</p>,
-    horaTags:"08:00 - 11:00",
+    icon:<p><LightIcon className="icon"/>Design Team Standup</p>,
+    descripcion:"08:00 - 11:00",
     tagColor:"error",
-    hora: "9:00",
+    titulo: "9:00",
    }
 ]
 
@@ -127,7 +159,7 @@ export const OtherCard = Template.bind({});
 
 
 OtherCard.args = {
-  cardPerfil: false,
+  cardPerfil: true,
   cardVencimiento: false,
   cardCalendar: false,
   cardPerfiles: false,

@@ -14,15 +14,22 @@ const CardComponentSetting = styled(Card)`
 .css-1qvr50w-MuiTypography-root {
     font-family: 'SF UI Text';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 150%;
     color: #27272A;
+    margin-left:5px;
+
 }
 .css-nrdprl-MuiTypography-root{
     font-family: 'SF UI Text';
     font-style: normal;
     font-weight: 400;
+    font-size: 13px;
     color: #78716C;
+    margin-left:5px;
 }
+
 .button{
     width:100%;
     display:flex;
@@ -40,9 +47,9 @@ const CardComponentSetting = styled(Card)`
 
 const CardSetting = (props) => {
     const render = () => {
-        let resultado = props.datosSetting.buttons.map((res, i) => {
+        let resultado = props.datosSetting.buttonss.map((res, i) => {
             return <>
-                {res.button}
+                {res.button ? <div className="container-button">{res.button}</div> : null}
             </>
 
 
@@ -53,20 +60,25 @@ const CardSetting = (props) => {
 
     return (
         <CardComponentSetting >
-            <CardHeader
+            {props.datosSetting.titulo || props.datosSetting.sub ?
+                <CardHeader
 
 
-                title={props.datosSetting.titulo}
-                subheader={props.datosSetting.sub}
+                    title={props.datosSetting.titulo ? props.datosSetting.titulo : null}
+                    subheader={props.datosSetting.sub ? props.datosSetting.sub : null}
 
 
 
-            />
+                />
+
+                : null}
+                
             <CardContent>
 
                 {render()}
 
             </CardContent>
+
 
         </CardComponentSetting>
     )
