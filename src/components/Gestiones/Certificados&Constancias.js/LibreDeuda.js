@@ -108,7 +108,7 @@ export default function LibreDeuda() {
     }
 
   const irGestiones = () => {
-    navigate('/gestiones');
+    navigate('/GuiaTramites');
   }
   
     

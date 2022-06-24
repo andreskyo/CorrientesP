@@ -381,6 +381,7 @@ this.cargarData();
                         defaultLabel={this.state.defaultLabelComboSeccionTT ? this.state.defaultLabelComboSeccionTT : ""}
                         onChange={(e)=>this.comboActosSelecTT(e)}
                         placeholder={"Estado"}
+                        
                     >
 
                     </Combo>

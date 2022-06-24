@@ -54,12 +54,12 @@ $white-rich: white;
 
 /* Main Colors */
 $red: #ef2e35;
-$orange: #FA8072;
-$yellow: #FCBD65;
+$orange: #ff7300;
+$yellow: #FAC300;
 $yellow-fluor: #FFFF13;
 $olive: #b5cc18;
 $lime: #a2dd2c;
-$green: #43c02a;
+$green: #19AB4F;
 $mint: #1daf66;
 $teal: #1AAFAE;
 $light-blue: #36BFF9;
@@ -183,8 +183,8 @@ $sidebar-width--colapsado: 90PX;
 }
 
 // Contenido
-
 $min-height-content: calc(100vh - 338PX);
+$background-color-content: $gray-100;
 
 // Header
 $header-logo-width: 175PX;
@@ -198,7 +198,7 @@ $bannerPrimary-borderColor: $color-accent--dark;
 *			Page Specific Element Variables
 ****************************************************** */
 
-
+$framework-jumbotron-spacing: -15rem;
 
 /***************************/
         /*loading*/
@@ -220,7 +220,9 @@ $framework-component-border-left: 4px solid transparent;
 
 $framework-border-radius-1: 0.25rem;
 $framework-border-radius-2: 0.5rem;
-$framework-border-radius-3: 1rem;
+$framework-border-radius-3: 0.75rem;
+$framework-border-radius-4: 1rem;
+$framework-border-radius-5: 1.25rem;
 $framework-border-radius-circle: 100PX;
 
 @mixin framework-subtitle {
@@ -234,7 +236,11 @@ $framework-border-radius-circle: 100PX;
 /*Shadow*/
 /***********************/
 
-$framework-box-shadow: 0.0625rem 0.0625rem 0.3125rem $gray-100;
+// $framework-box-shadow: 0.0625rem 0.0625rem 0.3125rem $gray-100;
+$framework-box-shadow: 0px 0px 2px rgba(14, 31, 53, 0.12), 0px 1px 4px rgba(14, 31, 53, 0.06);
+$framework-box-shadow-center: 0 0 20PX rgba($black, 0.25);
 $framework-box-shadow-hover: 0 5PX 10PX rgba($gray-400, 0.1);
 $framework-box-shadow-modal: 0 0 20PX rgba($black, 0.5);
+$framework-box-shadow-modal-center: 0 20px 20PX rgba($black, 0.1);
+$framework-box-shadow-modal-footer: 0 -10px 10PX rgba($black, 0.1);
 $framework-transition: all 300ms ease-in-out;

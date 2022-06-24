@@ -106,7 +106,7 @@ export default function ConstanciaInscripcion() {
     }
 
   const irGestiones = () => {
-    navigate('/gestiones');
+    navigate('/GuiaTramites');
   }
   
     

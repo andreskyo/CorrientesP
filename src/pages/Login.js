@@ -2,7 +2,7 @@ import React, { memo, useState , useEffect} from 'react';
 import { Alert, Form, Button } from 'react-bootstrap';
 import { FormGroup, Container, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { JumbotronWrapper } from './common';
+import { JumbotronWrapper } from '../components/common';
 import usePost from '../utils/usePost';
 import store from '../store';
 import { Provider, connect, useSelector  } from "react-redux";

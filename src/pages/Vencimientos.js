@@ -1,10 +1,10 @@
 import React from 'react'
-import TitleFullWidth from './library-temp/MetaTDR/TitulosHome/TitleFullWidth';
+import TitleFullWidth from '../components/library-temp/MetaTDR/TitulosHome/TitleFullWidth';
 import styled from 'styled-components';
-import CardStatsIcon from './library-temp/CardStatsIcon';
+import CardStatsIcon from '../components/library-temp/CardStatsIcon';
 
 import useGet from "../utils/useGet"
-import CardVencimientos from './common/CardsVencimientos/CardVencimientos';
+import CardVencimientos from '../components/common/CardsVencimientos/CardVencimientos';
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 
 // Import Swiper styles

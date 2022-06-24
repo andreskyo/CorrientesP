@@ -9,15 +9,11 @@ export default function CardImageRow(props) {
             <div className="text">
                 <div className="title">
                     {props.title}
-                    Lorem ipsum 
+                   
                 </div>
                 <div className="description">
                     {props.description}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.    
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    {props.description}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.    
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            
                    
                 </div>
                 <div className="info">
@@ -109,7 +105,7 @@ font-style: normal;
 font-weight: 600;
 font-size: 12px;
 line-height: 16px;
-text-decoration-line: underline;
+
 color: #0B5FFF;
 }
 

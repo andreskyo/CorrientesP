@@ -100,7 +100,7 @@ export default function CertificadosEmitidos() {
     }
 
   const irGestiones = () => {
-    navigate('/gestiones');
+    navigate('/guiaTramites');
   }
   
     
@@ -110,7 +110,7 @@ export default function CertificadosEmitidos() {
 <>
 
     <div className="container">
-      <TituloConNotificacion titulo="Gestiones" onClick={()=>irGestiones()} />
+      <TituloConNotificacion titulo="Guia Tramites" onClick={()=>irGestiones()} />
       <TitleFullWidth title="Consulta de certificados y Constancias emitidas" 
        subtitle=""/>
       <div className="d-flex flex-column justify-content-center my-4">

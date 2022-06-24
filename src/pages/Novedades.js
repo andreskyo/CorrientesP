@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from 'react'
 import { useParams } from "react-router-dom";
 import useGet from "../utils/useGet"
-import CardImage from './library-temp/MetaTDR/Cards/CardImage';
+import CardImage from '../components/library-temp/MetaTDR/Cards/CardImage';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -12,8 +12,9 @@ import {isMobile} from 'react-device-detect';
 import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
 import InputSearch from "../components/common/Input/InputSearch";
-import CardImageRow from './common/CardsImage/CardImageRow';
+import CardImageRow from '../components/common/CardsImage/CardImageRow';
 import ItemCardNovedades from './ItemCardNovedades';
+import Buttons from 'components/andres/MetaTDR/Buttons/Butttons/Buttons';
 
 export default function Novedades(props) {
     const [data2, setData2] = useGet({url:"api/novedades"});
@@ -104,8 +105,10 @@ export default function Novedades(props) {
                     {result}
                 </div>
                 <div className="card-image-row">
-                    <CardImageRow title="algun titulo" image={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"}
-                    description="alguna descripcion" date="2015-04-23" button="Leer mas" iconDate={<i className="fa fa-calendar pr-2" aria-hidden="true"></i>}
+                    <CardImageRow title="Puesto de control" image={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"}
+                    description="" date="2015-04-23" button={<Buttons onClick={()=>{
+                        navigate("/puestoAtencionControl")
+                    }}  primary text="Leer Mas" />} iconDate={<i className="fa fa-calendar pr-2" aria-hidden="true"></i>}
                     />
                 </div>
         </div>
@@ -177,7 +180,7 @@ const Style = styled.div`
         
         justify-content: center;
         display: flex;
-        margin:15px 5px:
+        margin:15px 5px;
         
     }
 
@@ -188,7 +191,7 @@ const Style = styled.div`
         justify-content: space-between;
 
     }
-}
+
 
 `
 

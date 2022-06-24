@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styled from 'styled-components'
-import CardImage from './library-temp/MetaTDR/Cards/CardImage'
+import CardImage from '../components/library-temp/MetaTDR/Cards/CardImage'
 
 
 const ItemCardNovedades = props => {
