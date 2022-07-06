@@ -1,8 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from "styled-components";
 import Button from '@material-ui/core/Button';
-import AddIcon from '@mui/icons-material/Add';
+
+
+
+
+
 const PrimaryButton = styled(Button)`
 && {
   background: ${({ outlined }) => outlined ? 'transparent ' : ' #124596'};
@@ -14,20 +17,25 @@ const PrimaryButton = styled(Button)`
   font-weight: 600;
 }
   &&:hover {
-    background:${({ outlined }) => outlined ? 'none' : '#004BE8'};
+    background:${({ outlined }) => outlined ? 'none' : '#004BE8'}; 
     border:${({ outlined }) => outlined ? '1px solid #0053F0 ' : '1px solid #004BE8'};
     color: ${({ outlined }) => outlined ? '#0053F0' : 'white'};
     cursor:pointer;
   }
+
   &&:disabled {
   background: ${({ outlined }) => outlined ? 'none' : 'rgba(11, 95, 255, 0.5)'};
   color: ${({ outlined }) => outlined ? 'rgba(11, 95, 255, 0.5)' : 'white'};
+  
+  
   }
+  
   `
+
 const SecondaryButton = styled(Button)`
 && {
   text-transform: none;
-  background:${({ outlined }) => outlined ? 'transparent' : '#19AB4F'};
+  background:${({ outlined }) => outlined ? 'transparent' : '#19AB4F'};  
   border:${({ outlined }) => outlined ? '1px solid #19AB4F ' : '1px solid #19AB4F'};
   color:${({ outlined }) => outlined ? '#19AB4F' : 'white'};
   font-family: 'Nunito';
@@ -38,11 +46,15 @@ const SecondaryButton = styled(Button)`
   background: ${({ outlined }) => outlined ? 'none' : '#0C9E42'};
   cursor:pointer;
   }
+
   &&:disabled {
   background:${({ outlined }) => outlined ? 'none' : ' rgba(25, 171, 79, 0.5)'};
+  
   color:white;
   }
 `;
+
+
 const ButtonLinee = styled(Button)`
 && {
   font-family: 'Nunito';
@@ -55,21 +67,29 @@ const ButtonLinee = styled(Button)`
     text-decoration:underline;
     border:none;
     background:transparent;
+    
     cursor:pointer;
   }
   &&:active {
       text-decoration:underline;
       border:none;
       background:transparent;
+      
       cursor:pointer;
   }
   &&:disabled {
   background: none;
   color:rgba(11, 95, 255, 0.5);
 }
+  
   `
+
+
+
 export const Buttons = ({ outlined, ...props }) => {
+
   const Buttonn = props.primary ? PrimaryButton : SecondaryButton;
+
   return (
     <>
       {props.line
@@ -83,6 +103,7 @@ export const Buttons = ({ outlined, ...props }) => {
           startIcon={props.icons ? props.icon : null}
           endIcon={props.endIcon}
         >
+
           {props.text}
         </ButtonLinee>
         :
@@ -99,10 +120,17 @@ export const Buttons = ({ outlined, ...props }) => {
         >
           {props.addIcon
             ?
-            <AddIcon />
+            props.icon
             : props.text}
         </Buttonn>}
+
+
+
     </>
+
+
   );
+
 };
-export default Buttons
+
+export default Buttons 

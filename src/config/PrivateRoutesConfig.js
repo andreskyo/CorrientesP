@@ -11,7 +11,7 @@ import {
 	ModuleNChild3,
 	Dashboard,
 	Profile,
-} from 'components';
+} from 'pages';
 
 // TODO:
 /*

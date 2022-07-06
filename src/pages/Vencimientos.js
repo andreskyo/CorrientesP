@@ -33,7 +33,7 @@ export default function Vencimientos(props) {
                 return(
                       <SwiperSlide>
                        <div className="card-content">
-                        <CardVencimientos dateNumber={res.fechaVencimiento}  detalle={res.detalle} />
+                        <CardVencimientos dateNumber={res.fechaVencimientoDia} dateText={res.fechaVencimientoMes}  detalle={res.detalle} />
                 
                     </div>
                       </SwiperSlide>

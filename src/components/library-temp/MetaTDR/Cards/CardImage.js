@@ -16,7 +16,6 @@ const CardImage = props => {
     return (
         <div className="col-12 col-lg latestNewsWrapper__item splide__slide">
             <div className="latestNewsItem d-flex flex-column h-100  justify-content-between">
-                
                 <picture className="latestNewsItem__img">
                     <img width="100%" src={props.image} alt="latest News Img 1"/>
                 </picture>

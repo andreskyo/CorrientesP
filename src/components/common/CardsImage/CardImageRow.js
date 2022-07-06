@@ -54,7 +54,9 @@ const Styled = styled.div`
 }
 .image{
     height:auto;
-   
+    min-width: 600px;
+    flex: wrap;
+    max-height: 400px;
     display:flex;
     border-radius:16px;
 
@@ -63,6 +65,11 @@ img{
     border-radius: 0px 16px 16px 0px;
      max-height: auto;
      max-width: 100%;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+
+
 }
 
 .text{

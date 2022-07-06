@@ -54,8 +54,8 @@ const CardComponentStats = styled.div`
          color:#27272A;
          background: #E2E8F0;
          border-radius: 50%;
-        width: 46px;
-        height: 46px;
+        width: 75px;
+        height: 75px;
         padding: 1%;
         }
     }

@@ -3,7 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import history from 'utils/history';
 import { Login } from 'pages';
 import { LandingPage } from 'pages';
-import PuestoAtencion from 'pages/PuestoAtencion';
+import MediosDePagos from 'pages/MediosDePagos';
 import Novedades from '../pages/Novedades';
 import Navigation from '../components/NavBar/Navigation';
 import Topheader from 'components/library-temp/MetaTDR/Headers/TopHeader';
@@ -30,86 +30,62 @@ import OtrosTramites from '../pages/Tramites/OtrosTramites';
 import Clavedeaccesovirtual from '../pages/Tramites/Clavedeaccesovirtual';
 import Acreditaciondepersoneria from '../pages/Tramites/Acreditaciondepersoneria';
 import AltaActividad from 'pages/Tramites/IIBB/AltaActividad';
+import FooterDesktop from '../components/FooterDesktop';
+import ScrollToTop from '../components/common/ScrollToTop';
+import ItemTramite from 'pages/ItemTramite';
+import PuestoAtencion from '../pages/PuestoAtencion'
+import  NotFound  from '../pages/NotFound';
 function Rutas() {
 	return (
 		<BrowserRouter history={history}>
-			<Topheader />
 			<Navigation />
-			<Routes>
-				<Route exact path="/" element={<LandingPage />} />
-				<Route exact path="/login" element={<Login />} />
+			<ScrollToTop>
+				<Routes>
+					<Route exact path="/" element={<LandingPage />} />
+					<Route exact path="/login" element={<Login />} />
 
-				<Route exact path="/novedades/:id" element={<Novedades />} />
-				<Route exact path="/novedades" element={<Novedades />} />
-				<Route exact path="/vencimientos" element={<Vencimientos />} />
-				<Route exact path="/gestiones" element={<Gestiones />} />
-				<Route path="gestiones/consultas" element={<Consultas />} />
+					<Route exact path="/novedades/:id" element={<Novedades />} />
+					<Route exact path="/novedades" element={<Novedades />} />
+					<Route exact path="/vencimientos" element={<Vencimientos />} />
+					<Route exact path="/gestiones" element={<Gestiones />} />
+					<Route path="gestiones/consultas" element={<Consultas />} />
 
-				<Route path="gestiones/consultas/cotizacion" element={<Cotizacion />} />
-				<Route
-					path="gestiones/consultas/calculoInteres"
-					element={<CalculoInteres />}
-				/>
-				<Route
-					path="gestiones/consultas/consultaExpedientes"
-					element={<ConsultaExpedientes />}
-				/>
+					<Route
+						path="gestiones/consultas/cotizacion"
+						element={<Cotizacion />}
+					/>
+					<Route
+						path="gestiones/consultas/calculoInteres"
+						element={<CalculoInteres />}
+					/>
+					<Route
+						path="gestiones/consultas/consultaExpedientes"
+						element={<ConsultaExpedientes />}
+					/>
 
-				<Route path="gestiones/denuncias" element={<Denuncias />} />
-				<Route
-					path="gestiones/registroContribuyente"
-					element={<RegistroContribuyente />}
-				/>
-				<Route
-					path="gestiones/registroOrganismos"
-					element={<RegistroOrganismos />}
-				/>
-				<Route path="gestiones/nomenclador" element={<Nomenclador />} />
-				<Route path="guiaTramites" element={<GuiaTramites />} />
-				<Route
-					path="guiaTramites/IngresosBrutos"
-					element={<IngresosBrutos />}
-				/>
-				<Route path="puestoAtencionControl" element={<PuestoAtencion />} />
-				<Route path="guiaTramites/Sellos" element={<Sellos />} />
-				<Route
-					path="guiaTramites/inmobiliarioRural"
-					element={<InmobiliarioRural />}
-				/>
-				<Route
-					path="guiaTramites/Certificadosyconstancias"
-					element={<CertificadosConstancias />}
-				/>
-				<Route
-					path="guiaTramites/Certificadosyconstancias/constanciaInscripcion"
-					element={<ConstanciaInscripcion />}
-				/>
-				<Route
-					path="guiaTramites/Certificadosyconstancias/certificadosEmitidos"
-					element={<CertificadosEmitidos />}
-				/>
-				<Route
-					path="guiaTramites/Certificadosyconstancias/constanciaLibreDeuda"
-					element={<LibreDeuda />}
-				/>
-				<Route path="guiaTramites/Planesdepago" element={<Planesdepago />} />
-				<Route path="guiaTramites/Otrostramites" element={<OtrosTramites />} />
-				<Route
-					path="guiaTramites/Clavedeaccesovirtual"
-					element={<Clavedeaccesovirtual />}
-				/>
-				<Route
-					path="guiaTramites/Acreditaciondepersoneria"
-					element={<Acreditaciondepersoneria />}
-				/>
+					<Route path="gestiones/denuncias" element={<Denuncias />} />
+					<Route
+						path="gestiones/registroContribuyente"
+						element={<RegistroContribuyente />}
+					/>
+					<Route
+						path="gestiones/registroOrganismos"
+						element={<RegistroOrganismos />}
+					/>
+					<Route path="gestiones/nomenclador" element={<Nomenclador />} />
+					<Route exact path="guiaTramites" element={<GuiaTramites />} />
+					
+		
 
-				<Route 
-					path="guiaTramites/IngresosBrutos/altaActividad"
-					element={<AltaActividad />}
-				
-				/>
+					<Route path="guiaTramites/:tramiteId" element={<ItemTramite />} />
 
-			</Routes>
+					<Route path="puestoAtencionControl" element={<PuestoAtencion/>} />"
+
+					<Route path="mediosDePagos" element={<MediosDePagos/>}/>
+					<Route path="error" element={<NotFound/>}/>
+				</Routes>
+			</ScrollToTop>
+			<FooterDesktop />
 		</BrowserRouter>
 	);
 }

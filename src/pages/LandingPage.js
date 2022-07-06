@@ -1,12 +1,12 @@
 import React, { memo, useState, useEffect } from 'react';
 import axios from 'axios';
-import FooterDesktop from '../components/FooterDesktop';
+import {Link} from 'react-router-dom';
 import CardStatsIcon from '../components/library-temp/CardStatsIcon';
 import CardImage from '../components/library-temp/MetaTDR/Cards/CardImage';
 import latestNewsImg1 from '../assets/img/latestNewsImg1.webp';
 import latestNewsImg3 from '../assets/img/latestNewsImg3.webp';
 import Carousel2 from '../components/library-temp/MetaTDR/Slider/Carousel2';
-import CardAcceso from '../components/library-temp/MetaTDR/Cards/CardAcceso';
+import creditCard from '../assets/images/creditCard.svg';
 import Swiper2 from '../components/library-temp/Swiper';
 import 'moment/locale/es';
 import { SwiperSlide } from 'swiper/react/swiper-react';
@@ -23,6 +23,8 @@ import CardImg from '../components/andres/MetaTDR/Cards/jsPrimary/CardImg';
 import CardStats from '../components/andres/MetaTDR/Cards/jsPrimary/CardStats';
 import Carousel from 'react-bootstrap/Carousel';
 import styled from 'styled-components';
+
+
 function LandingPage() {
 	let navigate = useNavigate();
 	const [datosAccesoRapido, setdatosAccesoRapido] = useGet({
@@ -66,7 +68,11 @@ function LandingPage() {
 							<Buttons
 								primary
 								text="Ingresar "
-								onClick={() => navigate('/gestiones')}
+								onClick={() =>
+									navigate(
+										'https://miportal.dgrcorrientes.gov.ar/publico/solicitudTurnos'
+									)
+								}
 							/>
 						)
 					};
@@ -329,20 +335,26 @@ function LandingPage() {
 	const vencimientos = (data) => {
 		let resultados = dataVencimientos;
 		let result = resultados
-			? resultados.map((res) => {
+			? resultados.map((res,i) => {
 					if (!isMobile && window.innerWidth > 992) {
 						return (
 							//Armar card vencimientos con api de detalles
-							<div className="col-12 col-lg nextExpirationWrapper__item splide__slide">
+							<StyledVencimientos className="col-12 col-lg nextExpirationWrapper__item splide__slide">
+							
+									
 								<div className="nextExpirationItem">
 									<div className="col-auto nextExpirationItem__icon">
 										<span>
 											<i className="fa fa-svg fa-calendar-o fa-fw"></i>
 										</span>
 									</div>
-									<h2 className="nextExpirationItem__date">
-										{res.fechaVencimiento}
+									<h2 className="d-flex justify-content-center fechaVencimientoDia">
+										{res.fechaVencimientoDia}
+										
 									</h2>
+									<div className="fechaVencimientoMes">
+									{res.fechaVencimientoMes}
+									</div>
 									{res.detalle.map((result) => {
 										return (
 											<div className="nextExpirationItem__description col">
@@ -358,12 +370,14 @@ function LandingPage() {
 										);
 									})}
 								</div>
-							</div>
+							
+							</StyledVencimientos>
+					
 						);
 					} else {
 						return (
 							<SwiperSlide>
-								<div className="col-12 col-lg nextExpirationWrapper__item splide__slide">
+								<StyledVencimientos className="col-12 col-lg nextExpirationWrapper__item splide__slide">
 									<div className="nextExpirationItem">
 										<div className="col-auto nextExpirationItem__icon">
 											<span>
@@ -389,7 +403,7 @@ function LandingPage() {
 											);
 										})}
 									</div>
-								</div>
+								</StyledVencimientos>
 							</SwiperSlide>
 						);
 					}
@@ -437,79 +451,88 @@ function LandingPage() {
 	};
 
 	const Group = () => {
-		if(!isMobile && window.innerWidth > 992){
+		const createSvg = (icon) => {
+			return { __html: icon };
+		};
+
+		if (!isMobile && window.innerWidth > 992) {
 			return (
-			<section className="bannerEasyAccess">
-				<Styled className="container">
-					<div className="row bannerEasyAccessRow">
-						
+				<section className="bannerEasyAccess">
+					<Styled className="container">
+						<div className="row bannerEasyAccessRow">
 							{datosAccesoRapido.data
 								? datosAccesoRapido.data[0].attributes.accesos.data.map(
 										(result) => {
+											console.log('result ', result.attributes);
 											return (
 												<div className="col-auto bannerEasyAccessRow__item">
-													
-														<div className="row bannerEasyAccessItem">
-															<div className="col-auto bannerEasyAccessItem__icon fa-bold">
-																<i className="fa fa-svg fa-credit fa-fw "></i>
-															</div>
-															<div className="col-auto bannerEasyAccessItem__text">
-															
-																<p>{result.attributes.titulo}</p>
-																<a href="#">{result.attributes.textoEnlace}</a>
-															
-															</div>
+													<div className="row bannerEasyAccessItem">
+														<div className="col-auto bannerEasyAccessItem__icon ">
+															<div
+																dangerouslySetInnerHTML={createSvg(
+																	result.attributes.icono
+																)}
+															/>{' '}
 														</div>
+														<div className="col-auto bannerEasyAccessItem__text">
+															<p>{result.attributes.titulo}</p>
 														
-													
+															<a href={result.attributes.enlace?result.attributes.enlace:"error"}>
+																{result.attributes.textoEnlace}
+															</a>
+														</div>
+													</div>
 												</div>
 											);
 										}
 								  )
 								: null}
-						
-					</div>
-				</Styled>
-			</section>
-		);
-		}else{
+						</div>
+					</Styled>
+				</section>
+			);
+		} else {
 			return (
-			
-			<section className="bannerEasyAccess">
-				<Styled className="container">
-					<div className="row bannerEasyAccessRow">
-						<Carousel variant="dark" indicators={false}  prevIcon = {<span aria-hidden="true"  className="carousel-control-prev-icon" />} >
-							{datosAccesoRapido.data
-								? datosAccesoRapido.data[0].attributes.accesos.data.map(
-										(result) => {
-											return (<Carousel.Item>
-												<div className="col-auto bannerEasyAccessRow__item">
-													
-														<div className="row bannerEasyAccessItem">
-															<div className="col-auto bannerEasyAccessItem__icon fa-bold">
-																<i className="fa fa-svg fa-credit fa-fw "></i>
-															</div>
-															<div className="col-auto bannerEasyAccessItem__text">
-															
-																<p>{result.attributes.titulo}</p>
-																<a href="#">{result.attributes.textoEnlace}</a>
-															
+				<section className="bannerEasyAccess">
+					<Styled className="container">
+						<div className="row bannerEasyAccessRow">
+							<Carousel
+								variant="dark"
+								indicators={false}
+								prevIcon={
+									<span
+										aria-hidden="true"
+										className="carousel-control-prev-icon"
+									/>
+								}
+							>
+								{datosAccesoRapido.data
+									? datosAccesoRapido.data[0].attributes.accesos.data.map(
+											(result) => {
+												return (
+													<Carousel.Item>
+														<div className="col-auto bannerEasyAccessRow__item">
+															<div className="row bannerEasyAccessItem">
+																<div className="col-auto bannerEasyAccessItem__icon"></div>
+																<div className="col-auto bannerEasyAccessItem__text">
+																	<p>{result.attributes.titulo}</p>
+																	<a href="#">
+																		{result.attributes.textoEnlace}
+																	</a>
+																</div>
 															</div>
 														</div>
-														
-													
-												</div></Carousel.Item>
-											);
-										}
-								  )
-								: null}
-						</Carousel>
-					</div>
-				</Styled>
-			</section>
-		);
+													</Carousel.Item>
+												);
+											}
+									  )
+									: null}
+							</Carousel>
+						</div>
+					</Styled>
+				</section>
+			);
 		}
-		
 	};
 
 	return (
@@ -523,19 +546,57 @@ function LandingPage() {
 			{ayuda()}
 
 			{vencimientos()}
-
-			<FooterDesktop />
 		</body>
 	);
 }
 
 export default memo(LandingPage);
 
-
 const Styled = styled.div`
-	.bannerEasyAccessItem{
-		
-		justify-content:center;
-
+	.bannerEasyAccessItem {
+		justify-content: center;
 	}
+
+
+`;
+
+const StyledVencimientos = styled.div`
+	.fechaVencimientoMes{
+		font-family: 'SF UI Text';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 150%;
+/* identical to box height, or 45px */
+
+display: flex;
+align-items: center;
+text-align: center;
+
+/* Single Tone/darkText */
+
+color: #27272A;
+	}
+
+	.fechaVencimientoDia{
+		/* Text/Medium/8xl: 96px */
+
+font-family: 'SF UI Text';
+font-style: normal;
+font-weight: 500;
+font-size: 96px;
+line-height: 150%;
+/* identical to box height, or 144px */
+
+display: flex;
+align-items: center;
+text-align: center;
+width: 242px;
+height: 144px;
+
+/* DarkBlue/darkBlue.700 */
+
+color: #124596;
+	}
+
 `

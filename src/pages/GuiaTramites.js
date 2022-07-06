@@ -4,9 +4,8 @@ import FullWidth from '../components/andres/MetaTDR/Titles/js/TitulosHome/Deskto
 import CardStats from '../components/andres/MetaTDR/Cards/jsPrimary/CardStats';
 import Buttons from '../components/andres/MetaTDR/Buttons/Butttons/Buttons';
 import Accordion from '../components/andres/MetaTDR/Accordion/Accordion';
-import BusquedaGenerica from 'components/library-temp/BusquedaGenerica/BusquedaGenerica';
-import CreatableSelect from 'react-select';
 
+import InputSearch from 'components/andres/MetaTDR/InputSearch/InputSearch';
 
 export default function GuiaTramites() {
 	let navigate = useNavigate();
@@ -14,9 +13,6 @@ export default function GuiaTramites() {
 	let location = useLocation();
 
 	const [datos, setDatos] = useState({});
-
-
-	
 
 	let datosTitulosHome = {
 		sub: 'Guía de Trámites',
@@ -52,52 +48,57 @@ export default function GuiaTramites() {
 	];
 
 	const handleNavigate = (ruta) => {
-		console.log('location  ' + location.pathname);
-		navigate(`${location.pathname + '/' + ruta} `);
+		console.log('location  ' + location.pathname + '/' + params.tramiteId);
+		navigate(`${location.pathname + '/' + ruta} `, { replace: false }); ///navigate("../success", { replace: true });
 	};
 
 	const seccionAyuda = (datosAccordion) => {
 		return <Accordion datosAccordion={datosAccordion} />;
 	};
 
-
 	const handleSearch = (datos) => {
 		console.log('datos: ' + JSON.stringify(datos));
-		setDatos(prevState => ({...datos}));
-
-	}
-	  let combo = [
-    {value:"Seleccionar",label:"Seleccionar..."},
-      {value:"NAES",label:"NAES"},
-      {value:"CUACM",label:"CUACM"},
-      {value:"LOCAL ",label:"LOCAL"},
-      
-  ]
-
-	
+		setDatos((prevState) => ({ ...datos }));
+	};
+	let combo = [
+		{ subLabel: 'NAES', label: 'NAES' },
+		{ subLabel: 'CUACM', label: 'CUACM' },
+		{ subLabel: 'LOCAL ', label: 'LOCAL' }
+	];
 
 	let campos = [
-             
-                 {tipo:"comboNew",label:"Nomenclador",regex:"", size:6   , opciones:combo,requerido:"S",ejecutar:false },
-              /*  {tipo:"cuit",label:"Cuit",regex:/^(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]$/, opciones:this.state.comboTramites2?this.state.comboTramites2:comboEstado,requerido:"N",ejecutar:false },*/
-    ];
+		{
+			tipo: 'comboNew',
+			label: 'Nomenclador',
+			regex: '',
+			size: 6,
+			opciones: combo,
+			requerido: 'S',
+			ejecutar: false
+		}
+		/*  {tipo:"cuit",label:"Cuit",regex:/^(20|23|24|27|30|33|34)(\D)?[0-9]{8}(\D)?[0-9]$/, opciones:this.state.comboTramites2?this.state.comboTramites2:comboEstado,requerido:"N",ejecutar:false },*/
+	];
 
-	const handleInputChange = (inputValue, actionMeta) => {
-    console.group('Input Changed');
-    console.log(inputValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
-  };
+
+	const handleClick = (e, f) => {
+	
+
+		console.log('e : ' + e);
+		console.log('f: ' + f);
+	};
 
 	return (
 		<>
 			<section className="container">
 				<FullWidth datosTitulosHome={datosTitulosHome}></FullWidth>
 
-				<div className="input-search" >
-					<BusquedaGenerica   estilo="metatdr" campos={campos} onSearch={handleSearch}/>
-					
-					
+				<div className="input-search">
+					<InputSearch
+						dataInput={combo}
+						placeholder="¿Qué trámite estás buscando?"
+						buttonSearch={true}
+						onClick={handleClick}
+					/>
 				</div>
 
 				<div className="row d-flex">
@@ -118,7 +119,7 @@ export default function GuiaTramites() {
 						};
 
 						return (
-							<div className="col-12 col-md-4 col-lg-3 col-xxl-2 shortcutRowWrapper__card p-2">
+							<div className="col-12 col-md-4 col-lg-3 col-xxl-3 shortcutRowWrapper__card p-2">
 								<CardStats datosCardStats={datosCardStats} />
 							</div>
 						);
@@ -140,7 +141,6 @@ export default function GuiaTramites() {
 						<div className="container-fluid listCollapsables listCollapsables--faq">
 							<div className="row listCollapsables__item">
 								<div className="col listCollapsablesItem">
-									
 									{seccionAyuda(datosAccordion)}
 								</div>
 							</div>

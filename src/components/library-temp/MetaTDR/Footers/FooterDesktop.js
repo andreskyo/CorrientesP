@@ -5,7 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 
-const Footerdesktop = () => {
+const FooterDesktop = () => {
     const array1 = ["Copyriht 2021 - Rentas Corrientes", "Mapa de sitio" , "Politicas de privacidad " , "Terminos y condiciones"]
     const axios = require('axios');
     const [list, setList] = useState([]);
@@ -50,7 +50,7 @@ const Footerdesktop = () => {
         </Container>
     );
 }
-export default Footerdesktop;
+export default FooterDesktop;
 
 /**<Bottom>
                <div className="top">

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import logoGobiernoCorrientes from '../assets/img/logoGobiernoCorrientes.webp';
 import logo1 from "../assets/images/logo1.svg"
-const Footerdesktop = () => {
+const FooterDesktop = () => {
 	const axios = require('axios');
 	const [list, setList] = useState([]);
 
@@ -33,7 +33,7 @@ const Footerdesktop = () => {
 									<a href="#" className="text-decoration-none">{element.titulo}</a>
 								</li>
 							))}
-                     <li class="footerNavItem__moreInfo"><a href="#">Más información</a></li>
+                     <li className="footerNavItem__moreInfo"><a href="#">Más información</a></li>
 						</ul>
 					</div>
 				</>
@@ -105,7 +105,7 @@ const Footerdesktop = () => {
 		</>
 	);
 };
-export default Footerdesktop;
+export default FooterDesktop;
 
 	
 	
