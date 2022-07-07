@@ -3,33 +3,23 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import history from 'utils/history';
 import { Login } from 'pages';
 import { LandingPage } from 'pages';
-import MediosDePagos from 'pages/MediosDePagos';
+import Contenidos from 'pages/Contenidos';
 import Novedades from '../pages/Novedades';
 import Navigation from '../components/NavBar/Navigation';
-import Topheader from 'components/library-temp/MetaTDR/Headers/TopHeader';
+
 import Vencimientos from '../pages/Vencimientos';
 import Consultas from '../components/Gestiones/Consultas/Consultas';
 import Cotizacion from '../components/Gestiones/Consultas/Cotizacion';
 import CalculoInteres from '../components/Gestiones/Consultas/CalculoInteres';
 import ConsultaExpedientes from '../components/Gestiones/Consultas/ConsultaExpedientes';
 import Gestiones from '../components/Gestiones/Gestiones';
-import CertificadosConstancias from '../components/Gestiones/CertificadosConstancias';
-import CertificadosEmitidos from 'components/Gestiones/Certificados&Constancias.js/CertificadosEmitidos';
-import ConstanciaInscripcion from 'components/Gestiones/Certificados&Constancias.js/ConstanciaInscripcion';
-import LibreDeuda from 'components/Gestiones/Certificados&Constancias.js/LibreDeuda';
+
 import Denuncias from '../components/Gestiones/Denuncias';
 import Nomenclador from '../components/Gestiones/Nomenclador';
 import RegistroContribuyente from 'components/Gestiones/RegistroContribuyente';
 import RegistroOrganismos from 'components/Gestiones/RegistroOrganismos';
 import GuiaTramites from '../pages/GuiaTramites';
-import IngresosBrutos from '../pages/Tramites/IngresosBrutos';
-import Sellos from '../pages/Tramites/Sellos';
-import InmobiliarioRural from '../pages/Tramites/InmobiliarioRural';
-import Planesdepago from '../pages/Tramites/Planesdepago';
-import OtrosTramites from '../pages/Tramites/OtrosTramites';
-import Clavedeaccesovirtual from '../pages/Tramites/Clavedeaccesovirtual';
-import Acreditaciondepersoneria from '../pages/Tramites/Acreditaciondepersoneria';
-import AltaActividad from 'pages/Tramites/IIBB/AltaActividad';
+
 import FooterDesktop from '../components/FooterDesktop';
 import ScrollToTop from '../components/common/ScrollToTop';
 import ItemTramite from 'pages/ItemTramite';
@@ -81,7 +71,7 @@ function Rutas() {
 
 					<Route path="puestoAtencionControl" element={<PuestoAtencion/>} />"
 
-					<Route path="mediosDePagos" element={<MediosDePagos/>}/>
+					<Route path="contenidos" element={<Contenidos/>}/>
 					<Route path="error" element={<NotFound/>}/>
 				</Routes>
 			</ScrollToTop>
