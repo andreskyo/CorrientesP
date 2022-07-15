@@ -21,7 +21,7 @@ const FooterDesktop = () => {
 
 	let resultado = list.data
 		? datos.data.map((res) => (
-				<>
+				
 					<div
 						key={Math.random()}
 						className="col-12 col-lg-3 footerNavRow__item"
@@ -36,7 +36,7 @@ const FooterDesktop = () => {
                      <li className="footerNavItem__moreInfo"><a href="#">Más información</a></li>
 						</ul>
 					</div>
-				</>
+				
 		  ))
 		: null;
 

@@ -84,7 +84,7 @@ const Titles = () =>{
         
             
                 <NavItem className="nav-item">
-                    <NavLink className="nav-link"  activeClassName="active" href="#" >{titles}</NavLink>
+                    <NavLink className="nav-link"  activeclassname="active" href="/" >{titles}</NavLink>
                 </NavItem>
             
        )}

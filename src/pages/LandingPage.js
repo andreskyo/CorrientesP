@@ -58,7 +58,7 @@ function LandingPage() {
 	const accesos = () => {
 		let resultados = acceso;
 		let result = resultados
-			? acceso.accesos.data.map((res) => {
+			? acceso.accesos.data.map((res,index) => {
 					let datosAcceso = {
 						icon: (
 							<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />
@@ -79,13 +79,13 @@ function LandingPage() {
 					};
 					if (!isMobile && window.innerWidth > 992) {
 						return (
-							<div className="col-4">
+							<div className="col-4" key={index}>
 								<OtherCards cardAcceso datosAcceso={datosAcceso} />
 							</div>
 						);
 					} else {
 						return (
-							<SwiperSlide className="p-1">
+							<SwiperSlide className="p-1" key={index}>
 								<OtherCards cardAcceso datosAcceso={datosAcceso} />
 							</SwiperSlide>
 						);
@@ -160,7 +160,7 @@ function LandingPage() {
 							)
 						};
 						return (
-							<div className="col-4">
+							<div className="col-4" key={i}>
 								<CardImg datosCardImg={datosCardImg} />
 							</div>
 						);
@@ -243,7 +243,7 @@ function LandingPage() {
 	const ayuda = () => {
 		let resultados = datosAyuda;
 		let result = resultados
-			? datosAyuda.accesos.data.map((res) => {
+			? datosAyuda.accesos.data.map((res,index) => {
 					if (!isMobile && window.innerWidth > 992) {
 						let datosCardStats = {
 							titulo: res.attributes.titulo,
@@ -269,7 +269,7 @@ function LandingPage() {
 						};
 
 						return (
-							<div className="col-4">
+							<div className="col-4" key={index}>
 								<CardStats datosCardStats={datosCardStats} />
 							</div>
 						);
@@ -378,7 +378,7 @@ function LandingPage() {
 								</div>
 							
 							</StyledVencimientos>
-					*/	<div className="nextExpirationItem col-lg-4">
+					*/	<div className="nextExpirationItem col-lg-4" key={i}>
 					<CardVencimiento datos={datosVencimiento} />
 					</div>
 							
@@ -450,10 +450,10 @@ function LandingPage() {
 						<div className="row bannerEasyAccessRow">
 							{datosAccesoRapido.data
 								? datosAccesoRapido.data[0].attributes.accesos.data.map(
-										(result) => {
-											console.log('result ', result.attributes);
+										(result,i) => {
+											
 											return (
-												<div className="col-auto bannerEasyAccessRow__item">
+												<div className="col-auto bannerEasyAccessRow__item" key={i}>
 													<div className="row bannerEasyAccessItem">
 														<div className="col-auto bannerEasyAccessItem__icon ">
 															<div
@@ -537,7 +537,7 @@ function LandingPage() {
 	};
 
 	return (
-		<body className="body_home">
+		<div className="body_home">
 			<Carousel2 />
 			<Group />
 			{accesos()}
@@ -547,7 +547,7 @@ function LandingPage() {
 			{ayuda()}
 
 			{vencimientos()}
-		</body>
+		</div>
 	);
 }
 
