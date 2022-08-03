@@ -1,12 +1,12 @@
 import React, { memo, useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CardStatsIcon from '../components/library-temp/CardStatsIcon';
 import CardImage from '../components/library-temp/MetaTDR/Cards/CardImage';
 import latestNewsImg1 from '../assets/img/latestNewsImg1.webp';
 import latestNewsImg3 from '../assets/img/latestNewsImg3.webp';
 import Carousel2 from '../components/library-temp/MetaTDR/Slider/Carousel2';
-import creditCard from '../assets/images/creditCard.svg';
+
 import Swiper2 from '../components/library-temp/Swiper';
 import 'moment/locale/es';
 import { SwiperSlide } from 'swiper/react/swiper-react';
@@ -24,7 +24,8 @@ import CardStats from '../components/andres/MetaTDR/Cards/jsPrimary/CardStats';
 import Carousel from 'react-bootstrap/Carousel';
 import styled from 'styled-components';
 
-
+import CardVencimiento from '../components/andres/MetaTDR/Cards/CardVencimiento/CardVencimiento';
+import { Card } from 'material-ui';
 function LandingPage() {
 	let navigate = useNavigate();
 	const [datosAccesoRapido, setdatosAccesoRapido] = useGet({
@@ -57,7 +58,7 @@ function LandingPage() {
 	const accesos = () => {
 		let resultados = acceso;
 		let result = resultados
-			? acceso.accesos.data.map((res) => {
+			? acceso.accesos.data.map((res,index) => {
 					let datosAcceso = {
 						icon: (
 							<svg dangerouslySetInnerHTML={{ __html: res.attributes.icono }} />
@@ -68,23 +69,23 @@ function LandingPage() {
 							<Buttons
 								primary
 								text="Ingresar "
-								onClick={() =>
-									navigate(
-										'https://miportal.dgrcorrientes.gov.ar/publico/solicitudTurnos'
-									)
-								}
-							/>
+								onClick={() => {
+									res.attributes.enlace
+										? window.open(res.attributes.enlace)
+										: navigate('error');
+								}}
+							></Buttons>
 						)
 					};
 					if (!isMobile && window.innerWidth > 992) {
 						return (
-							<div className="col-4">
+							<div className="col-4" key={index}>
 								<OtherCards cardAcceso datosAcceso={datosAcceso} />
 							</div>
 						);
 					} else {
 						return (
-							<SwiperSlide className="p-1">
+							<SwiperSlide className="p-1" key={index}>
 								<OtherCards cardAcceso datosAcceso={datosAcceso} />
 							</SwiperSlide>
 						);
@@ -159,7 +160,7 @@ function LandingPage() {
 							)
 						};
 						return (
-							<div className="col-4">
+							<div className="col-4" key={i}>
 								<CardImg datosCardImg={datosCardImg} />
 							</div>
 						);
@@ -242,7 +243,7 @@ function LandingPage() {
 	const ayuda = () => {
 		let resultados = datosAyuda;
 		let result = resultados
-			? datosAyuda.accesos.data.map((res) => {
+			? datosAyuda.accesos.data.map((res,index) => {
 					if (!isMobile && window.innerWidth > 992) {
 						let datosCardStats = {
 							titulo: res.attributes.titulo,
@@ -268,7 +269,7 @@ function LandingPage() {
 						};
 
 						return (
-							<div className="col-4">
+							<div className="col-4" key={index}>
 								<CardStats datosCardStats={datosCardStats} />
 							</div>
 						);
@@ -335,11 +336,16 @@ function LandingPage() {
 	const vencimientos = (data) => {
 		let resultados = dataVencimientos;
 		let result = resultados
-			? resultados.map((res,i) => {
+			? resultados.map((res, i) => {
 					if (!isMobile && window.innerWidth > 992) {
+						let datosVencimiento = {
+							titulo: res.fechaVencimientoDia,
+							sub: res.fechaVencimientoMes,
+							descripcion: res.detalle
+						};
 						return (
 							//Armar card vencimientos con api de detalles
-							<StyledVencimientos className="col-12 col-lg nextExpirationWrapper__item splide__slide">
+							/*	<StyledVencimientos className="col-12 col-lg nextExpirationWrapper__item splide__slide">
 							
 									
 								<div className="nextExpirationItem">
@@ -372,38 +378,20 @@ function LandingPage() {
 								</div>
 							
 							</StyledVencimientos>
-					
+					*/	<div className="nextExpirationItem col-lg-4" key={i}>
+					<CardVencimiento datos={datosVencimiento} />
+					</div>
+							
 						);
 					} else {
+						let datosVencimiento = {
+							titulo: res.fechaVencimientoDia,
+							sub: res.fechaVencimientoMes,
+							descripcion: res.detalle
+						};
 						return (
 							<SwiperSlide>
-								<StyledVencimientos className="col-12 col-lg nextExpirationWrapper__item splide__slide">
-									<div className="nextExpirationItem">
-										<div className="col-auto nextExpirationItem__icon">
-											<span>
-												<i className="fa fa-svg fa-calendar-o fa-fw"></i>
-											</span>
-										</div>
-
-										<h2 className="nextExpirationItem__date">
-											{res.fechaVencimiento}
-										</h2>
-										{res.detalle.map((result) => {
-											return (
-												<div className="nextExpirationItem__description col">
-													<div>{result.tipoObligacion}</div>
-													<div>{result.impuesteDesc} </div>
-													<div>{result.conceptoDesc}</div>
-													<div> Cuota: {result.cuota}</div>
-
-													{result.terminacion == null ? null : (
-														<div> Terminacion {result.terminacion}</div>
-													)}
-												</div>
-											);
-										})}
-									</div>
-								</StyledVencimientos>
+									<CardVencimiento datos={datosVencimiento} />
 							</SwiperSlide>
 						);
 					}
@@ -462,10 +450,10 @@ function LandingPage() {
 						<div className="row bannerEasyAccessRow">
 							{datosAccesoRapido.data
 								? datosAccesoRapido.data[0].attributes.accesos.data.map(
-										(result) => {
-											console.log('result ', result.attributes);
+										(result,i) => {
+											
 											return (
-												<div className="col-auto bannerEasyAccessRow__item">
+												<div className="col-auto bannerEasyAccessRow__item" key={i}>
 													<div className="row bannerEasyAccessItem">
 														<div className="col-auto bannerEasyAccessItem__icon ">
 															<div
@@ -476,10 +464,14 @@ function LandingPage() {
 														</div>
 														<div className="col-auto bannerEasyAccessItem__text">
 															<p>{result.attributes.titulo}</p>
-														
-															<a href={result.attributes.enlace?result.attributes.enlace:"error"}>
-																{result.attributes.textoEnlace}
-															</a>
+															<Buttons
+																className="m-0 p-0"
+																line
+																onClick={() =>
+																	handleNavigate(result.attributes.enlace)
+																}
+																text="Más información"
+															/>
 														</div>
 													</div>
 												</div>
@@ -535,8 +527,17 @@ function LandingPage() {
 		}
 	};
 
+	const handleNavigate = (api) => {
+		//manejador de rutas de contenidos html
+		if (api) {
+			navigate('/contenidos', { state: { api } });
+		} else {
+			navigate('/error');
+		}
+	};
+
 	return (
-		<body className="body_home">
+		<div className="body_home">
 			<Carousel2 />
 			<Group />
 			{accesos()}
@@ -546,7 +547,7 @@ function LandingPage() {
 			{ayuda()}
 
 			{vencimientos()}
-		</body>
+		</div>
 	);
 }
 
@@ -556,47 +557,44 @@ const Styled = styled.div`
 	.bannerEasyAccessItem {
 		justify-content: center;
 	}
-
-
 `;
 
 const StyledVencimientos = styled.div`
-	.fechaVencimientoMes{
+	.fechaVencimientoMes {
 		font-family: 'SF UI Text';
-font-style: normal;
-font-weight: 400;
-font-size: 30px;
-line-height: 150%;
-/* identical to box height, or 45px */
+		font-style: normal;
+		font-weight: 400;
+		font-size: 30px;
+		line-height: 150%;
+		/* identical to box height, or 45px */
 
-display: flex;
-align-items: center;
-text-align: center;
+		display: flex;
+		align-items: center;
+		text-align: center;
 
-/* Single Tone/darkText */
+		/* Single Tone/darkText */
 
-color: #27272A;
+		color: #27272a;
 	}
 
-	.fechaVencimientoDia{
+	.fechaVencimientoDia {
 		/* Text/Medium/8xl: 96px */
 
-font-family: 'SF UI Text';
-font-style: normal;
-font-weight: 500;
-font-size: 96px;
-line-height: 150%;
-/* identical to box height, or 144px */
+		font-family: 'SF UI Text';
+		font-style: normal;
+		font-weight: 500;
+		font-size: 96px;
+		line-height: 150%;
+		/* identical to box height, or 144px */
 
-display: flex;
-align-items: center;
-text-align: center;
-width: 242px;
-height: 144px;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		width: 242px;
+		height: 144px;
 
-/* DarkBlue/darkBlue.700 */
+		/* DarkBlue/darkBlue.700 */
 
-color: #124596;
+		color: #124596;
 	}
-
-`
+`;
