@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import history from 'utils/history';
 import { Login } from 'pages';
@@ -35,7 +35,17 @@ import ScrollToTop from '../components/common/ScrollToTop';
 import ItemTramite from 'pages/ItemTramite';
 import PuestoAtencion from '../pages/PuestoAtencion'
 import  NotFound  from '../pages/NotFound';
+import WebFont from 'webfontloader';
 function Rutas() {
+
+	useEffect(() => {
+		WebFont.load({
+		  google: {
+			families: ['Droid Sans', 'Chilanka', 'Roboto']
+		  }
+		});
+	   }, []);
+
 	return (
 		<BrowserRouter history={history}>
 			<Navigation />

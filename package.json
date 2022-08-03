@@ -25,6 +25,7 @@
 		"@mui/material": "^5.2.5",
 		"@mui/styles": "^5.5.1",
 		"@mui/x-date-pickers": "^5.0.0-alpha.4",
+		"@react-leaflet/core": ">=1.0.0 <1.1.0 || ^1.1.1",
 		"@rematch/core": "^2.0.1",
 		"@splidejs/react-splide": "^0.6.17",
 		"@splidejs/splide": "^3.6.9",
@@ -41,6 +42,7 @@
 		"dayjs": "^1.11.2",
 		"faker": "^6.6.6",
 		"font-awesome": "^4.7.0",
+		"leaflet": "^1.8.0",
 		"lodash": "^4.17.15",
 		"luxon": "^2.4.0",
 		"material-icons": "^1.10.9",
@@ -58,6 +60,7 @@
 		"react-dom": "^17.0.2",
 		"react-html-parser": "^2.0.2",
 		"react-id-swiper": "^4.0.0",
+		"react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
 		"react-markdown": "^7.1.1",
 		"react-multi-carousel": "^2.8.0",
 		"react-number-format": "^4.9.3",
@@ -74,6 +77,7 @@
 		"styled-jsx": "^4.0.1",
 		"swiper": "^8.1.1",
 		"web-vitals": "^1.1.2",
+		"webfontloader": "^1.6.28",
 		"yarn": "^1.22.17"
 	},
 	"scripts": {
@@ -88,27 +92,20 @@
 	"eslintConfig": {
 		"extends": "react-app"
 	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not op_mini all"
+	],
 	"devDependencies": {
 		"@babel/core": "^7.6.0",
-		"@faker-js/faker": "^6.3.1",
-		"@storybook/addons": "^5.2.1",
-		"prettier": "^1.18.2",
+		"@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
 		"@babel/preset-react": "^7.16.0",
+		"@faker-js/faker": "^6.3.1",
 		"@storybook/addon-actions": "^6.3.12",
 		"@storybook/addon-essentials": "^6.3.12",
 		"@storybook/addon-links": "^6.3.12",
+		"@storybook/addons": "^5.2.1",
 		"@storybook/react": "^6.3.12",
 		"babel-cli": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
@@ -117,6 +114,7 @@
 		"css-loader": "^6.2.0",
 		"image-webpack-loader": "^7.0.1",
 		"node-sass": "^6.0.1",
+		"prettier": "^1.18.2",
 		"sass-loader": "^12.1.0",
 		"style-loader": "^3.2.1"
 	}

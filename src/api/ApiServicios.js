@@ -57,5 +57,7 @@ export default {
             params: {
                 cuit
                 }
-            })}
+            })},
+    consultaDelegaciones() {
+            return apiClient.get('/tipos-atencion/?populate=*')}
 }

@@ -5,6 +5,8 @@ import { Provider, connect } from 'react-redux';
 import Routes from 'routes';
 
 class App extends Component {
+
+	
 	render() {
 		return (
 			<Container fluid>
