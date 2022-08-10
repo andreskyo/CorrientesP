@@ -331,9 +331,9 @@ const renderDatosDelegacion = ()=>{
     </div>
   
  
-  <div id="Buttons">
+  {/*<div id="Buttons">
     <div id="text8 ">Solicitar turno</div>
-  </div>
+</div>*/}
  </ContainerDatosDeg>
 
  return result;

@@ -5,6 +5,7 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles'
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { Icon } from "leaflet";
@@ -13,7 +14,7 @@ import "leaflet/dist/leaflet.css";
 import { useParams } from "react-router-dom";
 import L from 'leaflet';
 import IconDgr from '../../assets/images/icon4.svg'
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +59,7 @@ export const icon = new Icon({
 const style = {
   minWidth: 200,
   height: 600,
-  zIndex: 0,
+  //zIndex: 0,
   borderRadius: "20px 0 0 20px" ,
   paddingLeft:0
 };

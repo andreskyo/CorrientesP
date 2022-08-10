@@ -15,7 +15,7 @@ const FooterDesktop = () => {
 			});
 	}, []);
 
-	console.log('list', list);
+	//console.log('list', list);
 
 	let datos = list;
 

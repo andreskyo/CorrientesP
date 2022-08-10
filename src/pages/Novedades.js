@@ -54,7 +54,7 @@ export default function Novedades(props) {
 									res.imagen ? res.attributes.imagen.url : novedadesPrimary
 								}
 								description={
-									res.attributes.descripcion.substring(0, 500) + '...'
+									res.attributes.descripcion.substring(0, 200) + '...'
 								}
 								date={res.attributes.fecha}
 								button={
@@ -180,7 +180,7 @@ export default function Novedades(props) {
 					</div>
 				</div>
 
-				<div className="container-lg m-0 p-0 row ">{result}</div>
+				<div className="container m-0 p-0 row ">{result}</div>
 				<div className="card-image-row">
 					<CardImageRow
 						title="Información sobre Puestos de Atención al Contribuyente"
@@ -276,7 +276,7 @@ const Style = styled.div`
 
 	.card-image-row {
 		margin: 4% 0%;
-		min-height: 243px;
+		//min-height: 243px;
 		display: flex;
 		justify-content: space-between;
 	}

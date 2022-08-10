@@ -44,7 +44,7 @@ const ComponentInputModal = styled.div`
      height:auto;
      overflow-x: hidden;
      overflow-y: auto;
-     z-index: 9999;
+     z-index: 99999;
     position: absolute;
     background-color: white;
      cursor:pointer;

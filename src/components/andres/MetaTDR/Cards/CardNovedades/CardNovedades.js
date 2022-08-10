@@ -11,11 +11,12 @@ const ComponentCard = styled.div`
     border: 1px solid #e9e9e9;
     display: flex;
     position:relative;
+    min-height: 100%;
   }
 
   .contentImg {
     border-radius: 0px 0px 20px 0px;
-    border: 1px solid #e9e9e9;
+    border: ${(props)=>` 1px solid ${props.color}` };
     display:flex;
     position: absolute;
     width:70px;

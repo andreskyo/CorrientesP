@@ -1,6 +1,8 @@
 import CardBorderCut from 'components/common/CardBorderCut';
 import CustomMap from 'components/Map/CustomMap';
 import {React,useState,useEffect} from 'react';
+
+import { useNavigate,useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser'; 
@@ -25,23 +27,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import HtmlParser from 'react-html-parser';
+import  Breadcrumbs  from '../components/andres/MetaTDR/BreadCrumbs/BreadCrumbs';
 
 
-const StyledCabeceraMap = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-width: 1062px;
-height: 38px;
 
-/* Inside auto layout */
-
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
-`;
 
 const StyledContainerMap = styled.div`
 
@@ -52,6 +41,71 @@ border-radius: 16px;
 flex: none;
 order: 1;
 flex-grow: 0;
+&.scale-in-center {
+	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+&.scale-out-center {
+	-webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+&.pepe{
+  border: 1px solid green!important;
+
+
+@-webkit-keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+
+
+
+
+  @-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+}
 `;
 
 const StyledContainerInfo = styled.div`
@@ -112,6 +166,132 @@ flex: none;
 order: 1;
 flex-grow: 0;
 
+&.scale-out-center {
+	-webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+&.pepe{
+  //border: 1px solid green!important;
+
+
+@-webkit-keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}}
+
+	
+`;
+
+const StyledCabecera = styled.div`
+
+
+
+&.scale-out-center {
+	-webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+&.slide-out-bottom {
+	-webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+&.fade-out {
+	-webkit-animation: fade-out 1s ease-out both;
+	        animation: fade-out 1s ease-out both;
+}
+
+ @-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+ @-webkit-keyframes slide-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(450px);
+            transform: translateY(450px);
+    opacity: 0;
+  }
+}
+
+
+  //border: 1px solid green!important;
+
+
+@-webkit-keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+
 	
 `;
 
@@ -122,6 +302,16 @@ font-weight: bold;
 font-size: 18px;
 line-height: 150%;
 color: #8B5CF6;
+`;
+
+const StyledLink = styled.a`
+font-family: 'Roboto';
+//font-weight: bold;
+font-size: 16px;
+line-height: 150%;
+color: #0077E6;
+text-decoration: none;
+padding: 0;
 `;
 
 const StyledTAtencion = styled.div`
@@ -139,6 +329,9 @@ const StyledContainerBox = styled.div`
 display: flex;
 justify-content: space-evenly;
 font-family: "Roboto"!important;
+#email {
+  color: #2972e5!important;
+}
 
 
 `;
@@ -146,137 +339,12 @@ font-family: "Roboto"!important;
 const StyledfakeCards = styled.div`
 box-sizing: border-box;
 
-height: 264px;
+//height: 100%;
+min-height: 100%;
 //background: #FFFFFF;
 //border: 1px solid #E9E9E9;
 
 `;
-
-
-
-
-  
-  const ContainerDatosDeg = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1.625rem;
-  `
-  const TextReceptoria = styled.div`
-    text-align: left;
-    vertical-align: top;
-    font-size: 18px;
-    font-family: 'Roboto';
-    line-height: 150%;
-    color: #78716c;
-  `
-  const BloqueWhatsapp = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 0.5625rem;
-  `
-  const Img2 = styled.i`
-    height: 24px;
-    width: 24px;
-    color: white;
-    
-  `
-  const TextTelefono = styled.div`
-    text-align: left;
-    vertical-align: top;
-    font-size: 16px;
-    font-family: 'Roboto';
-    line-height: 150%;
-    color: #0077e6;
-  `
-  const TextHorario = styled.div`
-    text-align: left;
-    vertical-align: top;
-    font-size: 18px;
-    font-family: 'Roboto';
-    line-height: 150%;
-    color: #78716c;
-  `
-  const AlertMensaje = styled.div`
-    border-radius: 0.25rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0.75rem;
-    gap: 0.5rem;
-    background-color: #0284c7;
-  `
-  const LeftIcon = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0.25rem;
-    gap: 0.625rem;
-  `
-  const img5 = styled.div`
-    height: 16px;
-    width: 16px;
-    background-color: #ffffff;
-  `
-  const TextWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-family: 'Roboto';
-    gap: 0.25rem;
-  `
-  const Title = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-  `
-  const Text6 = styled.div`
-    text-align: left;
-    vertical-align: top;
-    font-size: 16px;
-    font-family: 'Roboto';
-    line-height: 150%;
-    color: #fafaf9;
-  `
-  const Supportingtext = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-  `
-  const Text7 = styled.div`
-    text-align: left;
-    vertical-align: top;
-    font-size: 14px;
-    font-family: 'Roboto';
-    line-height: 150%;
-    color: #fafaf9;
-  `
-  const Buttons = styled.div`
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    gap: 0.625rem;
-    background-color: #124596;
-  `
-  const Text8 = styled.div`
-    text-align: left;
-    vertical-align: top;
-    font-size: 16px;
-    font-family: 'Roboto';
-    line-height: 150%;
-    color: #ffffff;
-  `
 
 
 
@@ -285,7 +353,40 @@ const StyledContainerScreen = styled.div`
 
 
 
-height: 85%;
+height: 85%!important;
+
+&.scale-out-center {
+	-webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+  //border: 1px solid green!important;
+
+
+@-webkit-keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
 
 `
 const StyledAnimatedBg = styled.div`
@@ -296,6 +397,8 @@ background-image: url('${backgroundAnimated}');
 	background-size: cover;
   animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
   transform: translate3d(0, 0, 0);
+  height: 85%!important;
+  background-color: #e5e5e517;
 
 
 
@@ -396,9 +499,21 @@ export default function PuestoAtencion() {
 	const [Delegaciones, setDelegaciones] = useState();
   const [DatosDelegaciones, setDatosDelegaciones] = useState();
   const [DelegSeleccionada, setDelegSeleccionada] = useState();
+  const [ClosingMap, setClosingMap] = useState(false);
+  
+	const [DatosPresenciales, setDatosPresenciales] = useState();
+  
+	const [DatosNoPresenciales, setDatosNoPresenciales] = useState();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  //const baseURL = window.config.baseURL;
 	
 
 	useEffect(() => {
+
+//@TODO hacer custom hooks de todo esto.
+
 		axios({
 			method: 'get',
 			url:
@@ -409,6 +524,31 @@ export default function PuestoAtencion() {
             //console.log("pepe: " +JSON.stringify(response));
 			
 		});
+
+
+    axios({
+			method: 'get',
+			url:
+				'https://api.test.dgrcorrientes.gov.ar/strapibe/api/tipos-presencial/?populate=*',
+			responseType: 'stream'
+		}).then(function(response) {
+			setDatosPresenciales(response.data.data[0].attributes.presencials);//array de 3 precenciales
+            //console.log("pepe: " +JSON.stringify(response));
+			
+		});
+
+
+    axios({
+			method: 'get',
+			url:
+				'https://api.test.dgrcorrientes.gov.ar/strapibe/api/no-presencials/?populate=*',
+			responseType: 'stream'
+		}).then(function(response) {
+			setDatosNoPresenciales(response.data.data);
+            //console.log("pepe: " +JSON.stringify(response));
+			
+		});
+    
 	}, []);
 
 
@@ -423,8 +563,8 @@ export default function PuestoAtencion() {
 
 
 let  datosTitulosHome = {
-    titulo: "Novedades",
-    sub:"Puesto de atención y Control",
+    titulo: "NOVEDADES",
+    sub:"Puestos de Atención y Control",
     descripcion: "Enterate de las últimas noticias de los puestos de atención Presencial y No Presencial de la Provincia de Corrientes."
 }
 
@@ -576,6 +716,15 @@ const renderMap=(deg)=>{
   }
 }
 
+const cerrarMapa = () =>{
+setClosingMap(true)
+  setTimeout(() => {
+    setClosingMap(false)
+    setDelegSeleccionada();
+  }, 1000);
+  
+}
+
 const RenderCabeceraMap = (deleg)=>{
 
     //aca armar logica de abierto cerrado etc
@@ -583,11 +732,11 @@ const RenderCabeceraMap = (deleg)=>{
     let estado;
     let cerrar;
 
-    let result = <div className='row col-12 pl-0 mb-4'>
+    let result = <StyledCabecera className={ClosingMap?"fade-out row col-12 pl-0 mb-4":'row col-12 pl-0 mb-4'}>
         <StyledTitleMap className="text-center col-6 recep ">{DelegSeleccionada[0].datos && DelegSeleccionada[0].datos.nombre} - </StyledTitleMap>
         <StyledTitleMap className={DelegSeleccionada && DelegSeleccionada[0].Cerrado?" cerrado text-center col-4 ":"abierto text-center col-4 "}>{DelegSeleccionada && DelegSeleccionada[0].Cerrado?"Cerrado":"Abierto"}</StyledTitleMap>
-        <StyledClose onClick={()=>{setDelegSeleccionada()}} className="text-center col-2 ">Cerrar <img src={VectorClose} alt="img" style={{"filter": "invert(46%) sepia(57%) saturate(5221%) hue-rotate(337deg) brightness(94%) contrast(99%)"}} /> </StyledClose>
-    </div>
+        <StyledClose onClick={()=> cerrarMapa()} className={ClosingMap?"fade-out text-center col-2":"text-center col-2 "}>Cerrar <img src={VectorClose} alt="img" style={{"filter": "invert(46%) sepia(57%) saturate(5221%) hue-rotate(337deg) brightness(94%) contrast(99%)"}} /> </StyledClose>
+    </StyledCabecera>
 
 return result
 }
@@ -632,52 +781,166 @@ DatosCombo = DatosDelegaciones.map((delegacion)=>{
       
  }
 
-const renderDatosDelegacion = () => {
-    return (
-      <ContainerDatosDeg>
-        <TextReceptoria>Receptoría
-        25 de Mayo N° 436
-        CP: 3450
-  </TextReceptoria>
-        <BloqueWhatsapp>
-          <Img2 src="" />
-          <TextTelefono>3795-575150</TextTelefono>
-        </BloqueWhatsapp>
-        <TextHorario>Horario de atención
-  7:00 a 13:00hs. </TextHorario>
-        <AlertMensaje>
-          <LeftIcon>
-           
-            <span>
-                <Img2 className="fa fa-svg fa-info-circle fa-fw"></Img2>
-			</span>
-          </LeftIcon>
-          <TextWrapper>
-            <Title>
-              <Text6>Atención</Text6>
-            </Title>
-            <Supportingtext>
-              <Text7>Este centro atenderá con turno previo, podrás reservar uino haciendo clic en el botón “Solicitar Turno”.</Text7>
-            </Supportingtext>
-          </TextWrapper>
-        </AlertMensaje>
-        <Buttons>
-          <Text8>Solicitar turno</Text8>
-        </Buttons>
-      </ContainerDatosDeg>
-    )
+
+const renderAtencionPresencial = () =>{
+  let result = "pepe";
+if(DatosPresenciales && DatosPresenciales.data.length >=1 ){
+  result = DatosPresenciales.data.map((card, i)=>{
+    let {titulo, detalle, link} = card.attributes; 
+    let filterValue;
+    let colorCard;
+    switch (i) {
+      case 0:
+        filterValue="invert(50%) sepia(93%) saturate(4544%) hue-rotate(238deg) brightness(100%) contrast(94%)";
+        colorCard="#EDE9FE";
+        break;
+      case 1:
+        filterValue="invert(47%) sepia(99%) saturate(1625%) hue-rotate(352deg) brightness(100%) contrast(96%)";
+        colorCard="#FFEDD5";
+      break;
+      case 2:
+        filterValue="invert(66%) sepia(38%) saturate(7486%) hue-rotate(152deg) brightness(100%) contrast(95%)";
+        colorCard="#CFFAFE";
+      break
+    
+      default:
+        filterValue="invert(50%) sepia(93%) saturate(4544%) hue-rotate(238deg) brightness(100%) contrast(94%)";
+        colorCard="#EDE9FE";
+        break;
+    }
+    
+    return (<StyledfakeCards className='col'> 
+    <CardNovedades
+      color={colorCard}
+      className="card"
+      onClick={(a)=>alert('hola')}
+      img= {<img src={link} alt="img" style={{"filter": filterValue}}/>}
+      body={<Body datos={{"titulo":titulo,
+        "sub": detalle,
+            }}/>
+    }
+    /> 
+  </StyledfakeCards>)
+  });
+}
+
+
+
+  return result;
+}  
+
+const RenderBodyCard = (titulo, detalle, link, redes_sociales) =>{
+
+  let array_redes;
+  let detalleaux = detalle.replaceAll('(o)', '&#0149');
+  var text_replaced = detalleaux.replace(/_(.*?)_/g, '<div id="email">$1</div>');
+
+  let DatosSub = <div style={{whiteSpace:"pre-wrap", fontSize:16}}>{HtmlParser(text_replaced)}</div>;
+
+  if(redes_sociales && redes_sociales.data.length>=1){
+    //console.log("armo redes")
+    array_redes = redes_sociales.data.map(({attributes})=>{
+      let{titulo,link , linksvg}=attributes;
+      console.log("titulo: " + titulo);
+      return <div className='row d-block pl-0 pr-0 mb-1'><img src={linksvg} alt={titulo} style={{width:40, height:20, paddingLeft:0, paddingRight:0}} /> <StyledLink href={link}> DGR Corrientes </StyledLink> </div>
+
+
+    });
+    //nuevos datos sub para redes sociales.
+    DatosSub = <div style={{whiteSpace:"pre-wrap", fontSize:16}}>
+        <div className='row pl-2 pr-2 mb-3'> {HtmlParser(detalle.replaceAll('(o)', '&#0149'))} </div>
+        {array_redes}
+      </div>
+
   }
 
- return(<StyledAnimatedBg><StyledContainerScreen className="container" >
+  return <Body datos={{
+    "titulo":titulo,
+    "sub": DatosSub,
+    }}
+    />
+
+
+}
+
+const renderAtencionNoPresencial = () =>{
+  let result = "pepe";
+if(DatosNoPresenciales && DatosNoPresenciales.length >=1 ){
+  result = DatosNoPresenciales.map((card, i)=>{
+    let {titulo, detalle, link, redes_sociales} = card.attributes; 
+    let filterValue;
+    let colorCard;
+    switch (i) {
+      case 0:
+        filterValue="invert(50%) sepia(93%) saturate(4544%) hue-rotate(238deg) brightness(100%) contrast(94%)";
+        colorCard="#EDE9FE";
+        break;
+      case 1:
+        filterValue="invert(47%) sepia(99%) saturate(1625%) hue-rotate(352deg) brightness(100%) contrast(96%)";
+        colorCard="#FFEDD5";
+      break;
+      case 2:
+        filterValue="invert(66%) sepia(38%) saturate(7486%) hue-rotate(152deg) brightness(100%) contrast(95%)";
+        colorCard="#CFFAFE";
+      break
+    
+      default:
+        filterValue="invert(50%) sepia(93%) saturate(4544%) hue-rotate(238deg) brightness(100%) contrast(94%)";
+        colorCard="#EDE9FE";
+        break;
+    }
+   
+    return (<StyledfakeCards className='col'> 
+    <CardNovedades
+      color={colorCard}
+      className="card"
+      onClick={(a)=>alert('hola')}
+      img= {<img src={link} alt="img" style={{"filter": filterValue}}/>}
+      body={RenderBodyCard(titulo, detalle, link, redes_sociales)}
+    /> 
+  </StyledfakeCards>)
+  });
+}
+
+
+
+  return result;
+}
+
+const Navegar = (e,ruta) =>{
+  e.preventDefault();
+  //alert("navego");
+  //alert("entra ruta " , `${location.pathname + '/' + ruta} `)
+  if(ruta!=="NO"){
+    navigate(ruta)
+  }
  
+  //navigate(`${ruta} `)
+ //useNavigate("contenidos");
+}
+
+const datos= [{
+  link: <a href="/" onClick={(e)=>Navegar(e,"/")}  >Home</a>
+},
+{
+  link: <a href="/" onClick={(e)=>Navegar(e,"/novedades/0")} >Novedades</a>
+},
+{
+  link: <a href="/" onClick={(e)=>Navegar(e,"NO")} >Puestos de Atencion y control</a>
+},
+]
+
+ return(<StyledAnimatedBg><StyledContainerScreen className="container" >
+  
+ <Breadcrumbs datos={datos}  classes="pt-4"> </Breadcrumbs>
     <FullWidth   datosTitulosHome={datosTitulosHome} />
     {renderHeaderBuscar()}
-    {DelegSeleccionada && DelegSeleccionada.length >=1?<div className='row col-12'>   
+    {DelegSeleccionada && DelegSeleccionada.length >=1?<div className={ClosingMap?'scale-out-center row col-12':'row col-12 '}>   
         
     
-        <div className='col-10 offset-1'>
+        <div className={ClosingMap?'scale-out-center col-10 offset-1':'col-10 offset-1 '}>
             {RenderCabeceraMap(DelegSeleccionada)}
-            <StyledContainerMap className='row  text-center col-12 pl-0 '>
+            <StyledContainerMap className={ClosingMap?'scale-out-center row  text-center col-12 pl-0':'row  text-center col-12 pl-0 scale-in-center'} >
                 <div className='col-7 pl-0'>
                     {renderMap(DelegSeleccionada)}
                 </div>
@@ -688,16 +951,22 @@ const renderDatosDelegacion = () => {
             </StyledContainerMap>
         </div>  
 
-    </div>:""}
+    </div>
+    :""
+    }
     <div className='row col-12 text-center' style={{marginTop: "10%"}}>
         <StyledTtleHorarios className='col-12 text-center'> HORARIOS DE ATENCION</StyledTtleHorarios>
         <StyledTAtencion className='col-12 text-center mb-5'> Atencion Presencial</StyledTAtencion>
 
     </div>
     <StyledContainerBox className='row col-12 mt-5 '>
+     {DatosPresenciales && DatosPresenciales.data.length>=1?renderAtencionPresencial():"nada"}
+
      
-        <StyledfakeCards className='col'> 
-        <CardNovedades
+        
+       {/*
+       <StyledfakeCards className='col'>
+       <CardNovedades
           color="#EDE9FE"
           className="card"
           onClick={(a)=>alert('hola')}
@@ -729,6 +998,8 @@ const renderDatosDelegacion = () => {
             }}/>}
       ></CardNovedades>
         </StyledfakeCards>
+       
+       */} 
     </StyledContainerBox>
 
     <div className='row col-12 text-center mt-5 mb-5'>
@@ -736,7 +1007,8 @@ const renderDatosDelegacion = () => {
 
     </div>
     <StyledContainerBox className='row col-12  '>
-        <StyledfakeCards className='col'>
+    {DatosNoPresenciales && DatosNoPresenciales.length>=1?renderAtencionNoPresencial():"nada"}
+     { /*  <StyledfakeCards className='col'>
         <CardNovedades
         color="#EDE9FE"
       className="card"
@@ -782,7 +1054,7 @@ const renderDatosDelegacion = () => {
       
       ></CardNovedades>
       <div style={{whiteSpace:"pre-wrap"}}>{"* \tPara consulta de trámites: Mesa de Ayuda: de Lunes a Viernes en horario corrido de 7:30 a 18:00 Hs.\no     Teléfonos:\t \n      o\tProvincia de Corrientes: 0800-555-7376\n      o\tResto del País: 0810-555-7376\no     Correo electrónico: \n        mesadeayuda@dgrcorrientes.gov.ar"} </div>
-        </StyledfakeCards>
+        </StyledfakeCards>*/}
     </StyledContainerBox>
  </StyledContainerScreen></StyledAnimatedBg>)
 }

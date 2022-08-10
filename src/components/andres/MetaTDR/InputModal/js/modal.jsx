@@ -6,15 +6,15 @@ import CloseIcon from '@mui/icons-material/Close';
 const ComponentModal = styled.div`
 .modal{
 background:rgba(0,0,0, .20 );
-width:100vw;
-height: 100vh;
+//width:100vw;
+height: 100%;
 position:fixed;
 top:0;
 left:0;
 z-index:9999;
 display:none;
 justify-content: center;
-align-items: center;
+padding-top: 10%;
 }
 .modal-open{
     display:flex;

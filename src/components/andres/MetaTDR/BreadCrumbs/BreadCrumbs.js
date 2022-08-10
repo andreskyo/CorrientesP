@@ -13,8 +13,8 @@ const ComponentBreadCrumbs = styled.div`
   padding-left:3px;
 }
 .breadcrumbs__item:not(:last-of-type)::after{
-   font-family: "Font Awesome 5 Free";
-   content: "\f105";
+  font-family: 'Material Icons';
+  content: ">";
    color: #78716C;
    display: inline-block;
    padding-left: 5px;
@@ -26,7 +26,7 @@ const ComponentBreadCrumbs = styled.div`
 }
 .breadcrumbs__link{
  >a{ 
-  font-family: 'SF UI Text';
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -38,7 +38,7 @@ const ComponentBreadCrumbs = styled.div`
   >a 
   {
   text-decoration:none;
-  font-family: 'SF UI Text';
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -66,7 +66,7 @@ export const BreadCrumbs = (props) => {
   }
 
   return (
-    <ComponentBreadCrumbs>
+    <ComponentBreadCrumbs className={props.classes}>
 
       {props.datos ?
         <ul>

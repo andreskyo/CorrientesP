@@ -21,7 +21,7 @@ align-items:center ;
 text-align:center;
 
    .titulo{
-    font-family: 'SF UI Text';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -31,7 +31,7 @@ text-align:center;
     
    }
    .sub{
-    font-family: 'SF UI Text';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
@@ -41,7 +41,7 @@ text-align:center;
     
   }
    .descripcion{
-    font-family: 'SF UI Text';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -63,8 +63,8 @@ const FullWidth = (props) => {
             {props.datosTitulosHome.titulo || props.datosTitulosHome.sub || props.datosTitulosHome.descripcion ?
                 <div className="text">
 
-                    {props.datosTitulosHome.titulo ? <p className="titulo">{props.datosTitulosHome.titulo}</p> : null}
-                    {props.datosTitulosHome.sub ? <p className="sub">{props.datosTitulosHome.sub}</p> : null}
+                    {props.datosTitulosHome.titulo ? <p className="titulo mb-0 mt-5">{props.datosTitulosHome.titulo}</p> : null}
+                    {props.datosTitulosHome.sub ? <p className="sub mb-0">{props.datosTitulosHome.sub}</p> : null}
                     {props.datosTitulosHome.descripcion ? <p className="descripcion">{props.datosTitulosHome.descripcion}</p> : null}
 
                 </div>
