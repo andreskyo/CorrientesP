@@ -2,40 +2,40 @@ import React from 'react'
 import styled from "styled-components"
 export default function CardVencimientos(props) {
 
-console.log("props detalle " , props.detalle);
+    console.log("props detalle ", props.detalle);
 
-  return (
-    <Styled>
-        <div className="container-vencimiento">
-            <div className="date">
-                <div className="date-number">
+    return (
+        <Styled>
+            <div className="container-vencimiento">
+                <div className="date">
+                    <div className="date-number">
                         {props.dateNumber}
+                    </div>
+
+                    <div className="date-text">
+                        {props.dateText}
+                    </div>
                 </div>
 
-                <div className="date-text">
-                    {props.dateText}
+                <div className="divisor">
+
+                </div>
+                <div className="description">
+                    {props.detalle ? props.detalle.map((res) => {
+                        return <div className="nextExpirationItem__description col">
+                            <div>{res.tipoObligacion}</div>
+                            <div>{res.impuesteDesc} </div>
+                            <div>{res.conceptoDesc}</div>
+                            <div> Cuota: {res.cuota}</div>
+
+                            {res.terminacion == null ? null : <div> Terminacion {res.terminacion}</div>}
+
+                        </div>
+                    }) : null}
                 </div>
             </div>
-           
-            <div className="divisor">
-
-            </div>
-            <div className="description">
-               {props.detalle?props.detalle.map((res)=>{
-                   return <div className="nextExpirationItem__description col">
-									<div>{res.tipoObligacion}</div>
-									<div>{res.impuesteDesc} </div>
-									<div>{res.conceptoDesc}</div>  
-									<div> Cuota: {res.cuota}</div>
-									
-									{res.terminacion==null?null:<div> Terminacion {res.terminacion}</div>}
-									
-									</div>
-               }):null}
-            </div>
-        </div>
-    </Styled>
-  )
+        </Styled>
+    )
 }
 
 

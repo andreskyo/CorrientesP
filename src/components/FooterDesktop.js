@@ -1,6 +1,34 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import logoGobiernoCorrientes from '../assets/img/logoGobiernoCorrientes.webp';
 import logo1 from "../assets/images/logo1.svg"
+
+import styled from "styled-components";
+
+const Div = styled.div` 
+.Container{
+	margin:auto;
+	max-width:80%;
+	.footerNavRow{
+        display:flex;
+		justify-content:space-around ;
+		flex-wrap:nowrap;
+    @media (max-width: 800px) {
+        flex-wrap:wrap;
+		justify-content:space-between ;
+		
+	}
+		
+	}
+	.footerNavRow__item{
+		@media (max-width: 800px) {
+			width:240px;
+		}
+	}
+}
+`
+
+
+
 const FooterDesktop = () => {
 	const axios = require('axios');
 	const [list, setList] = useState([]);
@@ -15,36 +43,36 @@ const FooterDesktop = () => {
 			});
 	}, []);
 
-	//console.log('list', list);
+
 
 	let datos = list;
 
 	let resultado = list.data
 		? datos.data.map((res) => (
-				
-					<div
-						key={Math.random()}
-						className="col-12 col-lg-3 footerNavRow__item"
-					>
-						<h4 className="footerNavItem__title">{res.attributes.titulo}</h4>
-						<ul key={Math.random()} className="footerNavItem__list">
-							{res.attributes.menuItem.map((element, index) => (
-								<li key={Math.random()} className="">
-									<a href="#" className="text-decoration-none">{element.titulo}</a>
-								</li>
-							))}
-                     <li className="footerNavItem__moreInfo"><a href="#">Más información</a></li>
-						</ul>
-					</div>
-				
-		  ))
+
+			<div
+				key={Math.random()}
+				className="footerNavRow__item"
+			>
+				<h4 className="footerNavItem__title">{res.attributes.titulo}</h4>
+				<ul key={Math.random()} className="footerNavItem__list">
+					{res.attributes.menuItem.map((element, index) => (
+						<li key={Math.random()} className="">
+							<a href="#" className="text-decoration-none">{element.titulo}</a>
+						</li>
+					))}
+					<li className="footerNavItem__moreInfo"><a href="#">Más información</a></li>
+				</ul>
+			</div>
+
+		))
 		: null;
 
 	return (
-		<>
+		<Div>
 			<section className="footerNav">
-				<div className="container">
-					<div className="row footerNavRow">{resultado}</div>
+				<div className="Container">
+					<div className="footerNavRow">{resultado}</div>
 				</div>
 			</section>
 			<footer>
@@ -102,25 +130,25 @@ const FooterDesktop = () => {
 					</div>
 				</div>
 			</footer>
-		</>
+		</Div>
 	);
 };
 export default FooterDesktop;
 
-	
-	
+
+
 
 
 /*const InputSearch = () =>{
    return(
-            <Search>
-                 <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                    <SearchIcon sx={{ color: '', mr: 1, my: 0.5 }} />
-                    <Field>
-                        <TextField id="input-with-sx" placeholder="Buscar en rentas" variant="standard" />
-                    </Field>
-      
-                </Box>
-            </Search>   
+			<Search>
+				 <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+					<SearchIcon sx={{ color: '', mr: 1, my: 0.5 }} />
+					<Field>
+						<TextField id="input-with-sx" placeholder="Buscar en rentas" variant="standard" />
+					</Field>
+	  
+				</Box>
+			</Search>   
 )  
 }*/

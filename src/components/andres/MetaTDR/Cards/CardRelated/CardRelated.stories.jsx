@@ -27,7 +27,7 @@ export const relatedCard = Template.bind({});
 
 
 relatedCard.args = {
-datos:datos
-
+datos:datos,
+textStart:true
 
 };
